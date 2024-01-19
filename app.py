@@ -15,7 +15,7 @@ from utils import get_rec_table_skinny, get_rec_table_wide, get_player_scatter_v
 st.set_page_config(
     page_title="mean-median",
     page_icon="🏂",
-    layout="wide",
+    # layout="wide",
     initial_sidebar_state="expanded")
 
 alt.themes.enable("dark")
@@ -74,40 +74,49 @@ st.markdown("""
 all_data = pd.read_csv(r"data/final_data.csv")
 all_data = all_data.astype({'season': int})
 
+
+
+
+# player_list = list(all_data.player_display_name.unique())#[::-1]
+# player = st.selectbox('Select a player', player_list)
+# player_all = all_data[(all_data.player_display_name==player)].reset_index(drop=True)
+# player_season = player_all[player_all.season==2023].reset_index(drop=True)
+# player_season2 = player_all[player_all.season > 2021].reset_index(drop=True)
+
+
 #######################
 # Sidebar
-with st.sidebar:
-    player_list = list(all_data.player_display_name.unique())#[::-1]
-    
-    player = st.selectbox('Select a player', player_list)
-    player_all = all_data[(all_data.player_display_name==player)].reset_index(drop=True)
-    player_season = player_all[player_all.season==2023].reset_index(drop=True)
-    player_season2 = player_all[player_all.season > 2021].reset_index(drop=True)
+# with st.sidebar:
+#     st.caption("Underdog")
 
-    st.caption("Underdog")
+#     med_rec = int(player_season[player_season.book_stat == 'receiving_yards']['receiving_yards'].median())
+#     med_rush = int(player_season[player_season.book_stat == 'rushing_yards']['rushing_yards'].median())
 
-    med_rec = int(player_season[player_season.book_stat == 'receiving_yards']['receiving_yards'].median())
-    med_rush = int(player_season[player_season.book_stat == 'rushing_yards']['rushing_yards'].median())
-
-    st.metric(label=f"Receiving Yards", 
-              value=f"{(player_all[player_all['book_stat']=='receiving_yards'].ud_line.mean())}", 
-              delta= med_rec)
-    st.metric(label="Rushing Yards", 
-              value=f"{player_all[player_all['book_stat']=='rushing_yards'].ud_line.mean()}", 
-              delta= med_rush)
-    st.markdown("---")
-    st.caption('Prize Picks')
-    st.metric(label=f"Receiving Yards", 
-              value=f"{player_all[player_all['book_stat']=='receiving_yards'].pp_line.mean()}", 
-              delta= med_rec)
-    st.metric(label="Rushing Yards", 
-              value=f"{player_all[player_all['book_stat']=='rushing_yards'].pp_line.mean()}", 
-              delta= med_rush)
-    
+#     st.metric(label=f"Receiving Yards", 
+#               value=f"{(player_all[player_all['book_stat']=='receiving_yards'].ud_line.mean())}", 
+#               delta= med_rec)
+#     st.metric(label="Rushing Yards", 
+#               value=f"{player_all[player_all['book_stat']=='rushing_yards'].ud_line.mean()}", 
+#               delta= med_rush)
+#     st.markdown("---")
+#     st.caption('Prize Picks')
+#     st.metric(label=f"Receiving Yards", 
+#               value=f"{player_all[player_all['book_stat']=='receiving_yards'].pp_line.mean()}", 
+#               delta= med_rec)
+#     st.metric(label="Rushing Yards", 
+#               value=f"{player_all[player_all['book_stat']=='rushing_yards'].pp_line.mean()}", 
+#               delta= med_rush)
 
 
-# st.markdown("")
+player_list = list(all_data.player_display_name.unique())#[::-1]
+player = st.selectbox('Select a player', player_list)
+player_all = all_data[(all_data.player_display_name==player)].reset_index(drop=True)
 st.markdown(f"<center><h1>{player_all.player_display_name[0]}</h1></center>", unsafe_allow_html=True)
+
+player_season = player_all[player_all.season==2023].reset_index(drop=True)
+player_season2 = player_all[player_all.season > 2021].reset_index(drop=True)
+# st.markdown("")
+
 
 # col = st.columns(2)
 # with col[0]:
@@ -115,16 +124,16 @@ st.markdown(f"<center><h1>{player_all.player_display_name[0]}</h1></center>", un
 # with col[1]:
 #     st.markdown(f"<h1 style='color:purple'><small>pp</small>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</h1>",unsafe_allow_html=True)
 
-row1 = st.columns(2)
-# row2 = st.columns(2)
+# row1 = st.columns(2)
+# # row2 = st.columns(2)
 
-for col in row1:
-    tile = col.container()
-    tile.markdown(f"<center><h1 style='color:yellow'><small>ud</small>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</h1></center>",unsafe_allow_html=True)
+# for col in row1:
+#     tile = col.container()
+#     tile.markdown(f"<center><h1 style='color:yellow'><small>ud</small>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</h1></center>",unsafe_allow_html=True)
 
 
 with st.container():
-    col1,col2 = st.columns(2)
+    col1,col2 = st.columns([2,1])
     with col1:
         st.markdown(f"<center><h1 style='color:yellow'><small>ud</small>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</h1></center>",unsafe_allow_html=True)
     with col2:
@@ -153,7 +162,7 @@ with st.container():
     
 #######################
 # Dashboard Main Panel
-col = st.columns(2)
+col = st.columns([2,1])
 fig = get_player_scatter_vertical(player_season)
 config = {'displayModeBar': False}
 
