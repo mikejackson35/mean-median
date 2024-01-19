@@ -109,13 +109,18 @@ with st.sidebar:
 # st.markdown("")
 st.markdown(f"<center><h1>{player_all.player_display_name[0]}</h1></center>", unsafe_allow_html=True)
 
-col = st.columns(2)
-with col[0]:
-    st.markdown(f"<h1 style='color:yellow'><small>ud</small>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</h1>",unsafe_allow_html=True)
-with col[1]:
-    st.markdown(f"<h1 style='color:purple'><small>pp</small>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</h1>",unsafe_allow_html=True)
+# col = st.columns(2)
+# with col[0]:
+#     st.markdown(f"<h1 style='color:yellow'><small>ud</small>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</h1>",unsafe_allow_html=True)
+# with col[1]:
+#     st.markdown(f"<h1 style='color:purple'><small>pp</small>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</h1>",unsafe_allow_html=True)
 
-
+with st.container():
+    col1,col2 = st.columns(2)
+    with col1:
+        st.markdown(f"<center><h1 style='color:yellow'><small>ud</small>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</h1></center>",unsafe_allow_html=True)
+    with col2:
+        st.markdown(f"<center><h1 style='color:purple'><small>pp</small>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</h1></center>",unsafe_allow_html=True)
 # line = (player_all.pp_line.mean() + player_all.ud_line.mean())/2
 # line2 = (player_all.pp_line.mean() + player_all.ud_line.mean())/3
 # st.markdown(f"<h5 style='color:yellow'>{line}</h5><h5 style='color:purple'>{round(line2)}</h5>",unsafe_allow_html=True)# {line2}")
