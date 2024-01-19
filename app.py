@@ -75,15 +75,6 @@ all_data = pd.read_csv(r"data/final_data.csv")
 all_data = all_data.astype({'season': int})
 
 
-
-
-# player_list = list(all_data.player_display_name.unique())#[::-1]
-# player = st.selectbox('Select a player', player_list)
-# player_all = all_data[(all_data.player_display_name==player)].reset_index(drop=True)
-# player_season = player_all[player_all.season==2023].reset_index(drop=True)
-# player_season2 = player_all[player_all.season > 2021].reset_index(drop=True)
-
-
 #######################
 # Sidebar
 # with st.sidebar:
@@ -118,7 +109,7 @@ st.markdown(f"<center><h1>{player_all.player_display_name[0]}</h1></center>", un
 
 player_season = player_all[player_all.season==2023].reset_index(drop=True)
 player_season2 = player_all[player_all.season > 2021].reset_index(drop=True)
-# st.markdown("")
+
 
 ######################
 # PRIZE PICKS AND UNDERDOG LINES
@@ -131,8 +122,8 @@ with st.container():
 
     
 #######################
-# VERTICAL SCATTER
-col = st.columns([2,1])
+# VERTICAL SCATTER & SKINNY TABLE WITH BORDER
+# col = st.columns([2,1])
 fig = get_player_scatter_vertical(player_season)
 config = {'displayModeBar': False}
 
@@ -141,7 +132,14 @@ with st.container(border=True):
     with col1:
         st.plotly_chart(fig, config = config, theme=None,use_container_width=True)
     with col2:
-        st.dataframe(get_rec_table_skinny(player_season),hide_index=True, height=700,column_config={'week':'Week','receiving_yards':'Rec Yards'},use_container_width=True)
+        st.dataframe(get_rec_table_skinny(player_season),
+                     hide_index=True, 
+                     height=600,
+                     column_config={'week':'Week','receiving_yards':'Rec Yards'},
+                     use_container_width=True)
 
+
+######################
+# WIDE TABLE
 st.markdown("")
 st.dataframe(get_rec_table_wide(player_season),hide_index=True, height=700, column_config={'week':'Week','targets':'Targets','receptions':'Receptions','receiving_tds':'Receiving TDs','fantasy_points':'Fantasy Points'},use_container_width=True)
