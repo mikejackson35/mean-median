@@ -115,6 +115,14 @@ st.markdown(f"<center><h1>{player_all.player_display_name[0]}</h1></center>", un
 # with col[1]:
 #     st.markdown(f"<h1 style='color:purple'><small>pp</small>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</h1>",unsafe_allow_html=True)
 
+row1 = st.columns(2)
+# row2 = st.columns(2)
+
+for col in row1:
+    tile = col.container()
+    tile.markdown(f"<center><h1 style='color:yellow'><small>ud</small>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</h1></center>",unsafe_allow_html=True)
+
+
 with st.container():
     col1,col2 = st.columns(2)
     with col1:
