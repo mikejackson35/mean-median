@@ -3,3 +3,9 @@ pandas
 altair
 plotly
 seaborn
+webbrowser
+requests
+re
+tls_client
+numpy
+matplotlib

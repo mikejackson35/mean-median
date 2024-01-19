@@ -1,6 +1,7 @@
 
 import pandas as pd
 import plotly.express as px
+import seaborn as sns
 
 def merge_books(pp,ud):
     pp = pp[['Player','Position','Team','Opponent','Market Name','Line']].rename(columns={'Line':'pp_line'})

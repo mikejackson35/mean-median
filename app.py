@@ -71,7 +71,7 @@ st.markdown("""
 
 
 #######################
-all_data = pd.read_csv(r"data\final_data.csv")
+all_data = pd.read_csv(r"data/final_data.csv")
 all_data = all_data.astype({'season': int})
 
 #######################
