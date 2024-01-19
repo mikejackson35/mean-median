@@ -128,7 +128,7 @@ fig = get_player_scatter_vertical(player_season)
 config = {'displayModeBar': False}
 
 with st.container(border=True):
-    col1,col2 = st.columns(2)
+    col1,col2 = st.columns([3,1])
     with col1:
         st.plotly_chart(fig, config = config, theme=None,use_container_width=True)
     with col2:
