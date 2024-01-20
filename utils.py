@@ -3,6 +3,7 @@ import pandas as pd
 import plotly.express as px
 import seaborn as sns
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 def merge_books(pp,ud):
     pp = pp[['Player','Position','Team','Opponent','Market Name','Line']].rename(columns={'Line':'pp_line'})
@@ -56,8 +57,47 @@ def get_rec_table_skinny2(player_season):
                                                 align = "center"),
                                     cells = dict(values = [skinny.week, skinny.receiving_yards],
                                                 align = "center",
-                                                font = dict(color = "white", size = 12, family = 'Courier New')))]).update_layout(height=600)
+                                                font = dict(color = "white", size = 15, family = 'Courier New')))]).update_layout(height=600)
     return rec_table_skinny2
+
+
+# def get_multifig():
+#     player = 'David Montgomery'  # from selectbox
+#     all_data = all_data.astype({'season': int})
+
+#     player_all = all_data[(all_data.player_display_name==player)].reset_index(drop=True)
+#     player_season = player_all[player_all.season==2023].reset_index(drop=True)
+
+#     multifig = make_subplots(
+#         rows=1,
+#         cols=2,
+#         shared_xaxes=False,
+#         vertical_spacing=0.03,
+#         specs=[[{"type": "scatter"}, {"type": "table"}]],
+#     )
+
+#     temp = player_season[player_season.book_stat=='receiving_yards'][['week','receiving_yards','book_stat']]
+#     # skinny_scatter = get_player_scatter_vertical(player_season)
+#     # skinny_table = get_rec_table_skinny2(temp)
+#     # HERE IS THE PX.SCATTER PLOT (commented out since i cannot add it)
+#     for t in px.scatter(player_season,x='targets',y='receiving_yards').data:
+#         fig.add_trace(t, row=1, col=1)
+
+#     multifig.add_trace(
+#         go.Table(
+#             header = dict(values = ['<br><b>Week</b>', '<b>Rec<br>Yards</b>'], align = "center"),
+#             cells = dict(
+#                 values = [
+#                     temp.week, 
+#                     temp.receiving_yards,
+#                 ],
+#                 align = "center",
+#             ),
+#         ),
+#         row=1,
+#         col=2,
+#     )
+#     return multifig
 
 
 

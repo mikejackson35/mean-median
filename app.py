@@ -124,25 +124,60 @@ player_season2 = player_all[player_all.season > 2021].reset_index(drop=True)
 #######################
 # VERTICAL SCATTER & SKINNY TABLE WITH BORDER
 # col = st.columns([2,1])
-skinny_scatter = get_player_scatter_vertical(player_season)
-skinny_table = get_rec_table_skinny2(player_season)
-config = {'displayModeBar': False}
+# skinny_scatter = get_player_scatter_vertical(player_season)
+# skinny_table = get_rec_table_skinny2(player_season)
+# config = {'displayModeBar': False}
 
-with st.container(border=True):
-    col1,col2 = st.columns([2,1])
-    with col1:
-        st.plotly_chart(skinny_scatter, config = config, theme=None,use_container_width=True)
-    with col2:
-        # st.dataframe(get_rec_table_skinny(player_season),
-        #              hide_index=True, 
-        #              height=600,
-        #              column_config={'week':'Week','receiving_yards':'Rec Yards'},
-        #              use_container_width=True)
-        st.plotly_chart(skinny_table,
-                        hide_index=True, 
-                        height=600,
-                        column_config={'week':'Week','receiving_yards':'Rec Yards'},
-                        use_container_width=True)
+# with st.container(border=True):
+#     col1,col2 = st.columns([2,1])
+#     with col1:
+#         st.plotly_chart(skinny_scatter, config = config, theme=None,use_container_width=True)
+#     with col2:
+#         # st.dataframe(get_rec_table_skinny(player_season),
+#         #              hide_index=True, 
+#         #              height=600,
+#         #              column_config={'week':'Week','receiving_yards':'Rec Yards'},
+#         #              use_container_width=True)
+#         st.plotly_chart(skinny_table,
+#                         hide_index=True, 
+#                         height=600,
+#                         column_config={'week':'Week','receiving_yards':'Rec Yards'},
+#                         use_container_width=True)
+
+
+from plotly.subplots import make_subplots
+
+fig = make_subplots(
+    rows=1,
+    cols=2,
+    shared_xaxes=False,
+    vertical_spacing=0.03,
+    specs=[[{"type": "scatter"}, {"type": "table"}]],
+)
+
+temp = player_season[player_season.book_stat=='receiving_yards'][['week','receiving_yards','book_stat']]
+# skinny_scatter = get_player_scatter_vertical(player_season)
+# skinny_table = get_rec_table_skinny2(temp)
+# HERE IS THE PX.SCATTER PLOT (commented out since i cannot add it)
+for t in px.scatter(player_season,x='targets',y='receiving_yards').data:
+    fig.add_trace(t, row=1, col=1)
+
+fig.add_trace(
+    go.Table(
+        header = dict(values = ['<br><b>Week</b>', '<b>Rec<br>Yards</b>'], align = "center"),
+        cells = dict(
+            values = [
+                temp.week, 
+                temp.receiving_yards,
+            ],
+            align = "center",
+        ),
+    ),
+    row=1,
+    col=2,
+)
+st.plotly_chart(fig)
+
 
 
 ######################
