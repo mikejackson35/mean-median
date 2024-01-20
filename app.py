@@ -8,7 +8,7 @@ import numpy as np
 import plotly.express as px
 import seaborn as sns
 import matplotlib.pyplot as plt
-from utils import get_rec_table_skinny, get_rec_table_wide, get_player_scatter_vertical, get_player_scatter_horizontal
+from utils import get_rec_table_skinny, get_rec_table_skinny2, get_rec_table_wide, get_player_scatter_vertical, get_player_scatter_horizontal
 
 #######################
 # Page configuration
@@ -124,19 +124,25 @@ player_season2 = player_all[player_all.season > 2021].reset_index(drop=True)
 #######################
 # VERTICAL SCATTER & SKINNY TABLE WITH BORDER
 # col = st.columns([2,1])
-fig = get_player_scatter_vertical(player_season)
+skinny_scatter = get_player_scatter_vertical(player_season)
+skinny_table = get_rec_table_skinny2(player_season)
 config = {'displayModeBar': False}
 
 with st.container(border=True):
-    col1,col2 = st.columns([3,1])
+    col1,col2 = st.columns([2,1])
     with col1:
-        st.plotly_chart(fig, config = config, theme=None,use_container_width=True)
+        st.plotly_chart(skinny_scatter, config = config, theme=None,use_container_width=True)
     with col2:
-        st.dataframe(get_rec_table_skinny(player_season),
-                     hide_index=True, 
-                     height=600,
-                     column_config={'week':'Week','receiving_yards':'Rec Yards'},
-                     use_container_width=True)
+        # st.dataframe(get_rec_table_skinny(player_season),
+        #              hide_index=True, 
+        #              height=600,
+        #              column_config={'week':'Week','receiving_yards':'Rec Yards'},
+        #              use_container_width=True)
+        st.plotly_chart(skinny_table,
+                        hide_index=True, 
+                        height=600,
+                        column_config={'week':'Week','receiving_yards':'Rec Yards'},
+                        use_container_width=True)
 
 
 ######################

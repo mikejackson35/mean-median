@@ -2,6 +2,7 @@
 import pandas as pd
 import plotly.express as px
 import seaborn as sns
+import plotly.graph_objects as go
 
 def merge_books(pp,ud):
     pp = pp[['Player','Position','Team','Opponent','Market Name','Line']].rename(columns={'Line':'pp_line'})
@@ -47,10 +48,28 @@ def get_rec_table_skinny(player_season):
     rec_table_skinny = player_season[player_season.book_stat=='receiving_yards'][['week','receiving_yards']].sort_values(by='week',ascending=False).reset_index(drop=True) 
     return rec_table_skinny
 
+
+
+def get_rec_table_skinny2(player_season):
+    skinny = player_season[player_season.book_stat=='receiving_yards'][['week','receiving_yards']].sort_values(by='week',ascending=False).reset_index(drop=True) 
+    rec_table_skinny2 = go.Figure(data = [go.Table(header = dict(values = ['<br><b>Week</b>', '<b>Rec<br>Yards</b>'],
+                                                align = "center"),
+                                    cells = dict(values = [skinny.week, skinny.receiving_yards],
+                                                align = "center",
+                                                font = dict(color = "darkslategrey", size = 12, family = 'Courier New')))]).update_layout(width=275, height=600)
+    return rec_table_skinny2
+
+
+
+
+
+
+
+
 def get_player_scatter_vertical(player_season):
     player_scatter_vertical = px.scatter(player_season,x='targets',y='receiving_yards',
                         size='week',color='week',template='presentation',
-                        size_max=17, height=700, #width=500
+                        size_max=17, height=600, #width=500
                         color_continuous_scale='blues',
                         # title = f"{player_season.player_display_name[0]}<br><b><span style='color:yellow'>{player_season.ud_line.mean()}</span><br><span style='color:purple'>{player_season.pp_line.mean()}</span><br>",
                         title = f"<span style='color:yellow'>ud<b>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</b></span>    <span style='color:purple'>pp<b>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</b></span>",                        
