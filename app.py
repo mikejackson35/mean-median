@@ -148,4 +148,4 @@ with st.container(border=True):
 ######################
 # WIDE TABLE
 st.markdown("")
-st.dataframe(get_rec_table_wide(player_season),hide_index=True, height=700, column_config={'week':'Week','targets':'Targets','receptions':'Receptions','receiving_tds':'Receiving TDs','fantasy_points':'Fantasy Points'},use_container_width=True)
+st.dataframe(get_rec_table_wide(player_season),hide_index=True, width=400, height=700, column_config={'week':'Week','targets':'Targets','receptions':'Receptions','receiving_tds':'Receiving TDs','fantasy_points':'Fantasy Points'},use_container_width=True)
