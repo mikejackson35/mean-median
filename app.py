@@ -189,7 +189,7 @@ fig.add_trace(
 ).update_coloraxes(showscale=False)
 config = {'displayModeBar': False}
 
-fig.update_layout(title = f"<span style='color:yellow'>ud<b>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</b></span>    <span style='color:purple'>pp<b>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</b></span>", title_x=0.25,title_font={"size": 50})
+fig.update_layout(title = f"<span style='color:yellow'>ud<b>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</b></span>    <span style='color:purple'>pp<b>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</b></span>", title_x=0.1,title_font={"size": 50})
 
 st.plotly_chart(fig, config=config , use_container_width=True)
 
