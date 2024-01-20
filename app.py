@@ -165,10 +165,8 @@ skinny_table = player_season[player_season.book_stat=='receiving_yards'][['week'
 
 for t in px.scatter(player_season,x='targets',y='receiving_yards',
                     size='week',color='week',template='presentation',
-                    size_max=17,# height=700, #width=500
+                    size_max=17, height=700, #width=500
                     color_continuous_scale='blues',
-                    # title = f"{player_season.player_display_name[0]}<br><b><span style='color:yellow'>{player_season.ud_line.mean()}</span><br><span style='color:purple'>{player_season.pp_line.mean()}</span><br>",
-                    # title = f"<span style='color:yellow'>ud<b>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</b></span>    <span style='color:purple'>pp<b>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</b></span>",
                     labels={'receiving_yards':'Receiving Yards','targets':'Targets'}).add_hline(y=player_season[player_season['book_stat']=='receiving_yards'].ud_line.mean(), line_width=2, line_color="yellow").data:#.add_hline(y=player_season[player_season['book_stat']=='receiving_yards'].ud_line.mean(), line_width=2, line_color="yellow").add_hline(y=player_season[player_season['book_stat']=='receiving_yards'].pp_line.mean(), line_width=2, line_color="purple").update_yaxes(showgrid=True, gridcolor='grey').data:
     fig.add_trace(t, row=1, col=1)
 
@@ -191,14 +189,14 @@ config = {'displayModeBar': False}
 
 fig.update_layout(title = f"<span style='color:yellow'>ud<b>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</b></span>       <span style='color:purple'>pp<b>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</b></span>", title_x=0.15,title_font={"size": 30})
 
-st.plotly_chart(fig, config=config , use_container_width=True)
+st.plotly_chart(fig,config=config , use_container_width=True)
 
 
 
 ######################
 # WIDE TABLE
 st.markdown("")
-st.dataframe(get_rec_table_wide(player_season),hide_index=True,width=350, height=700, column_config={'week':'Week','targets':'Targets','receptions':'Receptions','receiving_tds':'Receiving TDs','fantasy_points':'Fantasy Points'},use_container_width=True)
+st.dataframe(get_rec_table_wide(player_season),hide_index=True,width=350, height=600, column_config={'week':'Week','targets':'Targets','receptions':'Receptions','receiving_tds':'Receiving TDs','fantasy_points':'Fantasy Points'},use_container_width=True)
 
 
 # ---- REMOVE UNWANTED STREAMLIT STYLING ----
