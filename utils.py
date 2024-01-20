@@ -52,11 +52,11 @@ def get_rec_table_skinny(player_season):
 
 def get_rec_table_skinny2(player_season):
     skinny = player_season[player_season.book_stat=='receiving_yards'][['week','receiving_yards']].sort_values(by='week',ascending=False).reset_index(drop=True) 
-    rec_table_skinny2 = go.Figure(data = [go.Table(header = dict(values = ['<br><b>Week</b>', '<b>Rec<br>Yards</b>'],
+    rec_table_skinny2 = go.Figure(data = [go.Table(header = dict(values = ['<br><b>WEEK</b>', '<b>REC<br>YARDS</b>'],
                                                 align = "center"),
                                     cells = dict(values = [skinny.week, skinny.receiving_yards],
                                                 align = "center",
-                                                font = dict(color = "darkslategrey", size = 12, family = 'Courier New')))]).update_layout(width=275, height=600)
+                                                font = dict(color = "white", size = 12, family = 'Courier New')))]).update_layout(height=600)
     return rec_table_skinny2
 
 
