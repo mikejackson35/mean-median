@@ -176,7 +176,7 @@ fig.add_trace(
     row=1,
     col=2,
 )
-st.plotly_chart(fig)
+st.plotly_chart(fig,use_container_width=True)
 
 
 
