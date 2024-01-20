@@ -119,9 +119,12 @@ title = f"{player_all.player_display_name[0]}"
 with st.container():
     col1,col2 = st.columns(2)
     with col1:
+        # st.markdown(f"<center><h1 style='color:yellow'><small>ud</small>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</h1></center>",unsafe_allow_html=True)
         st.markdown(f"<center><h1 style='color:yellow'><small>ud</small>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</h1></center>",unsafe_allow_html=True)
     with col2:
         st.markdown(f"<center><h1 style='color:purple'><small>pp</small>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</h1></center>",unsafe_allow_html=True)
+
+st.markdown(f"<center><h1> <small>ud</small>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}          <small>pp</small>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</h1></center>",unsafe_allow_html=True)
 
     
 #######################
@@ -166,7 +169,7 @@ for t in px.scatter(player_season,x='targets',y='receiving_yards',
                     size_max=17,# height=700, #width=500
                     color_continuous_scale='blues',
                     # title = f"{player_season.player_display_name[0]}<br><b><span style='color:yellow'>{player_season.ud_line.mean()}</span><br><span style='color:purple'>{player_season.pp_line.mean()}</span><br>",
-                    # title = f"<span style='color:yellow'>ud<b>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</b></span>    <span style='color:purple'>pp<b>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</b></span>",
+                    title = f"<span style='color:yellow'>ud<b>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</b></span>    <span style='color:purple'>pp<b>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</b></span>",
                     labels={'receiving_yards':'Receiving Yards','targets':'Targets'}).add_hline(y=player_season[player_season['book_stat']=='receiving_yards'].ud_line.mean(), line_width=2, line_color="yellow").add_hline(y=player_season[player_season['book_stat']=='receiving_yards'].pp_line.mean(), line_width=2, line_color="purple").update_yaxes(showgrid=True, gridcolor='grey').data:
     fig.add_trace(t, row=1, col=1)
 
@@ -186,11 +189,11 @@ fig.add_trace(
 ).update_coloraxes(showscale=False)
 config = {'displayModeBar': False}
 
-st.plotly_chart(fig, config=config ,use_container_width=True)
+st.plotly_chart(fig, config=config , use_container_width=True)
 
 
 
 ######################
 # WIDE TABLE
 st.markdown("")
-st.dataframe(get_rec_table_wide(player_season),hide_index=True,width=400, height=700, column_config={'week':'Week','targets':'Targets','receptions':'Receptions','receiving_tds':'Receiving TDs','fantasy_points':'Fantasy Points'},use_container_width=True)
+st.dataframe(get_rec_table_wide(player_season),hide_index=True,width=350, height=700, column_config={'week':'Week','targets':'Targets','receptions':'Receptions','receiving_tds':'Receiving TDs','fantasy_points':'Fantasy Points'},use_container_width=True)
