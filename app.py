@@ -73,8 +73,32 @@ st.markdown("""
 all_data = pd.read_csv(r"data/final_data.csv")
 all_data = all_data.astype({'season': int})
 
-player_list = list(all_data.player_display_name.sort_values().unique())
-player = st.selectbox("", player_list)
+player_list = list(all_data[all_data.book_stat=='receiving_yards'].player_display_name.sort_values().unique())
+
+# with st.form('player_selection'):
+#     player = st.selectbox("Player", player_list)
+#     submit = st.form_submit_button('go')
+
+# if submit:
+#     player_all = all_data[(all_data.player_display_name==player)].reset_index(drop=True)
+#     player_season = player_all[player_all.season==2023].reset_index(drop=True)
+#     player_season2 = player_all[player_all.season > 2021].reset_index(drop=True)
+
+#     line = (player_all.pp_line.mean() + player_all.ud_line.mean())/2
+#     title = f"{player_all.player_display_name[0]}"
+
+
+
+
+
+
+
+#######################
+# all_data = pd.read_csv(r"data/final_data.csv")
+# all_data = all_data.astype({'season': int})
+
+# player_list = list(all_data[all_data.book_stat=='receiving_yards'].player_display_name.sort_values().unique())
+player = st.selectbox(" ", player_list)
 player_all = all_data[(all_data.player_display_name==player)].reset_index(drop=True)
 
 player_season = player_all[player_all.season==2023].reset_index(drop=True)
@@ -82,17 +106,6 @@ player_season2 = player_all[player_all.season > 2021].reset_index(drop=True)
 
 line = (player_all.pp_line.mean() + player_all.ud_line.mean())/2
 title = f"{player_all.player_display_name[0]}"
-# #####################
-# #  TITLE
-# # st.markdown(f"<center><h1>{player_all.player_display_name[0]}</h1></center>", unsafe_allow_html=True)   
-
-# player_season = player_all[player_all.season==2023].reset_index(drop=True)
-# player_season2 = player_all[player_all.season > 2021].reset_index(drop=True)
-
-# line = (player_all.pp_line.mean() + player_all.ud_line.mean())/2
-# title = f"{player_all.player_display_name[0]}"
-
-
 
 #######################
 # Sidebar
@@ -118,7 +131,7 @@ title = f"{player_all.player_display_name[0]}"
 
 #####################
 #  TITLE
-# st.markdown(f"<center><h1>{player_all.player_display_name[0]}</h1></center>", unsafe_allow_html=True)  
+st.markdown(f"<center><h1>{player_all.player_display_name[0]}</h1></center>", unsafe_allow_html=True)  
 
 ######################
 # PRIZE PICKS AND UNDERDOG LINES
@@ -152,8 +165,8 @@ with col2:
     st.markdown(" ")
     st.markdown(" ")
     # st.markdown(" ")
-    st.dataframe(get_rec_table_wide(player_season),hide_index=True, height=500,column_config={'week':'Week', 'targets':'Targets','receptions':'Receptions','receiving_tds':'Receiving TDs'},use_container_width=True)
-
+    # st.dataframe(get_rec_table_wide(player_season[player_season.book_stat=='receiving_yards']).style.set_properties(**{'text-align': 'center'}).format(precision=0).hide(axis="index"))
+    st.dataframe(get_rec_table_wide(player_season),hide_index=True, height=500,column_config={'week':'Week','receiving_yards': 'Rec Yards', 'targets':'Targets','receptions':'Catches','receiving_tds':'Rec TDs'},use_container_width=True)
         # st.plotly_chart(skinny_table,
         #                 hide_index=True, 
         #                 height=600,
