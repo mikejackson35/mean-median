@@ -1,9 +1,9 @@
 # streamlit_app.py
 
 import streamlit as st
-import tableauserverclient as TSC
+# import tableauserverclient as TSC
 import pandas as pd
-from io import StringIO
+# from io import StringIO
 
 
 # Set up connection.

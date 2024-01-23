@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 import seaborn as sns
 import plotly.graph_objects as go
-from plotly.subplots import make_subplots
+# from plotly.subplots import make_subplots
 
 def merge_books(pp,ud):
     pp = pp[['Player','Position','Team','Opponent','Market Name','Line']].rename(columns={'Line':'pp_line'})

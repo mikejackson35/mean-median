@@ -70,64 +70,20 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 #######################
+# READ IN DATA
 all_data = pd.read_csv(r"data/final_data.csv")
 all_data = all_data.astype({'season': int})
 
 player_list = list(all_data[all_data.book_stat=='receiving_yards'].player_display_name.sort_values().unique())
-
-# with st.form('player_selection'):
-#     player = st.selectbox("Player", player_list)
-#     submit = st.form_submit_button('go')
-
-# if submit:
-#     player_all = all_data[(all_data.player_display_name==player)].reset_index(drop=True)
-#     player_season = player_all[player_all.season==2023].reset_index(drop=True)
-#     player_season2 = player_all[player_all.season > 2021].reset_index(drop=True)
-
-#     line = (player_all.pp_line.mean() + player_all.ud_line.mean())/2
-#     title = f"{player_all.player_display_name[0]}"
-
-
-
-
-
-
-
-#######################
-# all_data = pd.read_csv(r"data/final_data.csv")
-# all_data = all_data.astype({'season': int})
-
-# player_list = list(all_data[all_data.book_stat=='receiving_yards'].player_display_name.sort_values().unique())
 player = st.selectbox(" ", player_list)
-player_all = all_data[(all_data.player_display_name==player)].reset_index(drop=True)
 
+
+player_all = all_data[(all_data.player_display_name==player)].reset_index(drop=True)
 player_season = player_all[player_all.season==2023].reset_index(drop=True)
 player_season2 = player_all[player_all.season > 2021].reset_index(drop=True)
 
-line = (player_all.pp_line.mean() + player_all.ud_line.mean())/2
+line = (player_all[player_all.book_stat=='receiving_yards'].pp_line.mean() + player_all[player_all.book_stat=='receiving_yards'].ud_line.mean())/2
 title = f"{player_all.player_display_name[0]}"
-
-#######################
-# Sidebar
-# with st.sidebar:
-#     st.caption("Underdog")
-
-#     med_rec = int(player_season[player_season.book_stat == 'receiving_yards']['receiving_yards'].median())
-#     med_rush = int(player_season[player_season.book_stat == 'rushing_yards']['rushing_yards'].median())
-
-#     st.metric(label=f"Receiving Yards", 
-#               value=f"{(player_all[player_all['book_stat']=='receiving_yards'].ud_line.mean())}", 
-#               delta= med_rec)
-#     st.metric(label="Rushing Yards", 
-#               value=f"{player_all[player_all['book_stat']=='rushing_yards'].ud_line.mean()}", 
-#               delta= med_rush)
-#     st.markdown("---")
-#     st.caption('Prize Picks')
-#     st.metric(label=f"Receiving Yards", 
-#               value=f"{player_all[player_all['book_stat']=='receiving_yards'].pp_line.mean()}", 
-#               delta= med_rec)
-#     st.metric(label="Rushing Yards", 
-#               value=f"{player_all[player_all['book_stat']=='rushing_yards'].pp_line.mean()}", 
 
 #####################
 #  TITLE
