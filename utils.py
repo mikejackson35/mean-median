@@ -42,7 +42,7 @@ def ud_delta(row):
 #     return rec_table_wide
 
 def get_rec_table_wide(player_season):
-    rec_table_wide = player_season[player_season.book_stat=='receiving_yards'][['week','targets','receptions','receiving_tds','fantasy_points']].sort_values(by='week',ascending=False).reset_index(drop=True) 
+    rec_table_wide = player_season[player_season.book_stat=='receiving_yards'][['week','targets','receptions','receiving_tds']].sort_values(by='week',ascending=False).reset_index(drop=True) 
     return rec_table_wide
 
 def get_rec_table_skinny(player_season):
@@ -112,7 +112,7 @@ def get_player_scatter_vertical(player_season):
                         size_max=17, height=600, #width=500
                         color_continuous_scale='blues',
                         # title = f"{player_season.player_display_name[0]}<br><b><span style='color:yellow'>{player_season.ud_line.mean()}</span><br><span style='color:purple'>{player_season.pp_line.mean()}</span><br>",
-                        title = f"<span style='color:yellow'>ud<b>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</b></span>    <span style='color:purple'>pp<b>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</b></span>",                        
+                        # title = f"<span style='color:yellow'>ud<b>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</b></span>    <span style='color:purple'>pp<b>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</b></span>",                        
                         labels={'receiving_yards':'Receiving Yards','targets':'Targets'}).update_coloraxes(showscale=False).add_hline(y=player_season[player_season['book_stat']=='receiving_yards'].ud_line.mean(), line_width=2, line_color="yellow").add_hline(y=player_season[player_season['book_stat']=='receiving_yards'].pp_line.mean(), line_width=2, line_color="purple").update_yaxes(showgrid=True, gridcolor='grey')
     return player_scatter_vertical
 
