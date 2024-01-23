@@ -29,17 +29,6 @@ def ud_delta(row):
         return row['rushing_yards'] - row['ud_line']
     else:
         return row['passing_yards'] - row['ud_line']
-    
-# def player_selected(player_selected):
-#      player = nfl[(nfl.player_display_name==player_selected) & (nfl.season==2023)].reset_index(drop=True)
-#      return player
-
-# )
-
-# def get_rec_table_wide(player):
-#     player_df = all_data[(all_data.player_display_name==player) & (all_data.season==2023)].reset_index(drop=True) 
-#     rec_table_wide = player_df[['week','targets','receptions','receiving_tds','fantasy_points']].sort_values(by='week',ascending=False).reset_index(drop=True) 
-#     return rec_table_wide
 
 def get_rec_table_wide(player_season):
     rec_table_wide = player_season[player_season.book_stat=='receiving_yards'][['week','receiving_yards','targets','receptions','receiving_tds']].sort_values(by='week',ascending=False).reset_index(drop=True) 
@@ -59,52 +48,6 @@ def get_rec_table_skinny2(player_season):
                                                 align = "center",
                                                 font = dict(color = "white", size = 15, family = 'Courier New')))]).update_layout(height=600)
     return rec_table_skinny2
-
-
-# def get_multifig():
-#     player = 'David Montgomery'  # from selectbox
-#     all_data = all_data.astype({'season': int})
-
-#     player_all = all_data[(all_data.player_display_name==player)].reset_index(drop=True)
-#     player_season = player_all[player_all.season==2023].reset_index(drop=True)
-
-#     multifig = make_subplots(
-#         rows=1,
-#         cols=2,
-#         shared_xaxes=False,
-#         vertical_spacing=0.03,
-#         specs=[[{"type": "scatter"}, {"type": "table"}]],
-#     )
-
-#     temp = player_season[player_season.book_stat=='receiving_yards'][['week','receiving_yards','book_stat']]
-#     # skinny_scatter = get_player_scatter_vertical(player_season)
-#     # skinny_table = get_rec_table_skinny2(temp)
-#     # HERE IS THE PX.SCATTER PLOT (commented out since i cannot add it)
-#     for t in px.scatter(player_season,x='targets',y='receiving_yards').data:
-#         fig.add_trace(t, row=1, col=1)
-
-#     multifig.add_trace(
-#         go.Table(
-#             header = dict(values = ['<br><b>Week</b>', '<b>Rec<br>Yards</b>'], align = "center"),
-#             cells = dict(
-#                 values = [
-#                     temp.week, 
-#                     temp.receiving_yards,
-#                 ],
-#                 align = "center",
-#             ),
-#         ),
-#         row=1,
-#         col=2,
-#     )
-#     return multifig
-
-
-
-
-
-
-
 
 def get_player_scatter_vertical(player_season):
     player_scatter_vertical = px.scatter(player_season,x='targets',y='receiving_yards',
