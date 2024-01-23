@@ -7,3 +7,5 @@ requests
 tls_client
 numpy
 matplotlib
+tableauserverclient
+io

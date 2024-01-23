@@ -71,8 +71,23 @@ st.markdown("""
 
 
 #######################
-all_data = pd.read_csv(r"data/final_data.csv")
-all_data = all_data.astype({'season': int})
+# all_data = pd.read_csv(r"data/final_data.csv")
+# all_data = all_data.astype({'season': int})
+
+# player_list = list(all_data.player_display_name.sort_values().unique())
+# player = st.selectbox("", player_list)
+# player_all = all_data[(all_data.player_display_name==player)].reset_index(drop=True)
+
+# #####################
+# #  TITLE
+# # st.markdown(f"<center><h1>{player_all.player_display_name[0]}</h1></center>", unsafe_allow_html=True)   
+
+# player_season = player_all[player_all.season==2023].reset_index(drop=True)
+# player_season2 = player_all[player_all.season > 2021].reset_index(drop=True)
+
+# line = (player_all.pp_line.mean() + player_all.ud_line.mean())/2
+# title = f"{player_all.player_display_name[0]}"
+
 
 
 #######################
@@ -97,9 +112,14 @@ all_data = all_data.astype({'season': int})
 #     st.metric(label="Rushing Yards", 
 #               value=f"{player_all[player_all['book_stat']=='rushing_yards'].pp_line.mean()}", 
 #               delta= med_rush)
+    
 
 
-player_list = list(all_data.player_display_name.unique())#[::-1]
+#######################
+all_data = pd.read_csv(r"data/final_data.csv")
+all_data = all_data.astype({'season': int})
+
+player_list = list(all_data.player_display_name.sort_values().unique())
 player = st.selectbox("", player_list)
 player_all = all_data[(all_data.player_display_name==player)].reset_index(drop=True)
 
@@ -114,20 +134,21 @@ line = (player_all.pp_line.mean() + player_all.ud_line.mean())/2
 title = f"{player_all.player_display_name[0]}"
 
 
+
+
 ######################
 # PRIZE PICKS AND UNDERDOG LINES
-# with st.container():
-#     col1,col2 = st.columns(2)
-#     with col1:
-#         # st.markdown(f"<center><h1 style='color:yellow'><small>ud</small>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</h1></center>",unsafe_allow_html=True)
-#         st.markdown(f"<center><h1 style='color:yellow'><small>ud</small>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</h1></center>",unsafe_allow_html=True)
-#     with col2:
-#         st.markdown(f"<center><h1 style='color:purple'><small>pp</small>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</h1></center>",unsafe_allow_html=True)
+with st.container():
+    col1,col2 = st.columns(2)
+    with col1:
+        st.markdown(f"<center><h1 style='color:yellow'><small>ud</small>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</h1></center>",unsafe_allow_html=True)
+    with col2:
+        st.markdown(f"<center><h1 style='color:purple'><small>pp</small>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</h1></center>",unsafe_allow_html=True)
 
 # st.write(f"<center><h1> <small>ud</small>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}          <small>pp</small>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</h1></center>",unsafe_allow_html=True, use_container_width=True)
     
-#######################
-# VERTICAL SCATTER & SKINNY TABLE WITH BORDER
+######################
+## VERTICAL SCATTER & SKINNY TABLE WITH BORDER
 # col = st.columns([2,1])
 # skinny_scatter = get_player_scatter_vertical(player_season)
 # skinny_table = get_rec_table_skinny2(player_season)
@@ -151,7 +172,7 @@ title = f"{player_all.player_display_name[0]}"
 
 
 from plotly.subplots import make_subplots
-#########################
+########################
 # SIDE BY SIDE PLOTLY CHARTS IN A SINGLE FIGURE TO HELP WITH MOBILE FORMATTING
 fig = make_subplots(
     rows=1,
@@ -167,7 +188,7 @@ for t in px.scatter(player_season,x='targets',y='receiving_yards',
                     size='week',color='week',template='presentation',
                     size_max=17, height=1000, #width=500
                     color_continuous_scale='blues',
-                    labels={'receiving_yards':'Receiving Yards','targets':'Targets'}).add_hline(y=player_season[player_season['book_stat']=='receiving_yards'].ud_line.mean(), line_width=2, line_color="yellow").data:#.add_hline(y=player_season[player_season['book_stat']=='receiving_yards'].ud_line.mean(), line_width=2, line_color="yellow").add_hline(y=player_season[player_season['book_stat']=='receiving_yards'].pp_line.mean(), line_width=2, line_color="purple").update_yaxes(showgrid=True, gridcolor='grey').data:
+                    labels={'receiving_yards':'Receiving Yards','targets':'Targets'}).data:
     fig.add_trace(t, row=1, col=1)
 
 
@@ -187,7 +208,7 @@ fig.add_trace(
 ).update_coloraxes(showscale=False)
 config = {'displayModeBar': False}
 
-fig.update_layout(title = f"<span style='color:yellow'>ud<b>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</b></span>       <span style='color:purple'>pp<b>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</b></span>", title_x=0.15,title_font={"size": 30}, height=700)
+fig.update_layout(height=700)
 
 st.plotly_chart(fig,config=config , use_container_width=True)
 
