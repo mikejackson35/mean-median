@@ -125,9 +125,9 @@ title = f"{player_all.player_display_name[0]}"
 with st.container():
     col1,col2 = st.columns(2)
     with col1:
-        st.markdown(f"<center><h1 style='color:yellow'><small>ud</small>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</h1></center>",unsafe_allow_html=True)
+        st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</h1></center>",unsafe_allow_html=True)
     with col2:
-        st.markdown(f"<center><h1 style='color:purple'><small>pp</small>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</h1></center>",unsafe_allow_html=True)
+        st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</h1></center>",unsafe_allow_html=True)
 
 # st.write(f"<center><h1> <small>ud</small>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}          <small>pp</small>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</h1></center>",unsafe_allow_html=True, use_container_width=True)
     
@@ -152,7 +152,7 @@ with col2:
     st.markdown(" ")
     st.markdown(" ")
     # st.markdown(" ")
-    st.dataframe(get_rec_table_wide(player_season),hide_index=True, height=500,column_config={'week':'Week','targets':'Targets','receptions':'Receptions','receiving_tds':'Receiving TDs'},use_container_width=True)
+    st.dataframe(get_rec_table_wide(player_season),hide_index=True, height=500,column_config={'week':'Week', 'targets':'Targets','receptions':'Receptions','receiving_tds':'Receiving TDs'},use_container_width=True)
 
         # st.plotly_chart(skinny_table,
         #                 hide_index=True, 
@@ -206,17 +206,17 @@ with col2:
 
 ######################
 # WIDE TABLE
-st.markdown("")
-st.dataframe(get_rec_table_wide(player_season),hide_index=True,width=350, height=600, column_config={'week':'Week','targets':'Targets','receptions':'Receptions','receiving_tds':'Receiving TDs','fantasy_points':'Fantasy Points'},use_container_width=True)
+# st.markdown("")
+# st.dataframe(get_rec_table_wide(player_season),hide_index=True,width=350, height=600, column_config={'week':'Week','targets':'Targets','receptions':'Receptions','receiving_tds':'Receiving TDs','fantasy_points':'Fantasy Points'},use_container_width=True)
 
 
 # ---- REMOVE UNWANTED STREAMLIT STYLING ----
-hide_st_style = """
-            <style>
-            Main Menu {visibility: hidden;}
-            footer {visibility: hidden;}
-            header {visibility: hidden;}
-            </style>
-            """
+# hide_st_style = """
+#             <style>
+#             Main Menu {visibility: hidden;}
+#             footer {visibility: hidden;}
+#             header {visibility: hidden;}
+#             </style>
+#             """
             
-st.markdown(hide_st_style, unsafe_allow_html=True)
+# st.markdown(hide_st_style, unsafe_allow_html=True)
