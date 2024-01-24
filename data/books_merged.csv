@@ -1,186 +1,188 @@
 player_display_name,position,team,opponent,book_stat,pp_line,ud_line
 Christian McCaffrey,RB,SF,DET,Rushing Yards,0.5,88.5
 Christian McCaffrey,RB,SF,DET,Rushing Yards,89.5,88.5
-Justice Hill,RB,BAL,KC,Rushing Yards,30.5,32.5
+Gus Edwards,RB,BAL,KC,Rushing + Receiving Yards,49.5,46.5
+Travis Kelce,TE,KC,@BAL,Receiving Yards,64.5,61.5
 Brock Purdy,QB,SF,DET,Rushing Yards,9.5,8.5
-Zay Flowers,WR,BAL,KC,Receiving Yards,48.5,44.5
-David Montgomery,RB,DET,@SF,Receiving Yards,5.5,6.5
-Travis Kelce,TE,KC,@BAL,Receiving Yards,64.5,62.5
+Lamar Jackson,QB,BAL,KC,Passing Yards,215.5,211.5
+Jared Goff,QB,DET,@SF,Passing Yards,262.5,257.5
+David Montgomery,RB,DET,@SF,Rushing + Receiving Yards,55.5,52.5
+Justice Hill,RB,BAL,KC,Rushing Yards,32.5,33.5
+Jahmyr Gibbs,RB,DET,@SF,Rushing + Receiving Yards,75.5,74.5
+Jared Goff,QB,DET,@SF,Pass Completions,24.5,23.5
+Patrick Mahomes,QB,KC,@BAL,Passing Yards,243.5,239.5
 Isiah Pacheco,RB,KC,@BAL,Receiving Yards,17.5,17.5
 Christian McCaffrey,RB,SF,DET,Rushing + Receiving Yards,126.5,131.5
-Rashee Rice,WR,KC,@BAL,Receiving Yards,61.5,58.5
-Jahmyr Gibbs,RB,DET,@SF,Rushing + Receiving Yards,75.5,75.5
-Mecole Hardman,WR,KC,@BAL,Receiving Yards,10.5,9.5
-David Montgomery,RB,DET,@SF,Rushing + Receiving Yards,55.5,53.5
-Brock Purdy,QB,SF,DET,Passing Yards,275.5,275.5
+Brandon Aiyuk,WR,SF,DET,Receiving Yards,80.5,79.5
+Josh Reynolds,WR,DET,@SF,Receiving Yards,35.5,34.5
+Jared Goff,QB,DET,@SF,Passing + Rushing Yards,266.5,261.5
 Patrick Mahomes,QB,KC,@BAL,Pass Completions,25.0,24.5
-Jahmyr Gibbs,RB,DET,@SF,Receiving Yards,21.5,22.5
+Justin Watson,WR,KC,@BAL,Receiving Yards,14.5,14.5
+Gus Edwards,RB,BAL,KC,Rushing Yards,41.5,39.5
+Noah Gray,TE,KC,@BAL,Receiving Yards,9.5,9.5
+Odell Beckham,WR,BAL,KC,Receiving Yards,22.5,20.5
+David Montgomery,RB,DET,@SF,Receiving Yards,5.5,5.5
 George Kittle,TE,SF,DET,Receiving Yards,60.5,59.5
-Isiah Pacheco,RB,KC,@BAL,Rushing Yards,64.5,64.5
-Lamar Jackson,QB,BAL,KC,Passing Yards,212.5,210.5
-Isiah Pacheco,RB,KC,@BAL,Rushing + Receiving Yards,86.5,85.5
+Brock Purdy,QB,SF,DET,Passing Yards,273.5,273.5
+Justice Hill,RB,BAL,KC,Rushing + Receiving Yards,51.5,49.5
+David Montgomery,RB,DET,@SF,Rushing Yards,44.5,43.5
+Gus Edwards,RB,BAL,KC,Rush Attempts,9.5,
+Lamar Jackson,QB,BAL,KC,Passing + Rushing Yards,282.5,281.5
+Kindle Vildor,CB,DET,@SF,Tackles + Assists,3.5,3.5
 Justice Hill,RB,BAL,KC,Receiving Yards,12.5,12.5
 Christian McCaffrey,RB,SF,DET,Rush Attempts,19.5,19.5
-Jared Goff,QB,DET,@SF,Pass Completions,24.5,24.5
 Isiah Pacheco,RB,KC,@BAL,Rush Attempts,14.5,14.5
-Noah Gray,TE,KC,@BAL,Receiving Yards,9.5,9.5
-Jameson Williams,WR,DET,@SF,Receptions,2.5,2.5
-Gus Edwards,RB,BAL,KC,Rush Attempts,10.0,
 Marquez Valdes-Scantling,WR,KC,@BAL,Receiving Yards,14.5,14.5
+Jahmyr Gibbs,RB,DET,@SF,Receiving Yards,22.5,22.5
+Brock Purdy,QB,SF,DET,Passing + Rushing Yards,285.5,285.5
+Amon-Ra St. Brown,WR,DET,@SF,Receiving Yards,84.5,83.5
+Jared Goff,QB,DET,@SF,Pass Attempts,36.0,36.0
+Lamar Jackson,QB,BAL,KC,Rushing Yards,64.5,64.5
 George Kittle,TE,SF,DET,Receptions,4.5,
-Justin Watson,WR,KC,@BAL,Receiving Yards,14.5,13.5
-David Montgomery,RB,DET,@SF,Rushing Yards,44.5,43.5
+Jadeveon Clowney,LB,BAL,KC,Tackles + Assists,2.5,
 David Montgomery,RB,DET,@SF,Fantasy Score,8.5,
-Brock Purdy,QB,SF,DET,Passing + Rushing Yards,285.5,286.5
 Dre Greenlaw,LB,SF,DET,Tackles + Assists,8.0,8.0
 Patrick Mahomes,QB,KC,@BAL,Passing + Rushing Yards,272.5,271.5
-Gus Edwards,RB,BAL,KC,Receiving Yards,3.5,3.5
-Josh Reynolds,WR,DET,@SF,Receiving Yards,35.5,35.5
-Arik Armstead,DT,SF,DET,Tackles + Assists,2.5,2.5
 Harrison Butker,K,KC,@BAL,Kicking Points,6.5,6.5
-Gus Edwards,RB,BAL,KC,Rushing Yards,41.5,41.5
-Patrick Mahomes,QB,KC,@BAL,Passing Yards,243.5,241.5
+Arik Armstead,DT,SF,DET,Tackles + Assists,2.5,2.5
+Gus Edwards,RB,BAL,KC,Receiving Yards,3.5,3.5
+Jared Goff,QB,DET,@SF,Fantasy Score,17.0,
 Travis Kelce,TE,KC,@BAL,Receptions,6.0,6.0
-Mecole Hardman,WR,KC,@BAL,Receptions,1.5,
 Michael Badgley,K,DET,@SF,Fantasy Score,7.0,
-Lamar Jackson,QB,BAL,KC,Pass Completions,19.5,19.5
 Rashod Bateman,WR,BAL,KC,Fantasy Score,5.5,
-Brock Purdy,QB,SF,DET,Pass Completions,21.0,20.5
+Lamar Jackson,QB,BAL,KC,Rush Attempts,10.0,10.5
 Travis Kelce,TE,KC,@BAL,Fantasy Score,14.5,
+Brock Purdy,QB,SF,DET,Pass Completions,21.0,20.5
+Mecole Hardman,WR,KC,@BAL,Receiving Yards,9.5,9.5
 Brandon Aiyuk,WR,SF,DET,Fantasy Score,15.5,
-Justin Madubuike,DE,BAL,KC,Tackles + Assists,2.5,
-Lamar Jackson,QB,BAL,KC,Rushing Yards,63.5,63.5
-Jared Goff,QB,DET,@SF,Fantasy Score,16.5,
-Zay Flowers,WR,BAL,KC,Receptions,4.5,4.5
+Nelson Agholor,WR,BAL,KC,Receiving Yards,16.5,15.5
 Harrison Butker,K,KC,@BAL,Fantasy Score,7.5,
 Justin Tucker,K,BAL,KC,Kicking Points,7.5,7.5
+Alex Anzalone,LB,DET,@SF,Tackles + Assists,7.0,7.0
 Jameson Williams,WR,DET,@SF,Receiving Yards,28.5,27.5
-Odell Beckham,WR,BAL,KC,Receiving Yards,22.5,22.5
-Jahmyr Gibbs,RB,DET,@SF,Rushing Yards,46.5,47.5
-Amon-Ra St. Brown,WR,DET,@SF,Receptions,7.5,7.5
-Christian McCaffrey,RB,SF,DET,Receiving Yards,36.5,38.5
+Jake Moody,K,SF,DET,Field Goals Made,1.5,
 Harrison Butker,K,KC,@BAL,Field Goals Made,1.5,1.5
+Lamar Jackson,QB,BAL,KC,Pass Attempts,29.5,29.5
+Christian McCaffrey,RB,SF,DET,Receiving Yards,36.5,38.5
+Christian McCaffrey,RB,SF,DET,Receptions,4.5,4.5
+Amon-Ra St. Brown,WR,DET,@SF,Receptions,7.5,7.5
 L'Jarius Sneed,CB,KC,@BAL,Tackles + Assists,4.5,4.5
 Justin Watson,WR,KC,@BAL,Fantasy Score,3.5,
-Lamar Jackson,QB,BAL,KC,Rush Attempts,10.5,10.5
-Lamar Jackson,QB,BAL,KC,Interceptions,0.5,0.5
-Lamar Jackson,QB,BAL,KC,Passing + Rushing Yards,276.5,279.5
 Marquez Valdes-Scantling,WR,KC,@BAL,Fantasy Score,3.5,
-Christian McCaffrey,RB,SF,DET,Receptions,4.5,4.5
-Amon-Ra St. Brown,WR,DET,@SF,Receiving Yards,84.5,84.5
 Odell Beckham,WR,BAL,KC,Fantasy Score,5.0,
+Zay Flowers,WR,BAL,KC,Receptions,4.5,4.5
 Nick Bolton,LB,KC,@BAL,Tackles + Assists,9.0,
 Trent McDuffie,CB,KC,@BAL,Tackles + Assists,4.5,4.5
 Justin Tucker,K,BAL,KC,Field Goals Made,1.5,1.5
+Lamar Jackson,QB,BAL,KC,Interceptions,0.5,0.5
 Josh Reynolds,WR,DET,@SF,Fantasy Score,7.5,
 Justin Tucker,K,BAL,KC,Fantasy Score,8.5,
-David Montgomery,RB,DET,@SF,Rush Attempts,11.0,10.5
 Mecole Hardman,WR,KC,@BAL,Fantasy Score,3.0,
+Isiah Pacheco,RB,KC,@BAL,Rushing + Receiving Yards,86.5,87.5
 Gus Edwards,RB,BAL,KC,Fantasy Score,7.5,
-Jared Goff,QB,DET,@SF,Passing + Rushing Yards,264.5,265.5
-Jared Goff,QB,DET,@SF,Pass Attempts,35.5,36.0
+Lamar Jackson,QB,BAL,KC,Pass Completions,19.5,19.5
 Jake Moody,K,SF,DET,Fantasy Score,8.5,
-Patrick Mahomes,QB,KC,@BAL,Rushing Yards,25.5,25.5
-Lamar Jackson,QB,BAL,KC,Pass Attempts,28.5,28.5
+Brock Purdy,QB,SF,DET,Interceptions,0.5,0.5
+Jake Moody,K,SF,DET,Kicking Points,7.5,7.5
 Patrick Mahomes,QB,KC,@BAL,Fantasy Score,18.5,
 Amon-Ra St. Brown,WR,DET,@SF,Fantasy Score,18.5,
-Jake Moody,K,SF,DET,Kicking Points,7.5,7.5
 Brock Purdy,QB,SF,DET,Fantasy Score,19.5,
+Jared Goff,QB,DET,@SF,Rushing Yards,1.5,1.5
+Sam LaPorta,TE,DET,@SF,Receiving Yards,47.5,47.5
+Patrick Mahomes,QB,KC,@BAL,Rushing Yards,26.5,27.5
 Aidan Hutchinson,DE,DET,@SF,Sacks,0.75,0.5
-Alex Anzalone,LB,DET,@SF,Tackles + Assists,7.5,7.5
+Rashee Rice,WR,KC,@BAL,Receiving Yards,59.5,58.5
 Zay Flowers,WR,BAL,KC,Fantasy Score,11.0,
 Christian McCaffrey,RB,SF,DET,Fantasy Score,23.0,
-Sam LaPorta,TE,DET,@SF,Receiving Yards,47.5,47.5
+Jahmyr Gibbs,RB,DET,@SF,Rush Attempts,9.5,9.5
 Lamar Jackson,QB,BAL,KC,Fantasy Score,22.0,
 Roquan Smith,LB,BAL,KC,Tackles + Assists,8.5,8.5
 Kyle Hamilton,S,BAL,KC,Tackles + Assists,5.5,5.5
-Jahmyr Gibbs,RB,DET,@SF,Rush Attempts,9.5,9.5
 Nick Bosa,DE,SF,DET,Sacks,0.75,
-Jared Goff,QB,DET,@SF,Rushing Yards,1.5,1.5
-Patrick Mahomes,QB,KC,@BAL,Interceptions,0.5,0.5
 Justin Reid,S,KC,@BAL,Tackles + Assists,6.0,
-Justice Hill,RB,BAL,KC,Fantasy Score,8.5,
-Jared Goff,QB,DET,@SF,Passing Touchdowns,1.5,1.5
-Patrick Mahomes,QB,KC,@BAL,Pass Attempts,36.5,36.5
-George Kittle,TE,SF,DET,Fantasy Score,12.5,
-Brandon Aiyuk,WR,SF,DET,Receiving Yards,79.5,80.5
-Rashee Rice,WR,KC,@BAL,Fantasy Score,14.5,
-Fred Warner,LB,SF,DET,Tackles + Assists,8.0,8.0
-Jared Goff,QB,DET,@SF,Passing Yards,260.5,262.5
-Brock Purdy,QB,SF,DET,Pass Attempts,29.5,29.5
+Patrick Mahomes,QB,KC,@BAL,Interceptions,0.5,0.5
 Rashod Bateman,WR,BAL,KC,Receiving Yards,24.5,23.5
+Justice Hill,RB,BAL,KC,Fantasy Score,8.5,
+David Montgomery,RB,DET,@SF,Rush Attempts,11.0,10.5
+George Kittle,TE,SF,DET,Fantasy Score,12.5,
+Rashee Rice,WR,KC,@BAL,Fantasy Score,14.5,
+Isiah Pacheco,RB,KC,@BAL,Rushing Yards,66.5,65.5
+Jared Goff,QB,DET,@SF,Passing Touchdowns,1.5,1.5
+Zay Flowers,WR,BAL,KC,Receiving Yards,46.5,45.5
+Fred Warner,LB,SF,DET,Tackles + Assists,8.0,8.0
+Brock Purdy,QB,SF,DET,Pass Attempts,29.5,29.5
 Jameson Williams,WR,DET,@SF,Fantasy Score,6.5,
+Jahmyr Gibbs,RB,DET,@SF,Rushing Yards,47.5,48.5
+Patrick Mahomes,QB,KC,@BAL,Pass Attempts,36.5,36.5
+Rashee Rice,WR,KC,@BAL,Receptions,6.0,6.0
 Isiah Pacheco,RB,KC,@BAL,Fantasy Score,14.0,
+Patrick Mahomes,QB,KC,@BAL,Passing Touchdowns,1.5,1.5
 Jahmyr Gibbs,RB,DET,@SF,Fantasy Score,13.5,
 Sam LaPorta,TE,DET,@SF,Fantasy Score,12.0,
-Patrick Mahomes,QB,KC,@BAL,Passing Touchdowns,1.5,1.5
+Mark Andrews,TE,BAL,KC,Receiving Yards,,34.5
 Jared Goff,QB,DET,@SF,Completion Percentage,,68.1
 Lamar Jackson,QB,BAL,KC,Completion Percentage,,68.4
-Brock Purdy,QB,SF,DET,Completion Percentage,,71.2
 Patrick Mahomes,QB,KC,@BAL,Completion Percentage,,67.1
+Brock Purdy,QB,SF,DET,Completion Percentage,,71.2
 Michael Badgley,K,DET,@SF,Kicking Points,,5.5
 Kindle Vildor,CB,DET,@SF,Solo Tackles,,2.5
 Kerby Joseph,S,DET,@SF,Tackles + Assists,,3.5
-Roquan Smith,LB,BAL,KC,Assisted Tackles,,2.5
-Justice Hill,RB,BAL,KC,Rushing + Receiving Yards,,49.5
-Kindle Vildor,CB,DET,@SF,Tackles + Assists,,3.5
-Zay Flowers,WR,BAL,KC,Rushing + Receiving Yards,,46.5
+Zay Flowers,WR,BAL,KC,Rushing + Receiving Yards,,47.5
 Ifeatu Melifonwu,S,DET,@SF,Tackles + Assists,,4.5
-Brandon Aiyuk,WR,SF,DET,Rushing + Receiving Yards,,81.5
-Josh Reynolds,WR,DET,@SF,Targets,,5.0
+Roquan Smith,LB,BAL,KC,Assisted Tackles,,3.0
+Brandon Aiyuk,WR,SF,DET,Rushing + Receiving Yards,,80.5
 Justin Watson,WR,KC,@BAL,Rushing + Receiving Yards,,14.5
+Josh Reynolds,WR,DET,@SF,Targets,,5.0
 Kerby Joseph,S,DET,@SF,Solo Tackles,,2.5
-Nick Bolton,LB,KC,@BAL,Assisted Tackles,,3.0
 Mecole Hardman,WR,KC,@BAL,Rushing + Receiving Yards,,11.5
-Gus Edwards,RB,BAL,KC,Rushing + Receiving Yards,,48.5
+Nick Bolton,LB,KC,@BAL,Assisted Tackles,,3.0
 Jameson Williams,WR,DET,@SF,Targets,,4.5
 Jadeveon Clowney,LB,BAL,KC,Solo Tackles,,1.5
-Marquez Valdes-Scantling,WR,KC,@BAL,Rushing + Receiving Yards,,14.5
 Rashod Bateman,WR,BAL,KC,Rushing + Receiving Yards,,24.5
-Nelson Agholor,WR,BAL,KC,Receiving Yards,,16.5
+Marquez Valdes-Scantling,WR,KC,@BAL,Rushing + Receiving Yards,,14.5
+Jameson Williams,WR,DET,@SF,Rushing + Receiving Yards,,29.5
 Brandon Aiyuk,WR,SF,DET,Targets,,7.5
 Brian Branch,CB,DET,@SF,Solo Tackles,,3.5
 Brock Purdy,QB,SF,DET,Rush Attempts,,3.0
 Nick Bosa,DE,SF,DET,Tackles + Assists,,3.0
-Jameson Williams,WR,DET,@SF,Rushing + Receiving Yards,,29.5
 Dre Greenlaw,LB,SF,DET,Solo Tackles,,5.0
-Nick Bosa,DE,SF,DET,Solo Tackles,,2.0
+Cameron Sutton,CB,DET,@SF,Tackles + Assists,,3.5
+Justin Watson,WR,KC,@BAL,Receptions,,1.5
 Justin Reid,S,KC,@BAL,Assisted Tackles,,2.0
 Roquan Smith,LB,BAL,KC,Solo Tackles,,5.5
-Justin Watson,WR,KC,@BAL,Receptions,,1.5
-Marcus Williams,S,BAL,KC,Tackles + Assists,,5.0
-Marquez Valdes-Scantling,WR,KC,@BAL,Receptions,,1.5
-Brock Purdy,QB,SF,DET,Interceptions,,0.5
-Isiah Pacheco,RB,KC,@BAL,Receptions,,3.0
 Nick Bolton,LB,KC,@BAL,Solo Tackles,,5.5
 Rashod Bateman,WR,BAL,KC,Targets,,3.5
 Brian Branch,CB,DET,@SF,Assisted Tackles,,1.5
 Brian Branch,CB,DET,@SF,Tackles + Assists,,5.0
 Justin Watson,WR,KC,@BAL,Targets,,3.0
+Isiah Pacheco,RB,KC,@BAL,Receptions,,3.0
 Alex Anzalone,LB,DET,@SF,Solo Tackles,,4.5
 Marcus Williams,S,BAL,KC,Assisted Tackles,,1.5
 Deommodore Lenoir,CB,SF,DET,Solo Tackles,,3.5
+Sam LaPorta,TE,DET,@SF,Receptions,,5.0
 Rashee Rice,WR,KC,@BAL,Targets,,8.0
 Patrick Queen,LB,BAL,KC,Solo Tackles,,4.5
-Sam LaPorta,TE,DET,@SF,Receptions,,5.0
+Brandon Aiyuk,WR,SF,DET,Receptions,,5.0
 Justin Tucker,K,BAL,KC,Extra Points Made,,2.5
 Fred Warner,LB,SF,DET,Assisted Tackles,,3.0
 Travis Kelce,TE,KC,@BAL,Targets,,8.0
 Patrick Queen,LB,BAL,KC,Assisted Tackles,,2.5
+Odell Beckham,WR,BAL,KC,Receptions,,2.0
 Alex Anzalone,LB,DET,@SF,Assisted Tackles,,2.5
 Justin Madubuike,DE,BAL,KC,Solo Tackles,,1.5
 Zay Flowers,WR,BAL,KC,Targets,,6.5
-Rashee Rice,WR,KC,@BAL,Receptions,,6.0
+Charvarius Ward,CB,SF,DET,Tackles + Assists,,5.0
 Charvarius Ward,CB,SF,DET,Solo Tackles,,3.5
+Arik Armstead,DT,SF,DET,Solo Tackles,,1.5
+Justice Hill,RB,BAL,KC,Rush Attempts,,7.5
 George Kittle,TE,SF,DET,Targets,,6.0
 Kyle Hamilton,S,BAL,KC,Assisted Tackles,,1.5
 Odell Beckham,WR,BAL,KC,Targets,,3.5
 L'Jarius Sneed,CB,KC,@BAL,Solo Tackles,,3.5
 Christian McCaffrey,RB,SF,DET,Targets,,5.5
 Marquez Valdes-Scantling,WR,KC,@BAL,Targets,,3.0
-Patrick Mahomes,QB,KC,@BAL,Rush Attempts,,4.5
-Brandon Aiyuk,WR,SF,DET,Receptions,,5.0
 Amon-Ra St. Brown,WR,DET,@SF,Targets,,10.0
+Patrick Mahomes,QB,KC,@BAL,Rush Attempts,,4.5
 Patrick Queen,LB,BAL,KC,Tackles + Assists,,7.0
 Aidan Hutchinson,DE,DET,@SF,Tackles + Assists,,4.0
 Justin Reid,S,KC,@BAL,Solo Tackles,,4.0
