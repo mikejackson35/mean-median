@@ -78,16 +78,16 @@ player_list = list(all_data[all_data.book_stat=='receiving_yards'].player_displa
 player = st.selectbox(" ", player_list)
 
 
-player_all = all_data[(all_data.player_display_name==player)].reset_index(drop=True)
-player_season = player_all[player_all.season==2023].reset_index(drop=True)
-player_season2 = player_all[player_all.season > 2021].reset_index(drop=True)
+# player_season = all_data[(all_data.player_display_name==player)].reset_index(drop=True)
+player_season = all_data[(all_data.player_display_name==player) & (all_data.season==2023)].reset_index(drop=True)
+# player_season2 = player_season[player_season.season > 2021].reset_index(drop=True)
 
-line = (player_all[player_all.book_stat=='receiving_yards'].pp_line.mean() + player_all[player_all.book_stat=='receiving_yards'].ud_line.mean())/2
-title = f"{player_all.player_display_name[0]}"
+line = (player_season[player_season.book_stat=='receiving_yards'].pp_line.mean() + player_season[player_season.book_stat=='receiving_yards'].ud_line.mean())/2
+title = f"{player_season.player_display_name[0]}"
 
 #####################
 #  TITLE
-st.markdown(f"<center><h1>{player_all.player_display_name[0]}</h1></center>", unsafe_allow_html=True)  
+st.markdown(f"<center><h1>{player_season.player_display_name[0]}</h1></center>", unsafe_allow_html=True)  
 
 ######################
 # PRIZE PICKS AND UNDERDOG LINES
