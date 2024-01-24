@@ -8,7 +8,7 @@ import numpy as np
 import plotly.express as px
 import seaborn as sns
 import matplotlib.pyplot as plt
-from utils import get_rec_table_skinny, get_rec_table_skinny2, get_rec_table_wide, get_player_scatter_vertical, get_player_scatter_horizontal
+from utils import get_rec_table_skinny, get_rush_table_wide, get_rec_table_wide, get_player_scatter_vertical, get_player_scatter_horizontal, get_player_scatter_vertical_rush
 
 #######################
 # Page configuration
@@ -74,55 +74,85 @@ st.markdown("""
 all_data = pd.read_csv(r"data/final_data.csv")
 all_data = all_data.astype({'season': int})
 
-player_list = list(all_data[all_data.book_stat=='receiving_yards'].player_display_name.sort_values().unique())
-player = st.selectbox(" ", player_list)
+# player_list = list(all_data[all_data.book_stat=='rushing_yards'].player_display_name.sort_values().unique())
+# player = st.selectbox(" ", player_list)
+# player_season = all_data[(all_data.player_display_name==player) & (all_data.season==2023)].reset_index(drop=True)
 
-
-# player_season = all_data[(all_data.player_display_name==player)].reset_index(drop=True)
-player_season = all_data[(all_data.player_display_name==player) & (all_data.season==2023)].reset_index(drop=True)
-# player_season2 = player_season[player_season.season > 2021].reset_index(drop=True)
-
-line = (player_season[player_season.book_stat=='receiving_yards'].pp_line.mean() + player_season[player_season.book_stat=='receiving_yards'].ud_line.mean())/2
-title = f"{player_season.player_display_name[0]}"
+# line = (player_season[player_season.book_stat=='rushing_yards'].pp_line.mean() + player_season[player_season.book_stat=='rushing_yards'].ud_line.mean())/2
 
 #####################
 #  TITLE
-st.markdown(f"<center><h1>{player_season.player_display_name[0]}</h1></center>", unsafe_allow_html=True)  
+# st.markdown(f"<center><h1>{player_season.player_display_name[0]}</h1></center>", unsafe_allow_html=True)  
 
-######################
-# PRIZE PICKS AND UNDERDOG LINES
-with st.container():
-    col1,col2 = st.columns(2)
-    with col1:
-        st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</h1></center>",unsafe_allow_html=True)
-    with col2:
-        st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</h1></center>",unsafe_allow_html=True)
-  
-######################
-## VERTICAL SCATTER & SKINNY TABLE WITH BORDER
-col = st.columns([2,1])
-skinny_scatter = get_player_scatter_vertical(player_season)
-skinny_table = get_rec_table_skinny2(player_season)
-config = {'displayModeBar': False}
 
-with st.container(border=True):
-    col1,col2 = st.columns(2)
-    with col1:
-        st.plotly_chart(skinny_scatter, config = config, theme=None,use_container_width=True)
-    with col2:
-        st.markdown(" ")
-        st.markdown(" ")
-        st.markdown(" ")
-        st.dataframe(get_rec_table_wide(player_season),hide_index=True, height=500,column_config={'week':'Week','receiving_yards': 'Rec Yards', 'targets':'Targets','receptions':'Catches','receiving_tds':'Rec TDs'},use_container_width=True)
+
+#####################
+## START TABS
+tab1, tab2 = st.tabs(["Receiving", "Rushing"])
+
+with tab1:
+    player_list = list(all_data[all_data.book_stat=='receiving_yards'].player_display_name.sort_values().unique())
+    player = st.selectbox(" ", player_list)
+    player_season = all_data[(all_data.player_display_name==player) & (all_data.season==2023)].reset_index(drop=True)
+
+    ######################
+    # PRIZE PICKS AND UNDERDOG LINES
+    with st.container():
+        col1,col2 = st.columns(2)
+        with col1:
+            st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</h1></center>",unsafe_allow_html=True)
+        with col2:
+            st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.book_stat=='receiving_yards'].pp_line.median()}</h1></center>",unsafe_allow_html=True)
+    
+    ######################
+    ## VERTICAL SCATTER & SKINNY TABLE WITH BORDER
+    config = {'displayModeBar': False}
+
+    with st.container(border=True):
+        col1,col2 = st.columns([1.35,1])
+        with col1:
+            st.plotly_chart(get_player_scatter_vertical(player_season), config = config, theme=None,use_container_width=True)
+        with col2:
+            st.markdown("####")
+            st.markdown("###")
+            st.dataframe(get_rec_table_wide(player_season),hide_index=True, height=500,column_config={'week':'Week','receiving_yards': 'Yards', 'targets':'Target','receptions':'Catch','receiving_tds':'TDs'},use_container_width=True)
+
+with tab2:
+    player_list = list(all_data[all_data.book_stat=='rushing_yards'].player_display_name.sort_values().unique())
+    player = st.selectbox(" ", player_list)
+    player_season = all_data[(all_data.player_display_name==player) & (all_data.season==2023)].reset_index(drop=True)
+
+    ######################
+    # PRIZE PICKS AND UNDERDOG LINES
+    with st.container():
+        col1,col2 = st.columns(2)
+        with col1:
+            st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.book_stat=='rushing_yards'].ud_line.mean()}</h1></center>",unsafe_allow_html=True)
+        with col2:
+            st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.book_stat=='rushing_yards'].pp_line.max()}</h1></center>",unsafe_allow_html=True)
+    
+    ######################
+    ## VERTICAL SCATTER & SKINNY TABLE WITH BORDER
+    config = {'displayModeBar': False}
+
+    with st.container(border=True):
+        col1,col2 = st.columns([1.5,1])
+        with col1:
+            st.plotly_chart(get_player_scatter_vertical_rush(player_season), config = config, theme=None,use_container_width=True)
+        with col2:
+            st.markdown(" ")
+            st.markdown(" ")
+            st.markdown(" ")
+            st.dataframe(get_rush_table_wide(player_season),hide_index=True, height=500,column_config={'week':'Week','rushing_yards': 'Rush Yards', 'carries':'Carries'},use_container_width=True)
 
 
 # ---- REMOVE UNWANTED STREAMLIT STYLING ----
-hide_st_style = """
-            <style>
-            Main Menu {visibility: hidden;}
-            footer {visibility: hidden;}
-            header {visibility: hidden;}
-            </style>
-            """
+# hide_st_style = """
+#             <style>
+#             Main Menu {visibility: hidden;}
+#             footer {visibility: hidden;}
+#             header {visibility: hidden;}
+#             </style>
+#             """
             
-st.markdown(hide_st_style, unsafe_allow_html=True)
+# st.markdown(hide_st_style, unsafe_allow_html=True)

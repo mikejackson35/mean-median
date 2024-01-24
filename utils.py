@@ -34,6 +34,10 @@ def get_rec_table_wide(player_season):
     rec_table_wide = player_season[player_season.book_stat=='receiving_yards'][['week','receiving_yards','targets','receptions','receiving_tds']].sort_values(by='week',ascending=False).reset_index(drop=True) 
     return rec_table_wide
 
+def get_rush_table_wide(player_season):
+    rush_table_wide = player_season[player_season.book_stat=='rushing_yards'][['week','rushing_yards','carries']].sort_values(by='week',ascending=False).reset_index(drop=True) 
+    return rush_table_wide
+
 def get_rec_table_skinny(player_season):
     rec_table_skinny = player_season[player_season.book_stat=='receiving_yards'][['week','receiving_yards']].sort_values(by='week',ascending=False).reset_index(drop=True) 
     return rec_table_skinny
@@ -60,6 +64,20 @@ def get_player_scatter_vertical(player_season):
     player_scatter_vertical.add_hline(y=player_season[player_season['book_stat']=='receiving_yards'].ud_line.mean(), line_width=2, line_color="yellow")
     player_scatter_vertical.add_hline(y=player_season[player_season['book_stat']=='receiving_yards'].pp_line.mean(), line_width=2, line_color="purple")
     player_scatter_vertical.add_hline(y=player_season[player_season['book_stat']=='receiving_yards'].receiving_yards.median(), line_width=1, line_color="white", line_dash="dot")
+    player_scatter_vertical.update_yaxes(showgrid=True, gridcolor='darkslategrey')
+    return player_scatter_vertical
+
+def get_player_scatter_vertical_rush(player_season):
+    player_scatter_vertical = px.scatter(player_season,x='carries',y='rushing_yards',
+                        size='week',color='week',template='presentation',
+                        size_max=17, height=600, #width=500
+                        color_continuous_scale='blues',
+                        # title = f"{player_season.player_display_name[0]}<br><b><span style='color:yellow'>{player_season.ud_line.mean()}</span><br><span style='color:purple'>{player_season.pp_line.mean()}</span><br>",
+                        # title = f"<span style='color:yellow'>ud<b>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</b></span>    <span style='color:purple'>pp<b>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</b></span>",                        
+                        labels={'rushing_yards':'Rush Yards','carries':'Carries'}).update_coloraxes(showscale=False)
+    player_scatter_vertical.add_hline(y=player_season[player_season['book_stat']=='rushing_yards'].ud_line.mean(), line_width=2, line_color="yellow")
+    player_scatter_vertical.add_hline(y=player_season[player_season['book_stat']=='rushing_yards'].pp_line.mean(), line_width=2, line_color="purple")
+    player_scatter_vertical.add_hline(y=player_season[player_season['book_stat']=='rushing_yards'].rushing_yards.median(), line_width=1, line_color="white", line_dash="dot")
     player_scatter_vertical.update_yaxes(showgrid=True, gridcolor='darkslategrey')
     return player_scatter_vertical
 
