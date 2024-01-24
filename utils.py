@@ -38,20 +38,14 @@ def get_rush_table_wide(player_season):
     rush_table_wide = player_season[player_season.book_stat=='rushing_yards'][['week','rushing_yards','carries']].sort_values(by='week',ascending=False).reset_index(drop=True) 
     return rush_table_wide
 
+def get_pass_table_wide(player_season):
+    pass_table_wide = player_season[player_season.book_stat=='passing_yards'][['week','passing_yards','attempts','passing_tds']].sort_values(by='week',ascending=False).reset_index(drop=True) 
+    return pass_table_wide
+
 def get_rec_table_skinny(player_season):
     rec_table_skinny = player_season[player_season.book_stat=='receiving_yards'][['week','receiving_yards']].sort_values(by='week',ascending=False).reset_index(drop=True) 
     return rec_table_skinny
 
-
-
-def get_rec_table_skinny2(player_season):
-    skinny = player_season[player_season.book_stat=='receiving_yards'][['week','receiving_yards']].sort_values(by='week',ascending=False).reset_index(drop=True) 
-    rec_table_skinny2 = go.Figure(data = [go.Table(header = dict(values = ['<br><b>WEEK</b>', '<b>REC<br>YARDS</b>'],
-                                                align = "center"),
-                                    cells = dict(values = [skinny.week, skinny.receiving_yards],
-                                                align = "center",
-                                                font = dict(color = "white", size = 15, family = 'Courier New')))]).update_layout(height=600)
-    return rec_table_skinny2
 
 def get_player_scatter_vertical(player_season):
     player_scatter_vertical = px.scatter(player_season,x='targets',y='receiving_yards',
@@ -78,6 +72,18 @@ def get_player_scatter_vertical_rush(player_season):
     player_scatter_vertical.add_hline(y=player_season[player_season['book_stat']=='rushing_yards'].ud_line.mean(), line_width=2, line_color="yellow")
     player_scatter_vertical.add_hline(y=player_season[player_season['book_stat']=='rushing_yards'].pp_line.mean(), line_width=2, line_color="purple")
     player_scatter_vertical.add_hline(y=player_season[player_season['book_stat']=='rushing_yards'].rushing_yards.median(), line_width=1, line_color="white", line_dash="dot")
+    player_scatter_vertical.update_yaxes(showgrid=True, gridcolor='darkslategrey')
+    return player_scatter_vertical
+
+def get_player_scatter_vertical_pass(player_season):
+    player_scatter_vertical = px.scatter(player_season,x='attempts',y='passing_yards',
+                        size='week',color='week',template='presentation',
+                        size_max=17, height=600, #width=500
+                        color_continuous_scale='blues',
+                        labels={'passing_yards':'Pass Yards','attempts':'Attempts'}).update_coloraxes(showscale=False)
+    player_scatter_vertical.add_hline(y=player_season[player_season['book_stat']=='passing_yards'].ud_line.mean(), line_width=2, line_color="yellow")
+    player_scatter_vertical.add_hline(y=player_season[player_season['book_stat']=='passing_yards'].pp_line.mean(), line_width=2, line_color="purple")
+    player_scatter_vertical.add_hline(y=player_season[player_season['book_stat']=='passing_yards'].passing_yards.median(), line_width=1, line_color="white", line_dash="dot")
     player_scatter_vertical.update_yaxes(showgrid=True, gridcolor='darkslategrey')
     return player_scatter_vertical
 

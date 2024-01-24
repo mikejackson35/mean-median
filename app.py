@@ -8,7 +8,7 @@ import numpy as np
 import plotly.express as px
 import seaborn as sns
 import matplotlib.pyplot as plt
-from utils import get_rec_table_skinny, get_rush_table_wide, get_rec_table_wide, get_player_scatter_vertical, get_player_scatter_horizontal, get_player_scatter_vertical_rush
+from utils import get_rec_table_skinny, get_rush_table_wide, get_rec_table_wide, get_player_scatter_vertical, get_player_scatter_horizontal, get_player_scatter_vertical_rush, get_player_scatter_vertical_pass, get_pass_table_wide
 
 #######################
 # Page configuration
@@ -88,7 +88,7 @@ all_data = all_data.astype({'season': int})
 
 #####################
 ## START TABS
-tab1, tab2 = st.tabs(["Receiving", "Rushing"])
+tab1, tab2, tab3 = st.tabs(["Receiving", "Rushing", "Passing"])
 
 with tab1:
     player_list = list(all_data[all_data.book_stat=='receiving_yards'].player_display_name.sort_values().unique())
@@ -144,6 +144,34 @@ with tab2:
             st.markdown(" ")
             st.markdown(" ")
             st.dataframe(get_rush_table_wide(player_season),hide_index=True, height=500,column_config={'week':'Week','rushing_yards': 'Rush Yards', 'carries':'Carries'},use_container_width=True)
+
+with tab3:
+    player_list = list(all_data[all_data.book_stat=='passing_yards'].player_display_name.sort_values().unique())
+    player = st.selectbox(" ", player_list)
+    player_season = all_data[(all_data.player_display_name==player) & (all_data.season==2023)].reset_index(drop=True)
+
+    ######################
+    # PRIZE PICKS AND UNDERDOG LINES
+    with st.container():
+        col1,col2 = st.columns(2)
+        with col1:
+            st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.book_stat=='passing_yards'].ud_line.mean()}</h1></center>",unsafe_allow_html=True)
+        with col2:
+            st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.book_stat=='passing_yards'].pp_line.max()}</h1></center>",unsafe_allow_html=True)
+    
+    ######################
+    ## VERTICAL SCATTER & SKINNY TABLE WITH BORDER
+    config = {'displayModeBar': False}
+
+    with st.container(border=True):
+        col1,col2 = st.columns([1.18,1])
+        with col1:
+            st.plotly_chart(get_player_scatter_vertical_pass(player_season), config = config, theme=None,use_container_width=True)
+        with col2:
+            st.markdown(" ")
+            st.markdown(" ")
+            st.markdown(" ")
+            st.dataframe(get_pass_table_wide(player_season),hide_index=True, height=500,column_config={'week':'Week','passing_yards': 'Yards', 'attempts':'Att','passing_tds':'TD'},use_container_width=True)
 
 
 # ---- REMOVE UNWANTED STREAMLIT STYLING ----
