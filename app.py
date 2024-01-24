@@ -115,7 +115,7 @@ with tab1:
         with col2:
             st.markdown("####")
             st.markdown("###")
-            st.dataframe(get_rec_table_wide(player_season),hide_index=True, height=500,column_config={'week':'Week','receiving_yards': 'Yards', 'targets':'Target','receptions':'Catch','receiving_tds':'TDs'},use_container_width=True)
+            st.dataframe(get_rec_table_wide(player_season),hide_index=True, height=475,column_config={'week':'Week','receiving_yards': 'Yards', 'targets':'Target','receptions':'Catch','receiving_tds':'TDs'},use_container_width=True)
 
 with tab2:
     player_list = list(all_data[all_data.book_stat=='rushing_yards'].player_display_name.sort_values().unique())
@@ -143,7 +143,7 @@ with tab2:
             st.markdown(" ")
             st.markdown(" ")
             st.markdown(" ")
-            st.dataframe(get_rush_table_wide(player_season),hide_index=True, height=500,column_config={'week':'Week','rushing_yards': 'Rush Yards', 'carries':'Carries'},use_container_width=True)
+            st.dataframe(get_rush_table_wide(player_season),hide_index=True, height=475,column_config={'week':'Week','rushing_yards': 'Rush Yards', 'carries':'Carries'},use_container_width=True)
 
 with tab3:
     player_list = list(all_data[all_data.book_stat=='passing_yards'].player_display_name.sort_values().unique())
@@ -171,7 +171,7 @@ with tab3:
             st.markdown(" ")
             st.markdown(" ")
             st.markdown(" ")
-            st.dataframe(get_pass_table_wide(player_season),hide_index=True, height=500,column_config={'week':'Week','passing_yards': 'Yards', 'attempts':'Att','passing_tds':'TD'},use_container_width=True)
+            st.dataframe(get_pass_table_wide(player_season),hide_index=True, height=475,column_config={'week':'Week','passing_yards': 'Yards', 'attempts':'Att','passing_tds':'TD'},use_container_width=True)
 
 
 # ---- REMOVE UNWANTED STREAMLIT STYLING ----
