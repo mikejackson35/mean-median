@@ -74,18 +74,6 @@ st.markdown("""
 all_data = pd.read_csv(r"data/final_data.csv")
 all_data = all_data.astype({'season': int})
 
-# player_list = list(all_data[all_data.book_stat=='rushing_yards'].player_display_name.sort_values().unique())
-# player = st.selectbox(" ", player_list)
-# player_season = all_data[(all_data.player_display_name==player) & (all_data.season==2023)].reset_index(drop=True)
-
-# line = (player_season[player_season.book_stat=='rushing_yards'].pp_line.mean() + player_season[player_season.book_stat=='rushing_yards'].ud_line.mean())/2
-
-#####################
-#  TITLE
-# st.markdown(f"<center><h1>{player_season.player_display_name[0]}</h1></center>", unsafe_allow_html=True)  
-
-
-
 #####################
 ## START TABS
 tab1, tab2, tab3 = st.tabs(["Receiving", "Rushing", "Passing"])
