@@ -74,6 +74,7 @@ st.markdown("""
 all_data = pd.read_csv(r"data/final_data.csv")
 all_data = all_data.astype({'season': int})
 
+st.write("#")
 #####################
 ## START TABS
 tab1, tab2, tab3 = st.tabs(["Receiving", "Rushing", "Passing"])
@@ -163,12 +164,12 @@ with tab3:
 
 
 # ---- REMOVE UNWANTED STREAMLIT STYLING ----
-# hide_st_style = """
-#             <style>
-#             Main Menu {visibility: hidden;}
-#             footer {visibility: hidden;}
-#             header {visibility: hidden;}
-#             </style>
-#             """
+hide_st_style = """
+            <style>
+            Main Menu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
             
-# st.markdown(hide_st_style, unsafe_allow_html=True)
+st.markdown(hide_st_style, unsafe_allow_html=True)
