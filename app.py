@@ -15,7 +15,7 @@ from utils import get_rec_table_skinny, get_rush_table_wide, get_rec_table_wide,
 st.set_page_config(
     page_title="mean-median",
     page_icon="🏂",
-    # layout="wide",
+    layout="wide",
     initial_sidebar_state="expanded")
 
 # alt.themes.enable("dark")
