@@ -93,13 +93,25 @@ with tab1:
     # with col2:
     #     st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.market=='receiving_yards'].fillna(0).pp_line.median()}</h1></center>",unsafe_allow_html=True)
     
-    col1,col2 = st.columns(2)
-    with col1:
-        st.markdown(f"<center><h3 style='color:yellow'>{player_season[player_season.market=='receiving_yards'].fillna(0).ud_line.median()}</h3></center>",unsafe_allow_html=True)
-    with col2:
-        st.markdown(f"<center><h3 style='color:purple'>{player_season[player_season.market=='receiving_yards'].fillna(0).pp_line.median()}</h3></center>",unsafe_allow_html=True)
-    
+    # Values to display
+    ud_line_median = player_season[player_season.market == 'receiving_yards'].fillna(0).ud_line.median()
+    pp_line_median = player_season[player_season.market == 'receiving_yards'].fillna(0).pp_line.median()
 
+    # Display values in one line with different colors
+    html_string = f"""
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <div style="text-align: center; margin-right: 20px;">
+            <h3 style='color: yellow;'>{ud_line_median}</h3>
+        </div>
+        <div style="text-align: center;">
+            <h3 style='color: purple;'>{pp_line_median}</h3>
+        </div>
+    </div>
+    """
+
+    # Render in Streamlit
+    st.markdown(html_string, unsafe_allow_html=True)
+    
     ######################
     ## VERTICAL SCATTER & SKINNY TABLE WITH BORDER
     config = {'displayModeBar': False}
