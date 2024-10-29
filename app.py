@@ -18,7 +18,7 @@ st.set_page_config(
     # layout="wide",
     initial_sidebar_state="expanded")
 
-alt.themes.enable("dark")
+# alt.themes.enable("dark")
 
 #######################
 # CSS styling
@@ -105,6 +105,7 @@ with tab1:
             st.markdown("####")
             st.markdown("###")
             st.dataframe(get_rec_table_wide(player_season),hide_index=True, height=475,column_config={'week':'Week','receiving_yards': 'Yards', 'targets':'Target','receptions':'Catch','receiving_tds':'TDs'},use_container_width=True)
+
 
 with tab2:
     player_list = list(all_data[all_data.market=='rushing_yards'].player.sort_values().unique())

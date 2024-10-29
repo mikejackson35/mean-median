@@ -31,8 +31,10 @@ def ud_delta(row):
         return row['passing_yards'] - row['ud_line']
 
 def get_rec_table_wide(player_season):
+
     rec_table_wide = player_season[player_season.market=='receiving_yards'][['week','receiving_yards','targets','receptions','receiving_tds']].sort_values(by='week',ascending=False).reset_index(drop=True) 
-    
+
+
     ud_line = player_season[player_season.market=='receiving_yards'].ud_line.median()
     pp_line = player_season[player_season.market=='receiving_yards'].pp_line.median()
 
@@ -43,8 +45,7 @@ def get_rec_table_wide(player_season):
     
     # Apply the highlighting function and set font properties
     rec_table_wide = (rec_table_wide.style
-                      .apply(highlight_high_yards, axis=1)
-                      .set_properties(**{'font-size': '30px', 'font-weight': 'bold', 'text-align': 'center'}))
+                      .apply(highlight_high_yards, axis=1))
     
     return rec_table_wide
 
@@ -63,7 +64,7 @@ def get_rush_table_wide(player_season):
     # Apply the highlighting function and set font properties
     rush_table_wide = (rush_table_wide.style
                       .apply(highlight_high_yards, axis=1)
-                      .set_properties(**{'font-size': '30px', 'font-weight': 'bold', 'text-align': 'center'}))
+                      .set_properties(**{'font-size': '30px', 'font-weight': 'bold', 'text-align': 'center', 'font-family': 'Arial Black'}))
     return rush_table_wide
 
 def get_pass_table_wide(player_season):
@@ -79,7 +80,7 @@ def get_pass_table_wide(player_season):
     # Apply the highlighting function and set font properties
     pass_table_wide = (pass_table_wide.style
                       .apply(highlight_high_yards, axis=1)
-                      .set_properties(**{'font-size': '30px', 'font-weight': 'bold', 'text-align': 'center'}))
+                      .set_properties(**{'font-size': '30px', 'font-weight': 'bold', 'text-align': 'center', 'font-family': 'Arial Black'}))
     
     return pass_table_wide
 
@@ -89,6 +90,11 @@ def get_rec_table_skinny(player_season):
 
 
 def get_player_scatter_vertical(player_season):
+    # Create a new column for custom hover text
+    player_season['hover_text'] = player_season.apply(
+        lambda row: f"Week {row['week']}<br>vs. {row['opponent_team']}<br><br>{row['receiving_yards']} yards<br>{row['targets']} targets", axis=1
+        )
+    
     player_scatter_vertical = px.scatter(player_season,x='targets',y='receiving_yards',
                         size='week',color='week',template='presentation',
                         size_max=17, height=600, #width=500
@@ -100,6 +106,7 @@ def get_player_scatter_vertical(player_season):
     player_scatter_vertical.add_hline(y=player_season[player_season['market']=='receiving_yards'].pp_line.max(), line_width=2, line_color="purple")
     player_scatter_vertical.add_hline(y=player_season[player_season['market']=='receiving_yards'].receiving_yards.median(), line_width=1, line_color="white", line_dash="dot")
     player_scatter_vertical.update_yaxes(showgrid=True, gridcolor='darkslategrey')
+    player_scatter_vertical.update_traces(textfont_family='Arial Black', hovertemplate=player_season['hover_text'])
     return player_scatter_vertical
 
 def get_player_scatter_vertical_rush(player_season):
