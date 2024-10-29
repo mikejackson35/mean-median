@@ -95,9 +95,9 @@ with tab1:
     
     col1,col2 = st.columns(2)
     with col1:
-        st.markdown(f"<center><h1 style='color:yellow'>{player_season[player_season.market=='receiving_yards'].fillna(0).ud_line.median()}</h1></center>",unsafe_allow_html=True)
+        st.markdown(f"<center><h3 style='color:yellow'>{player_season[player_season.market=='receiving_yards'].fillna(0).ud_line.median()}</h3></center>",unsafe_allow_html=True)
     with col2:
-        st.markdown(f"<center><h1 style='color:purple'>{player_season[player_season.market=='receiving_yards'].fillna(0).pp_line.median()}</h1></center>",unsafe_allow_html=True)
+        st.markdown(f"<center><h3 style='color:purple'>{player_season[player_season.market=='receiving_yards'].fillna(0).pp_line.median()}</h3></center>",unsafe_allow_html=True)
     
 
     ######################
