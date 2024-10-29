@@ -86,25 +86,25 @@ with tab1:
 
     ######################
     # PRIZE PICKS AND UNDERDOG LINES
-    with st.container():
-        col1,col2 = st.columns(2)
-        with col1:
-            st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.market=='receiving_yards'].fillna(0).ud_line.median()}</h1></center>",unsafe_allow_html=True)
-        with col2:
-            st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.market=='receiving_yards'].fillna(0).pp_line.median()}</h1></center>",unsafe_allow_html=True)
-    
+    # with st.container():
+    col1,col2 = st.columns(2)
+    with col1:
+        st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.market=='receiving_yards'].fillna(0).ud_line.median()}</h1></center>",unsafe_allow_html=True)
+    with col2:
+        st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.market=='receiving_yards'].fillna(0).pp_line.median()}</h1></center>",unsafe_allow_html=True)
+
     ######################
     ## VERTICAL SCATTER & SKINNY TABLE WITH BORDER
     config = {'displayModeBar': False}
 
-    with st.container(border=True):
-        col1,col2 = st.columns([1.35,1])
-        with col1:
-            st.plotly_chart(get_player_scatter_vertical(player_season), config = config, theme=None,use_container_width=True)
-        with col2:
-            st.markdown("####")
-            st.markdown("###")
-            st.dataframe(get_rec_table_wide(player_season),hide_index=True, height=475,column_config={'week':'Week','receiving_yards': 'Yards', 'targets':'Target','receptions':'Catch','receiving_tds':'TDs'},use_container_width=True)
+    # with st.container(border=True):
+    col1,col2 = st.columns([1.35,1])
+    with col1:
+        st.plotly_chart(get_player_scatter_vertical(player_season), config = config, theme=None,use_container_width=True)
+    with col2:
+        st.markdown("####")
+        st.markdown("###")
+        st.dataframe(get_rec_table_wide(player_season),hide_index=True, height=475,column_config={'week':'Week','receiving_yards': 'Yards', 'targets':'Target','receptions':'Catch','receiving_tds':'TDs'},use_container_width=True)
 
 
 with tab2:
@@ -114,26 +114,26 @@ with tab2:
 
     ######################
     # PRIZE PICKS AND UNDERDOG LINES
-    with st.container():
-        col1,col2 = st.columns(2)
-        with col1:
-            st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.market=='rushing_yards'].fillna(0).ud_line.median()}</h1></center>",unsafe_allow_html=True)
-        with col2:
-            st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.market=='rushing_yards'].fillna(0).pp_line.median()}</h1></center>",unsafe_allow_html=True)
-    
+    # with st.container():
+    col1,col2 = st.columns(2)
+    with col1:
+        st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.market=='rushing_yards'].fillna(0).ud_line.median()}</h1></center>",unsafe_allow_html=True)
+    with col2:
+        st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.market=='rushing_yards'].fillna(0).pp_line.median()}</h1></center>",unsafe_allow_html=True)
+
     ######################
     ## VERTICAL SCATTER & SKINNY TABLE WITH BORDER
     config = {'displayModeBar': False}
 
-    with st.container(border=True):
-        col1,col2 = st.columns([1.5,1])
-        with col1:
-            st.plotly_chart(get_player_scatter_vertical_rush(player_season), config = config, theme=None,use_container_width=True)
-        with col2:
-            st.markdown(" ")
-            st.markdown(" ")
-            st.markdown(" ")
-            st.dataframe(get_rush_table_wide(player_season),hide_index=True, height=475,column_config={'week':'Week','rushing_yards': 'Rush Yards', 'carries':'Carries'},use_container_width=True)
+    # with st.container(border=True):
+    col1,col2 = st.columns([1.5,1])
+    with col1:
+        st.plotly_chart(get_player_scatter_vertical_rush(player_season), config = config, theme=None,use_container_width=True)
+    with col2:
+        st.markdown(" ")
+        st.markdown(" ")
+        st.markdown(" ")
+        st.dataframe(get_rush_table_wide(player_season),hide_index=True, height=475,column_config={'week':'Week','rushing_yards': 'Rush Yards', 'carries':'Carries'},use_container_width=True)
 
 with tab3:
     player_list = list(all_data[all_data.market=='passing_yards'].player.sort_values().unique())
@@ -142,35 +142,35 @@ with tab3:
 
     ######################
     # PRIZE PICKS AND UNDERDOG LINES
-    with st.container():
-        col1,col2 = st.columns(2)
-        with col1:
-            st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.market=='passing_yards'].fillna(0).ud_line.median()}</h1></center>",unsafe_allow_html=True)
-        with col2:
-            st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.market=='passing_yards'].fillna(0).pp_line.median()}</h1></center>",unsafe_allow_html=True)
-    
+    # with st.container():
+    col1,col2 = st.columns(2)
+    with col1:
+        st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.market=='passing_yards'].fillna(0).ud_line.median()}</h1></center>",unsafe_allow_html=True)
+    with col2:
+        st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.market=='passing_yards'].fillna(0).pp_line.median()}</h1></center>",unsafe_allow_html=True)
+
     ######################
     ## VERTICAL SCATTER & SKINNY TABLE WITH BORDER
     config = {'displayModeBar': False}
 
-    with st.container(border=True):
-        col1,col2 = st.columns([1.18,1])
-        with col1:
-            st.plotly_chart(get_player_scatter_vertical_pass(player_season), config = config, theme=None,use_container_width=True)
-        with col2:
-            st.markdown(" ")
-            st.markdown(" ")
-            st.markdown(" ")
-            st.dataframe(get_pass_table_wide(player_season),hide_index=True, height=475,column_config={'week':'Week','passing_yards': 'Yards', 'attempts':'Att','passing_tds':'TD'},use_container_width=True)
+    # with st.container(border=True):
+    col1,col2 = st.columns([1.18,1])
+    with col1:
+        st.plotly_chart(get_player_scatter_vertical_pass(player_season), config = config, theme=None,use_container_width=True)
+    with col2:
+        st.markdown(" ")
+        st.markdown(" ")
+        st.markdown(" ")
+        st.dataframe(get_pass_table_wide(player_season),hide_index=True, height=475,column_config={'week':'Week','passing_yards': 'Yards', 'attempts':'Att','passing_tds':'TD'},use_container_width=True)
 
 
 # ---- REMOVE UNWANTED STREAMLIT STYLING ----
-# hide_st_style = """
-#             <style>
-#             Main Menu {visibility: hidden;}
-#             footer {visibility: hidden;}
-#             header {visibility: hidden;}
-#             </style>
-#             """
+hide_st_style = """
+            <style>
+            Main Menu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
             
-# st.markdown(hide_st_style, unsafe_allow_html=True)
+st.markdown(hide_st_style, unsafe_allow_html=True)
