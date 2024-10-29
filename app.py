@@ -87,11 +87,18 @@ with tab1:
     ######################
     # PRIZE PICKS AND UNDERDOG LINES
     # with st.container():
+    # col1,col2 = st.columns(2)
+    # with col1:
+    #     st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.market=='receiving_yards'].fillna(0).ud_line.median()}</h1></center>",unsafe_allow_html=True)
+    # with col2:
+    #     st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.market=='receiving_yards'].fillna(0).pp_line.median()}</h1></center>",unsafe_allow_html=True)
+    
     col1,col2 = st.columns(2)
     with col1:
-        st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.market=='receiving_yards'].fillna(0).ud_line.median()}</h1></center>",unsafe_allow_html=True)
+        st.markdown(f"<center><h1 style='color:yellow'>{player_season[player_season.market=='receiving_yards'].fillna(0).ud_line.median()}</h1></center>",unsafe_allow_html=True)
     with col2:
-        st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.market=='receiving_yards'].fillna(0).pp_line.median()}</h1></center>",unsafe_allow_html=True)
+        st.markdown(f"<center><h1 style='color:purple'>{player_season[player_season.market=='receiving_yards'].fillna(0).pp_line.median()}</h1></center>",unsafe_allow_html=True)
+    
 
     ######################
     ## VERTICAL SCATTER & SKINNY TABLE WITH BORDER
