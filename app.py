@@ -74,6 +74,7 @@ st.markdown("""
 all_data = pd.read_csv(r"data/week_9.csv")
 all_data = all_data.astype({'season': int})
 
+st.write('#')
 st.markdown("<h1 style='text-align: center; font-family:Courier New;'>mean-median</h1>", unsafe_allow_html=True)
 
 #####################
