@@ -74,7 +74,7 @@ st.markdown("""
 all_data = pd.read_csv(r"data/week_9.csv")
 all_data = all_data.astype({'season': int})
 
-st.write("#")
+# st.write("#")
 #####################
 ## START TABS
 tab1, tab2, tab3 = st.tabs(["Receiving", "Rushing", "Passing"])
