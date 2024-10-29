@@ -40,7 +40,7 @@ def get_rec_table_wide(player_season):
 
     # Define a function to highlight rows where 'receiving_yards' is greater than either ud_line or pp_line
     def highlight_high_yards(row):
-        color = 'background-color: lightblue' if row['receiving_yards'] > ud_line or row['receiving_yards'] > pp_line else ''
+        color = 'background-color: #65b1d7' if row['receiving_yards'] > ud_line or row['receiving_yards'] > pp_line else ''
         return [color] * len(row)
     
     # Apply the highlighting function and set font properties
@@ -63,8 +63,7 @@ def get_rush_table_wide(player_season):
     
     # Apply the highlighting function and set font properties
     rush_table_wide = (rush_table_wide.style
-                      .apply(highlight_high_yards, axis=1)
-                      .set_properties(**{'font-size': '30px', 'font-weight': 'bold', 'text-align': 'center', 'font-family': 'Arial Black'}))
+                      .apply(highlight_high_yards, axis=1))
     return rush_table_wide
 
 def get_pass_table_wide(player_season):
@@ -79,8 +78,7 @@ def get_pass_table_wide(player_season):
     
     # Apply the highlighting function and set font properties
     pass_table_wide = (pass_table_wide.style
-                      .apply(highlight_high_yards, axis=1)
-                      .set_properties(**{'font-size': '30px', 'font-weight': 'bold', 'text-align': 'center', 'font-family': 'Arial Black'}))
+                      .apply(highlight_high_yards, axis=1))
     
     return pass_table_wide
 
@@ -110,6 +108,11 @@ def get_player_scatter_vertical(player_season):
     return player_scatter_vertical
 
 def get_player_scatter_vertical_rush(player_season):
+    # Create a new column for custom hover text
+    player_season['hover_text'] = player_season.apply(
+        lambda row: f"Week {row['week']}<br>vs. {row['opponent_team']}<br><br>{row['rushing_yards']} yards<br>{row['carries']} carries", axis=1
+        )
+    
     player_scatter_vertical = px.scatter(player_season,x='carries',y='rushing_yards',
                         size='week',color='week',template='presentation',
                         size_max=17, height=600, #width=500
@@ -121,9 +124,14 @@ def get_player_scatter_vertical_rush(player_season):
     player_scatter_vertical.add_hline(y=player_season[player_season['market']=='rushing_yards'].fillna(0).pp_line.median(), line_width=2, line_color="purple")
     player_scatter_vertical.add_hline(y=player_season[player_season['market']=='rushing_yards'].fillna(0).rushing_yards.median(), line_width=1, line_color="white", line_dash="dot")
     player_scatter_vertical.update_yaxes(showgrid=True, gridcolor='darkslategrey')
+    player_scatter_vertical.update_traces(textfont_family='Arial Black', hovertemplate=player_season['hover_text'])
     return player_scatter_vertical
 
 def get_player_scatter_vertical_pass(player_season):
+    # Create a new column for custom hover text
+    player_season['hover_text'] = player_season.apply(
+        lambda row: f"Week {row['week']}<br>vs. {row['opponent_team']}<br><br>{row['passing_yards']} yards<br>{row['attempts']} attempts", axis=1
+        )
     player_scatter_vertical = px.scatter(player_season,x='attempts',y='passing_yards',
                         size='week',color='week',template='presentation',
                         size_max=17, height=600, #width=500
@@ -133,6 +141,7 @@ def get_player_scatter_vertical_pass(player_season):
     player_scatter_vertical.add_hline(y=player_season[player_season['market']=='passing_yards'].pp_line.mean(), line_width=2, line_color="purple")
     player_scatter_vertical.add_hline(y=player_season[player_season['market']=='passing_yards'].passing_yards.median(), line_width=1, line_color="white", line_dash="dot")
     player_scatter_vertical.update_yaxes(showgrid=True, gridcolor='darkslategrey')
+    player_scatter_vertical.update_traces(textfont_family='Arial Black', hovertemplate=player_season['hover_text'])
     return player_scatter_vertical
 
 def get_player_scatter_horizontal(player_season2):
