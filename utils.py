@@ -9,41 +9,82 @@ def merge_books(pp,ud):
     pp = pp[['Player','Position','Team','Opponent','Market Name','Line']].rename(columns={'Line':'pp_line'})
     ud = ud[['Player','Position','Team','Opponent','Market Name','Line']].rename(columns={'Line':'ud_line'})
     merged = pd.merge(pp,ud,on=['Player','Position', 'Team', 'Opponent','Market Name'],how='outer')
-    merged.columns = ['player_display_name','position','team','opponent','book_stat','pp_line','ud_line']
+    merged.columns = ['player_display_name','position','team','opponent','market','pp_line','ud_line']
     merged.to_csv('data/books_merged.csv', index=False)
     return merged
 
 # --- add 'delta' column
 def pp_delta(row):
-    if row['book_stat'] == 'receiving_yards':
+    if row['market'] == 'receiving_yards':
         return row['receiving_yards'] - row['pp_line']
-    elif row['book_stat'] == 'rushing_yards':
+    elif row['market'] == 'rushing_yards':
         return row['rushing_yards'] - row['pp_line']
     else:
         return row['passing_yards'] - row['pp_line']
     
 def ud_delta(row):
-    if row['book_stat'] == 'receiving_yards':
+    if row['market'] == 'receiving_yards':
         return row['receiving_yards'] - row['ud_line']
-    elif row['book_stat'] == 'rushing_yards':
+    elif row['market'] == 'rushing_yards':
         return row['rushing_yards'] - row['ud_line']
     else:
         return row['passing_yards'] - row['ud_line']
 
 def get_rec_table_wide(player_season):
-    rec_table_wide = player_season[player_season.book_stat=='receiving_yards'][['week','receiving_yards','targets','receptions','receiving_tds']].sort_values(by='week',ascending=False).reset_index(drop=True) 
+    rec_table_wide = player_season[player_season.market=='receiving_yards'][['week','receiving_yards','targets','receptions','receiving_tds']].sort_values(by='week',ascending=False).reset_index(drop=True) 
+    
+    ud_line = player_season[player_season.market=='receiving_yards'].ud_line.median()
+    pp_line = player_season[player_season.market=='receiving_yards'].pp_line.median()
+
+    # Define a function to highlight rows where 'receiving_yards' is greater than either ud_line or pp_line
+    def highlight_high_yards(row):
+        color = 'background-color: lightblue' if row['receiving_yards'] > ud_line or row['receiving_yards'] > pp_line else ''
+        return [color] * len(row)
+    
+    # Apply the highlighting function and set font properties
+    rec_table_wide = (rec_table_wide.style
+                      .apply(highlight_high_yards, axis=1)
+                      .set_properties(**{'font-size': '30px', 'font-weight': 'bold', 'text-align': 'center'}))
+    
     return rec_table_wide
 
+
 def get_rush_table_wide(player_season):
-    rush_table_wide = player_season[player_season.book_stat=='rushing_yards'][['week','rushing_yards','carries']].sort_values(by='week',ascending=False).reset_index(drop=True) 
+    rush_table_wide = player_season[player_season.market=='rushing_yards'][['week','rushing_yards','carries']].sort_values(by='week',ascending=False).reset_index(drop=True) 
+
+    ud_line = player_season[player_season.market=='rushing_yards'].ud_line.median()
+    pp_line = player_season[player_season.market=='rushing_yards'].pp_line.median()
+
+    # Define a function to highlight rows where 'receiving_yards' is greater than either ud_line or pp_line
+    def highlight_high_yards(row):
+        color = 'background-color: lightblue' if row['rushing_yards'] > ud_line or row['rushing_yards'] > pp_line else ''
+        return [color] * len(row)
+    
+    # Apply the highlighting function and set font properties
+    rush_table_wide = (rush_table_wide.style
+                      .apply(highlight_high_yards, axis=1)
+                      .set_properties(**{'font-size': '30px', 'font-weight': 'bold', 'text-align': 'center'}))
     return rush_table_wide
 
 def get_pass_table_wide(player_season):
-    pass_table_wide = player_season[player_season.book_stat=='passing_yards'][['week','passing_yards','attempts','passing_tds']].sort_values(by='week',ascending=False).reset_index(drop=True) 
+    pass_table_wide = player_season[player_season.market=='passing_yards'][['week','passing_yards','attempts','passing_tds']].sort_values(by='week',ascending=False).reset_index(drop=True) 
+    
+    ud_line = player_season[player_season.market=='passing_yards'].ud_line.median()
+    pp_line = player_season[player_season.market=='passing_yards'].pp_line.median()
+    # Define a function to highlight rows where 'receiving_yards' is greater than either ud_line or pp_line
+    def highlight_high_yards(row):
+        color = 'background-color: lightblue' if row['passing_yards'] > ud_line or row['passing_yards'] > pp_line else ''
+        return [color] * len(row)
+    
+    # Apply the highlighting function and set font properties
+    pass_table_wide = (pass_table_wide.style
+                      .apply(highlight_high_yards, axis=1)
+                      .set_properties(**{'font-size': '30px', 'font-weight': 'bold', 'text-align': 'center'}))
+    
     return pass_table_wide
 
 def get_rec_table_skinny(player_season):
-    rec_table_skinny = player_season[player_season.book_stat=='receiving_yards'][['week','receiving_yards']].sort_values(by='week',ascending=False).reset_index(drop=True) 
+    rec_table_skinny = player_season[player_season.market=='receiving_yards'][['week','receiving_yards']].sort_values(by='week',ascending=False).reset_index(drop=True) 
     return rec_table_skinny
 
 
@@ -53,11 +94,11 @@ def get_player_scatter_vertical(player_season):
                         size_max=17, height=600, #width=500
                         color_continuous_scale='blues',
                         # title = f"{player_season.player_display_name[0]}<br><b><span style='color:yellow'>{player_season.ud_line.mean()}</span><br><span style='color:purple'>{player_season.pp_line.mean()}</span><br>",
-                        # title = f"<span style='color:yellow'>ud<b>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</b></span>    <span style='color:purple'>pp<b>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</b></span>",                        
+                        # title = f"<span style='color:yellow'>ud<b>{player_season[player_season.market=='receiving_yards'].ud_line.mean()}</b></span>    <span style='color:purple'>pp<b>{player_season[player_season.market=='receiving_yards'].pp_line.mean()}</b></span>",                        
                         labels={'receiving_yards':'Receiving Yards','targets':'Targets'}).update_coloraxes(showscale=False)
-    player_scatter_vertical.add_hline(y=player_season[player_season['book_stat']=='receiving_yards'].ud_line.mean(), line_width=2, line_color="yellow")
-    player_scatter_vertical.add_hline(y=player_season[player_season['book_stat']=='receiving_yards'].pp_line.mean(), line_width=2, line_color="purple")
-    player_scatter_vertical.add_hline(y=player_season[player_season['book_stat']=='receiving_yards'].receiving_yards.median(), line_width=1, line_color="white", line_dash="dot")
+    player_scatter_vertical.add_hline(y=player_season[player_season['market']=='receiving_yards'].ud_line.max(), line_width=2, line_color="yellow")
+    player_scatter_vertical.add_hline(y=player_season[player_season['market']=='receiving_yards'].pp_line.max(), line_width=2, line_color="purple")
+    player_scatter_vertical.add_hline(y=player_season[player_season['market']=='receiving_yards'].receiving_yards.median(), line_width=1, line_color="white", line_dash="dot")
     player_scatter_vertical.update_yaxes(showgrid=True, gridcolor='darkslategrey')
     return player_scatter_vertical
 
@@ -67,11 +108,11 @@ def get_player_scatter_vertical_rush(player_season):
                         size_max=17, height=600, #width=500
                         color_continuous_scale='blues',
                         # title = f"{player_season.player_display_name[0]}<br><b><span style='color:yellow'>{player_season.ud_line.mean()}</span><br><span style='color:purple'>{player_season.pp_line.mean()}</span><br>",
-                        # title = f"<span style='color:yellow'>ud<b>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</b></span>    <span style='color:purple'>pp<b>{player_season[player_season.book_stat=='receiving_yards'].pp_line.mean()}</b></span>",                        
+                        # title = f"<span style='color:yellow'>ud<b>{player_season[player_season.market=='receiving_yards'].ud_line.mean()}</b></span>    <span style='color:purple'>pp<b>{player_season[player_season.market=='receiving_yards'].pp_line.mean()}</b></span>",                        
                         labels={'rushing_yards':'Rush Yards','carries':'Carries'}).update_coloraxes(showscale=False)
-    player_scatter_vertical.add_hline(y=player_season[player_season['book_stat']=='rushing_yards'].ud_line.mean(), line_width=2, line_color="yellow")
-    player_scatter_vertical.add_hline(y=player_season[player_season['book_stat']=='rushing_yards'].pp_line.mean(), line_width=2, line_color="purple")
-    player_scatter_vertical.add_hline(y=player_season[player_season['book_stat']=='rushing_yards'].rushing_yards.median(), line_width=1, line_color="white", line_dash="dot")
+    player_scatter_vertical.add_hline(y=player_season[player_season['market']=='rushing_yards'].fillna(0).ud_line.median(), line_width=2, line_color="yellow")
+    player_scatter_vertical.add_hline(y=player_season[player_season['market']=='rushing_yards'].fillna(0).pp_line.median(), line_width=2, line_color="purple")
+    player_scatter_vertical.add_hline(y=player_season[player_season['market']=='rushing_yards'].fillna(0).rushing_yards.median(), line_width=1, line_color="white", line_dash="dot")
     player_scatter_vertical.update_yaxes(showgrid=True, gridcolor='darkslategrey')
     return player_scatter_vertical
 
@@ -81,9 +122,9 @@ def get_player_scatter_vertical_pass(player_season):
                         size_max=17, height=600, #width=500
                         color_continuous_scale='blues',
                         labels={'passing_yards':'Pass Yards','attempts':'Attempts'}).update_coloraxes(showscale=False)
-    player_scatter_vertical.add_hline(y=player_season[player_season['book_stat']=='passing_yards'].ud_line.mean(), line_width=2, line_color="yellow")
-    player_scatter_vertical.add_hline(y=player_season[player_season['book_stat']=='passing_yards'].pp_line.mean(), line_width=2, line_color="purple")
-    player_scatter_vertical.add_hline(y=player_season[player_season['book_stat']=='passing_yards'].passing_yards.median(), line_width=1, line_color="white", line_dash="dot")
+    player_scatter_vertical.add_hline(y=player_season[player_season['market']=='passing_yards'].ud_line.mean(), line_width=2, line_color="yellow")
+    player_scatter_vertical.add_hline(y=player_season[player_season['market']=='passing_yards'].pp_line.mean(), line_width=2, line_color="purple")
+    player_scatter_vertical.add_hline(y=player_season[player_season['market']=='passing_yards'].passing_yards.median(), line_width=1, line_color="white", line_dash="dot")
     player_scatter_vertical.update_yaxes(showgrid=True, gridcolor='darkslategrey')
     return player_scatter_vertical
 

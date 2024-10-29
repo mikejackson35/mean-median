@@ -71,7 +71,7 @@ st.markdown("""
 
 #######################
 # READ IN DATA
-all_data = pd.read_csv(r"data/final_data.csv")
+all_data = pd.read_csv(r"data/week_9.csv")
 all_data = all_data.astype({'season': int})
 
 st.write("#")
@@ -80,18 +80,18 @@ st.write("#")
 tab1, tab2, tab3 = st.tabs(["Receiving", "Rushing", "Passing"])
 
 with tab1:
-    player_list = list(all_data[all_data.book_stat=='receiving_yards'].player_display_name.sort_values().unique())
+    player_list = list(all_data[all_data.market=='receiving_yards'].player.sort_values().unique())
     player = st.selectbox(" ", player_list)
-    player_season = all_data[(all_data.player_display_name==player) & (all_data.season==2023)].reset_index(drop=True)
+    player_season = all_data[all_data.player==player].reset_index(drop=True)
 
     ######################
     # PRIZE PICKS AND UNDERDOG LINES
     with st.container():
         col1,col2 = st.columns(2)
         with col1:
-            st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.book_stat=='receiving_yards'].ud_line.mean()}</h1></center>",unsafe_allow_html=True)
+            st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.market=='receiving_yards'].fillna(0).ud_line.median()}</h1></center>",unsafe_allow_html=True)
         with col2:
-            st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.book_stat=='receiving_yards'].pp_line.median()}</h1></center>",unsafe_allow_html=True)
+            st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.market=='receiving_yards'].fillna(0).pp_line.median()}</h1></center>",unsafe_allow_html=True)
     
     ######################
     ## VERTICAL SCATTER & SKINNY TABLE WITH BORDER
@@ -107,18 +107,18 @@ with tab1:
             st.dataframe(get_rec_table_wide(player_season),hide_index=True, height=475,column_config={'week':'Week','receiving_yards': 'Yards', 'targets':'Target','receptions':'Catch','receiving_tds':'TDs'},use_container_width=True)
 
 with tab2:
-    player_list = list(all_data[all_data.book_stat=='rushing_yards'].player_display_name.sort_values().unique())
+    player_list = list(all_data[all_data.market=='rushing_yards'].player.sort_values().unique())
     player = st.selectbox(" ", player_list)
-    player_season = all_data[(all_data.player_display_name==player) & (all_data.season==2023)].reset_index(drop=True)
+    player_season = all_data[all_data.player==player].reset_index(drop=True)
 
     ######################
     # PRIZE PICKS AND UNDERDOG LINES
     with st.container():
         col1,col2 = st.columns(2)
         with col1:
-            st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.book_stat=='rushing_yards'].ud_line.mean()}</h1></center>",unsafe_allow_html=True)
+            st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.market=='rushing_yards'].ud_line.median()}</h1></center>",unsafe_allow_html=True)
         with col2:
-            st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.book_stat=='rushing_yards'].pp_line.max()}</h1></center>",unsafe_allow_html=True)
+            st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.market=='rushing_yards'].pp_line.median()}</h1></center>",unsafe_allow_html=True)
     
     ######################
     ## VERTICAL SCATTER & SKINNY TABLE WITH BORDER
@@ -135,18 +135,18 @@ with tab2:
             st.dataframe(get_rush_table_wide(player_season),hide_index=True, height=475,column_config={'week':'Week','rushing_yards': 'Rush Yards', 'carries':'Carries'},use_container_width=True)
 
 with tab3:
-    player_list = list(all_data[all_data.book_stat=='passing_yards'].player_display_name.sort_values().unique())
+    player_list = list(all_data[all_data.market=='passing_yards'].player.sort_values().unique())
     player = st.selectbox(" ", player_list)
-    player_season = all_data[(all_data.player_display_name==player) & (all_data.season==2023)].reset_index(drop=True)
+    player_season = all_data[all_data.player==player].reset_index(drop=True)
 
     ######################
     # PRIZE PICKS AND UNDERDOG LINES
     with st.container():
         col1,col2 = st.columns(2)
         with col1:
-            st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.book_stat=='passing_yards'].ud_line.mean()}</h1></center>",unsafe_allow_html=True)
+            st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.market=='passing_yards'].ud_line.median()}</h1></center>",unsafe_allow_html=True)
         with col2:
-            st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.book_stat=='passing_yards'].pp_line.max()}</h1></center>",unsafe_allow_html=True)
+            st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.market=='passing_yards'].pp_line.median()}</h1></center>",unsafe_allow_html=True)
     
     ######################
     ## VERTICAL SCATTER & SKINNY TABLE WITH BORDER
@@ -164,12 +164,12 @@ with tab3:
 
 
 # ---- REMOVE UNWANTED STREAMLIT STYLING ----
-hide_st_style = """
-            <style>
-            Main Menu {visibility: hidden;}
-            footer {visibility: hidden;}
-            header {visibility: hidden;}
-            </style>
-            """
+# hide_st_style = """
+#             <style>
+#             Main Menu {visibility: hidden;}
+#             footer {visibility: hidden;}
+#             header {visibility: hidden;}
+#             </style>
+#             """
             
-st.markdown(hide_st_style, unsafe_allow_html=True)
+# st.markdown(hide_st_style, unsafe_allow_html=True)
