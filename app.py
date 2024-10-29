@@ -74,7 +74,8 @@ st.markdown("""
 all_data = pd.read_csv(r"data/week_9.csv")
 all_data = all_data.astype({'season': int})
 
-# st.write("#")
+st.markdown("<h1 style='text-align: center; font-family:Courier New;'>mean-median</h1>", unsafe_allow_html=True)
+
 #####################
 ## START TABS
 tab1, tab2, tab3 = st.tabs(["Receiving", "Rushing", "Passing"])
@@ -134,11 +135,29 @@ with tab2:
     ######################
     # PRIZE PICKS AND UNDERDOG LINES
     # with st.container():
-    col1,col2 = st.columns(2)
-    with col1:
-        st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.market=='rushing_yards'].fillna(0).ud_line.median()}</h1></center>",unsafe_allow_html=True)
-    with col2:
-        st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.market=='rushing_yards'].fillna(0).pp_line.median()}</h1></center>",unsafe_allow_html=True)
+    # col1,col2 = st.columns(2)
+    # with col1:
+    #     st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.market=='rushing_yards'].fillna(0).ud_line.median()}</h1></center>",unsafe_allow_html=True)
+    # with col2:
+    #     st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.market=='rushing_yards'].fillna(0).pp_line.median()}</h1></center>",unsafe_allow_html=True)
+
+    # Values to display
+    ud_line_median = player_season[player_season.market == 'rushing_yards'].fillna(0).ud_line.median()
+    pp_line_median = player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.median()
+
+    # Display values in one line with different colors
+    html_string = f"""
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <div style="text-align: center; margin-right: 20px;">
+            <h3 style='color: yellow;'>{ud_line_median}</h3>
+        </div>
+        <div style="text-align: center;">
+            <h3 style='color: purple;'>{pp_line_median}</h3>
+        </div>
+    </div>
+    """
+    # Render in Streamlit
+    st.markdown(html_string, unsafe_allow_html=True)
 
     ######################
     ## VERTICAL SCATTER & SKINNY TABLE WITH BORDER
@@ -162,11 +181,29 @@ with tab3:
     ######################
     # PRIZE PICKS AND UNDERDOG LINES
     # with st.container():
-    col1,col2 = st.columns(2)
-    with col1:
-        st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.market=='passing_yards'].fillna(0).ud_line.median()}</h1></center>",unsafe_allow_html=True)
-    with col2:
-        st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.market=='passing_yards'].fillna(0).pp_line.median()}</h1></center>",unsafe_allow_html=True)
+    # col1,col2 = st.columns(2)
+    # with col1:
+    #     st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.market=='passing_yards'].fillna(0).ud_line.median()}</h1></center>",unsafe_allow_html=True)
+    # with col2:
+    #     st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.market=='passing_yards'].fillna(0).pp_line.median()}</h1></center>",unsafe_allow_html=True)
+
+   # Values to display
+    ud_line_median = player_season[player_season.market == 'passing_yards'].fillna(0).ud_line.median()
+    pp_line_median = player_season[player_season.market == 'passing_yards'].fillna(0).pp_line.median()
+
+    # Display values in one line with different colors
+    html_string = f"""
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <div style="text-align: center; margin-right: 20px;">
+            <h3 style='color: yellow;'>{ud_line_median}</h3>
+        </div>
+        <div style="text-align: center;">
+            <h3 style='color: purple;'>{pp_line_median}</h3>
+        </div>
+    </div>
+    """
+    # Render in Streamlit
+    st.markdown(html_string, unsafe_allow_html=True)
 
     ######################
     ## VERTICAL SCATTER & SKINNY TABLE WITH BORDER
