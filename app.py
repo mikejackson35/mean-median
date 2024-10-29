@@ -75,7 +75,6 @@ all_data = pd.read_csv(r"data/week_9.csv")
 all_data = all_data.astype({'season': int})
 
 st.markdown("<h1 style='text-align: center; font-family:Courier New;'>mean-median</h1>", unsafe_allow_html=True)
-st.write('#')
 #####################
 ## START TABS
 tab1, tab2, tab3 = st.tabs(["Receiving", "Rushing", "Passing"])
@@ -102,10 +101,10 @@ with tab1:
     html_string = f"""
     <div style="display: flex; justify-content: center; align-items: center;">
         <div style="text-align: center; margin-right: 20px;">
-            <h3 style='color: yellow;'>{ud_line_median}</h3>
+            <h1 style='color: yellow;'>{ud_line_median}</h1>
         </div>
         <div style="text-align: center;">
-            <h3 style='color: purple;'>{pp_line_median}</h3>
+            <h1 style='color: purple;'>{pp_line_median}</h1>
         </div>
     </div>
     """
@@ -149,10 +148,10 @@ with tab2:
     html_string = f"""
     <div style="display: flex; justify-content: center; align-items: center;">
         <div style="text-align: center; margin-right: 20px;">
-            <h3 style='color: yellow;'>{ud_line_median}</h3>
+            <h1 style='color: yellow;'>{ud_line_median}</h1>
         </div>
         <div style="text-align: center;">
-            <h3 style='color: purple;'>{pp_line_median}</h3>
+            <h1 style='color: purple;'>{pp_line_median}</h1>
         </div>
     </div>
     """
@@ -195,10 +194,10 @@ with tab3:
     html_string = f"""
     <div style="display: flex; justify-content: center; align-items: center;">
         <div style="text-align: center; margin-right: 20px;">
-            <h3 style='color: yellow;'>{ud_line_median}</h3>
+            <h1 style='color: yellow;'>{ud_line_median}</h1>
         </div>
         <div style="text-align: center;">
-            <h3 style='color: purple;'>{pp_line_median}</h3>
+            <h1 style='color: purple;'>{pp_line_median}</h1>
         </div>
     </div>
     """

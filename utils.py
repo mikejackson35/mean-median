@@ -95,7 +95,7 @@ def get_player_scatter_vertical(player_season):
     
     player_scatter_vertical = px.scatter(player_season,x='targets',y='receiving_yards',
                         size='week',color='week',template='presentation',
-                        size_max=17, height=600, #width=500
+                        size_max=17, height=550, #width=500
                         color_continuous_scale='blues',
                         # title = f"{player_season.player_display_name[0]}<br><b><span style='color:yellow'>{player_season.ud_line.mean()}</span><br><span style='color:purple'>{player_season.pp_line.mean()}</span><br>",
                         # title = f"<span style='color:yellow'>ud<b>{player_season[player_season.market=='receiving_yards'].ud_line.mean()}</b></span>    <span style='color:purple'>pp<b>{player_season[player_season.market=='receiving_yards'].pp_line.mean()}</b></span>",                        
@@ -115,7 +115,7 @@ def get_player_scatter_vertical_rush(player_season):
     
     player_scatter_vertical = px.scatter(player_season,x='carries',y='rushing_yards',
                         size='week',color='week',template='presentation',
-                        size_max=17, height=600, #width=500
+                        size_max=17, height=550, #width=500
                         color_continuous_scale='blues',
                         # title = f"{player_season.player_display_name[0]}<br><b><span style='color:yellow'>{player_season.ud_line.mean()}</span><br><span style='color:purple'>{player_season.pp_line.mean()}</span><br>",
                         # title = f"<span style='color:yellow'>ud<b>{player_season[player_season.market=='receiving_yards'].ud_line.mean()}</b></span>    <span style='color:purple'>pp<b>{player_season[player_season.market=='receiving_yards'].pp_line.mean()}</b></span>",                        
@@ -134,7 +134,7 @@ def get_player_scatter_vertical_pass(player_season):
         )
     player_scatter_vertical = px.scatter(player_season,x='attempts',y='passing_yards',
                         size='week',color='week',template='presentation',
-                        size_max=17, height=600, #width=500
+                        size_max=17, height=550, #width=500
                         color_continuous_scale='blues',
                         labels={'passing_yards':'Pass Yards','attempts':'Attempts'}).update_coloraxes(showscale=False)
     player_scatter_vertical.add_hline(y=player_season[player_season['market']=='passing_yards'].ud_line.mean(), line_width=2, line_color="yellow")
