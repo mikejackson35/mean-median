@@ -15,7 +15,7 @@ from utils import get_rec_table_skinny, get_rush_table_wide, get_rec_table_wide,
 st.set_page_config(
     page_title="mean-median",
     page_icon="🏂",
-    layout="wide",
+    # layout="wide",
     initial_sidebar_state="expanded")
 
 # alt.themes.enable("dark")
@@ -194,10 +194,10 @@ with tab3:
     html_string = f"""
     <div style="display: flex; justify-content: center; align-items: center;">
         <div style="text-align: center; margin-right: 20px;">
-            <h1 style='color: yellow;'>{ud_line_median}</h1>
+            <h1 style='color: yellow;'><small>Udog </small>{ud_line_median}</h1>
         </div>
         <div style="text-align: center;">
-            <h1 style='color: purple;'>{pp_line_median}</h1>
+            <h1 style='color: purple;'><small>Ppicks </small>{pp_line_median}</h1>
         </div>
     </div>
     """
