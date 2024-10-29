@@ -102,10 +102,10 @@ with tab1:
     html_string = f"""
     <div style="display: flex; justify-content: center; align-items: center;">
         <div style="text-align: center; margin-right: 20px;">
-            <h1 style='color: yellow;'>{ud_line_median}</h1>
+            <h1 style='color: yellow;'>ud {ud_line_median}</h1>
         </div>
         <div style="text-align: center;">
-            <h1 style='color: purple;'>{pp_line_median}</h1>
+            <h1 style='color: purple;'>pp {pp_line_median}</h1>
         </div>
     </div>
     """
@@ -124,7 +124,7 @@ with tab1:
     with col2:
         st.markdown("####")
         st.markdown("###")
-        st.dataframe(get_rec_table_wide(player_season),hide_index=True, height=475,column_config={'week':'Week','receiving_yards': 'Yards', 'targets':'Target','receptions':'Catch','receiving_tds':'TDs'},use_container_width=True)
+        st.dataframe(get_rec_table_wide(player_season),hide_index=True, height=475,column_config={'week':'Week','receiving_yards': 'Yards', 'targets':'Target','receptions':'Receptions','receiving_tds':'TDs'},use_container_width=True)
 
 
 with tab2:
