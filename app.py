@@ -25,13 +25,14 @@ st.set_page_config(
 st.markdown("""
 <style>
 
-[data-testid="block-container"] {
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-top: 2rem;
-    padding-bottom: 0rem;
-    margin-bottom: -7rem;
-}
+    [data-testid="block-container"] {
+        # padding-left: 1rem;
+        # padding-right: 1rem;
+        padding-top: 2rem;
+        padding-bottom: 0rem;
+        max-width: 60%;
+        margin: auto;
+    }
 
 [data-testid="stVerticalBlock"] {
     padding-left: 0rem;
