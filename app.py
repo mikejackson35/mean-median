@@ -39,33 +39,33 @@ st.markdown("""
     padding-right: 0rem;
 }
 
-[data-testid="stMetric"] {
-    background-color: #393939;
-    text-align: center;
-    padding: 15px 0;
-}
+# [data-testid="stMetric"] {
+#     background-color: #393939;
+#     text-align: center;
+#     padding: 15px 0;
+# }
 
-[data-testid="stMetricLabel"] {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+# [data-testid="stMetricLabel"] {
+#   display: flex;
+#   justify-content: center;
+#   align-items: center;
+# }
 
-[data-testid="stMetricDeltaIcon-Up"] {
-    position: relative;
-    left: 38%;
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
-}
+# [data-testid="stMetricDeltaIcon-Up"] {
+#     position: relative;
+#     left: 38%;
+#     -webkit-transform: translateX(-50%);
+#     -ms-transform: translateX(-50%);
+#     transform: translateX(-50%);
+# }
 
-[data-testid="stMetricDeltaIcon-Down"] {
-    position: relative;
-    left: 38%;
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
-}
+# [data-testid="stMetricDeltaIcon-Down"] {
+#     position: relative;
+#     left: 38%;
+#     -webkit-transform: translateX(-50%);
+#     -ms-transform: translateX(-50%);
+#     transform: translateX(-50%);
+# }
 
 </style>
 """, unsafe_allow_html=True)
@@ -84,15 +84,6 @@ with tab1:
     player_list = list(all_data[all_data.market=='receiving_yards'].player.sort_values().unique())
     player = st.selectbox(" ", player_list)
     player_season = all_data[all_data.player==player].reset_index(drop=True)
-
-    ######################
-    # PRIZE PICKS AND UNDERDOG LINES
-    # with st.container():
-    # col1,col2 = st.columns(2)
-    # with col1:
-    #     st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.market=='receiving_yards'].fillna(0).ud_line.median()}</h1></center>",unsafe_allow_html=True)
-    # with col2:
-    #     st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.market=='receiving_yards'].fillna(0).pp_line.median()}</h1></center>",unsafe_allow_html=True)
     
     # Values to display
     ud_line_median = player_season[player_season.market == 'receiving_yards'].fillna(0).ud_line.median()
@@ -132,32 +123,23 @@ with tab2:
     player = st.selectbox(" ", player_list)
     player_season = all_data[all_data.player==player].reset_index(drop=True)
 
-    ######################
-    # PRIZE PICKS AND UNDERDOG LINES
-    # with st.container():
-    # col1,col2 = st.columns(2)
-    # with col1:
-    #     st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.market=='rushing_yards'].fillna(0).ud_line.median()}</h1></center>",unsafe_allow_html=True)
-    # with col2:
-    #     st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.market=='rushing_yards'].fillna(0).pp_line.median()}</h1></center>",unsafe_allow_html=True)
-
     # Values to display
-    ud_line_median = player_season[player_season.market == 'rushing_yards'].fillna(0).ud_line.median()
-    pp_line_median = player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.median()
+    # ud_line_median = player_season[player_season.market == 'rushing_yards'].fillna(0).ud_line.median()
+    # pp_line_median = player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.median()
 
-    # Display values in one line with different colors
-    html_string = f"""
-    <div style="display: flex; justify-content: center; align-items: center;">
-        <div style="text-align: center; margin-right: 20px;">
-            <h1 style='color: yellow;'>{ud_line_median}</h1>
-        </div>
-        <div style="text-align: center;">
-            <h1 style='color: purple;'>{pp_line_median}</h1>
-        </div>
-    </div>
-    """
-    # Render in Streamlit
-    st.markdown(html_string, unsafe_allow_html=True)
+    # # Display values in one line with different colors
+    # html_string = f"""
+    # <div style="display: flex; justify-content: center; align-items: center;">
+    #     <div style="text-align: center; margin-right: 20px;">
+    #         <h1 style='color: yellow;'>{ud_line_median}</h1>
+    #     </div>
+    #     <div style="text-align: center;">
+    #         <h1 style='color: purple;'>{pp_line_median}</h1>
+    #     </div>
+    # </div>
+    # """
+    # # Render in Streamlit
+    # st.markdown(html_string, unsafe_allow_html=True)
 
     ######################
     ## VERTICAL SCATTER & SKINNY TABLE WITH BORDER
@@ -177,15 +159,6 @@ with tab3:
     player_list = list(all_data[all_data.market=='passing_yards'].player.sort_values().unique())
     player = st.selectbox(" ", player_list)
     player_season = all_data[all_data.player==player].reset_index(drop=True)
-
-    ######################
-    # PRIZE PICKS AND UNDERDOG LINES
-    # with st.container():
-    # col1,col2 = st.columns(2)
-    # with col1:
-    #     st.markdown(f"<center><h1 style='color:yellow'><small>Udog </small>{player_season[player_season.market=='passing_yards'].fillna(0).ud_line.median()}</h1></center>",unsafe_allow_html=True)
-    # with col2:
-    #     st.markdown(f"<center><h1 style='color:purple'><small>Ppicks </small>{player_season[player_season.market=='passing_yards'].fillna(0).pp_line.median()}</h1></center>",unsafe_allow_html=True)
 
    # Values to display
     ud_line_median = player_season[player_season.market == 'passing_yards'].fillna(0).ud_line.median()
@@ -221,12 +194,12 @@ with tab3:
 
 
 # ---- REMOVE UNWANTED STREAMLIT STYLING ----
-hide_st_style = """
-            <style>
-            Main Menu {visibility: hidden;}
-            footer {visibility: hidden;}
-            header {visibility: hidden;}
-            </style>
-            """
+# hide_st_style = """
+#             <style>
+#             Main Menu {visibility: hidden;}
+#             footer {visibility: hidden;}
+#             header {visibility: hidden;}
+#             </style>
+#             """
             
-st.markdown(hide_st_style, unsafe_allow_html=True)
+# st.markdown(hide_st_style, unsafe_allow_html=True)
