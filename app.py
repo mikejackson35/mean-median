@@ -26,11 +26,11 @@ st.markdown("""
 <style>
 
 [data-testid="block-container"] {
-    # padding-left: 1rem;
-    # padding-right: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     padding-top: 2rem;
     padding-bottom: 0rem;
-    max-width: 60%;
+    max-width: 50%;
     margin: auto;
 }
 
