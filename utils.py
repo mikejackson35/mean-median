@@ -62,6 +62,7 @@ def get_rush_table_wide(player_season):
         color = 'background-color: #65b1d7' if row['rushing_yards'] > ud_line or row['rushing_yards'] > pp_line else ''
         return [color] * len(row)
     
+    
     # Apply the highlighting function and set font properties
     rush_table_wide = (rush_table_wide.style
                       .apply(highlight_high_yards, axis=1)
@@ -114,15 +115,14 @@ def get_player_scatter_vertical(player_season):
 def get_player_scatter_vertical_rush(player_season):
     # Create a new column for custom hover text
     player_season['hover_text'] = player_season.apply(
-        lambda row: f"Week {row['week']}<br>vs. {row['opponent_team']}<br><br>{row['rushing_yards']} yards<br>{row['carries']} carries", axis=1
+        lambda row: f"Week {int(row['week'])}<br>vs. {row['opponent_team']}<br><br>{int(row['rushing_yards'])} yards<br>{int(row['carries'])} carries", axis=1
         )
     
     player_scatter_vertical = px.scatter(player_season,x='carries',y='rushing_yards',
                         size='week',color='week',template='presentation',
                         size_max=17, height=550, #width=500
                         color_continuous_scale='blues',
-                        title = f"{player_season.player[0]}<br><b><span style='color:yellow'>{player_season[player_season.market == 'rushing_yards'].fillna(0).ud_line.median()}</span>  <span style='color:purple'>{player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.mean()}</span><br>",
-                        # title = f"<span style='color:yellow'>ud<b>{player_season[player_season.market=='receiving_yards'].ud_line.mean()}</b></span>    <span style='color:purple'>pp<b>{player_season[player_season.market=='receiving_yards'].pp_line.mean()}</b></span>",                        
+                        title = f"{player_season.player[0]}<br><b><span style='color:yellow'>{player_season[player_season.market == 'rushing_yards'].fillna(0).ud_line.median()}</span>  <b><span style='color:purple'>{player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.mean()}</span><br>",
                         labels={'rushing_yards':'Rush Yards','carries':'Carries'}).update_coloraxes(showscale=False)
     player_scatter_vertical.add_hline(y=player_season[player_season['market']=='rushing_yards'].fillna(0).ud_line.median(), line_width=2, line_color="yellow")
     player_scatter_vertical.add_hline(y=player_season[player_season['market']=='rushing_yards'].fillna(0).pp_line.median(), line_width=2, line_color="purple")
