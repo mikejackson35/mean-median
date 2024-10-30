@@ -150,6 +150,7 @@ with tab2:
     with col1:
         st.plotly_chart(get_player_scatter_vertical_rush(player_season), config = config, theme=None,use_container_width=True)
     with col2:
+        st.markdown(" ")
         st.markdown('<center>Weekly Stats', unsafe_allow_html=True)
         st.dataframe(get_rush_table_wide(player_season),hide_index=True, height=475,column_config={'week':'Week','rushing_yards': 'Rush Yards', 'carries':'Carries'},use_container_width=True)
 
