@@ -104,9 +104,9 @@ def get_player_scatter_vertical(player_season):
                         color_continuous_scale='blues',
                         title = f"<b>{player_season.player[0]}<br><span style='color:yellow'>{player_season[player_season.market == 'receiving_yards'].fillna(0).ud_line.median()}</span> <span style='color:purple'><b>{player_season[player_season.market == 'receiving_yards'].fillna(0).pp_line.median()}</span><br>",
                         labels={'receiving_yards':'Receiving Yards','targets':'Targets'}).update_coloraxes(showscale=False)
-    player_scatter_vertical.add_hline(y=player_season[player_season['market']=='receiving_yards'].ud_line.max(), line_width=2, line_color="yellow")
-    player_scatter_vertical.add_hline(y=player_season[player_season['market']=='receiving_yards'].pp_line.max(), line_width=2, line_color="purple")
-    player_scatter_vertical.add_hline(y=player_season[player_season['market']=='receiving_yards'].receiving_yards.median(), line_width=1, line_color="white", line_dash="dot")
+    player_scatter_vertical.add_hline(y=player_season[player_season['market']=='receiving_yards'].ud_line.max(), line_width=1, line_color="yellow")
+    player_scatter_vertical.add_hline(y=player_season[player_season['market']=='receiving_yards'].pp_line.max(), line_width=1, line_color="purple")
+    player_scatter_vertical.add_hline(y=player_season[player_season['market']=='receiving_yards'].receiving_yards.median(), line_width=2, line_color="white", line_dash="dot")
     player_scatter_vertical.update_yaxes(showgrid=True, gridcolor='darkslategrey')
     player_scatter_vertical.update_traces(textfont_family='Arial Black', hovertemplate=player_season['hover_text'])
 
@@ -143,9 +143,9 @@ def get_player_scatter_vertical_pass(player_season):
                         color_continuous_scale='blues',
                         title = f"<b>{player_season.player[0]}<br><span style='color:yellow'>{player_season[player_season.market == 'passing_yards'].fillna(0).ud_line.median()}</span> <span style='color:purple'><b>{player_season[player_season.market == 'passing_yards'].fillna(0).pp_line.median()}</span><br>",
                         labels={'passing_yards':'Pass Yards','attempts':'Attempts'}).update_coloraxes(showscale=False)
-    player_scatter_vertical.add_hline(y=player_season[player_season['market']=='passing_yards'].ud_line.mean(), line_width=2, line_color="yellow")
-    player_scatter_vertical.add_hline(y=player_season[player_season['market']=='passing_yards'].pp_line.mean(), line_width=2, line_color="purple")
-    player_scatter_vertical.add_hline(y=player_season[player_season['market']=='passing_yards'].passing_yards.median(), line_width=1, line_color="white", line_dash="dot")
+    player_scatter_vertical.add_hline(y=player_season[player_season['market']=='passing_yards'].ud_line.mean(), line_width=1, line_color="yellow")
+    player_scatter_vertical.add_hline(y=player_season[player_season['market']=='passing_yards'].pp_line.mean(), line_width=1, line_color="purple")
+    player_scatter_vertical.add_hline(y=player_season[player_season['market']=='passing_yards'].passing_yards.median(), line_width=2, line_color="white", line_dash="dot")
     player_scatter_vertical.update_yaxes(showgrid=True, gridcolor='darkslategrey')
     player_scatter_vertical.update_traces(textfont_family='Arial Black', hovertemplate=player_season['hover_text'])
     return player_scatter_vertical
