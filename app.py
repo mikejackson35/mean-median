@@ -20,15 +20,6 @@ st.set_page_config(
 
 # alt.themes.enable("dark")
 
-st.markdown("""
-    <style>
-        /* Center-align headers in the Streamlit table */
-        .dataframe-container th {
-            text-align: center !important;
-        }
-    </style>
-    """, unsafe_allow_html=True)
-
 #######################
 # CSS styling
 st.markdown("""
@@ -132,48 +123,24 @@ with tab2:
     player = st.selectbox(" ", player_list)
     player_season = all_data[all_data.player==player].reset_index(drop=True)
 
-    # Values to display
-    # ud_line_median = player_season[player_season.market == 'rushing_yards'].fillna(0).ud_line.median()
-    # pp_line_median = player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.median()
-
-    # # Display values in one line with different colors
-    # html_string = f"""
-    # <div style="display: flex; justify-content: center; align-items: center;">
-    #     <div style="text-align: center; margin-right: 20px;">
-    #         <h1 style='color: yellow;'>{ud_line_median}</h1>
-    #     </div>
-    #     <div style="text-align: center;">
-    #         <h1 style='color: purple;'>{pp_line_median}</h1>
-    #     </div>
-    # </div>
-    # """
-    # # Render in Streamlit
-    # st.markdown(html_string, unsafe_allow_html=True)
-
-    ######################
-    ## VERTICAL SCATTER & SKINNY TABLE WITH BORDER
-    config = {'displayModeBar': False}
-
-    # with st.container(border=True):
     col1,col2 = st.columns([1.5,1])
+
     with col1:
-        st.plotly_chart(get_player_scatter_vertical_rush(player_season), config = config, theme=None,use_container_width=True)
+        st.plotly_chart(get_player_scatter_vertical_rush(player_season), config = {'displayModeBar': False}, theme=None,use_container_width=True)
     with col2:
         st.markdown(" ")
         st.markdown(" ")
         st.markdown(" ")
         st.markdown(" ")
-        st.markdown('<center>Weekly Stats', unsafe_allow_html=True)
+        st.markdown('<center>Game Log', unsafe_allow_html=True)
 
         st.dataframe(get_rush_table_wide(player_season),
                      hide_index=True, height=475,
                      column_config={
-                        'week': {'alignment': 'center', 'header': 'Week'},
-                        'rushing_yards': {'alignment': 'center', 'header': 'Rush Yards'},
-                        'carries': {'alignment': 'center', 'header': 'Carries'}
-                        },
-                         use_container_width=True
-                         )
+                        'week': {'alignment': 'left', 'header': 'Week'},
+                        'rushing_yards': {'alignment': 'left', 'header': 'Rush Yards'},
+                        'carries': {'alignment': 'left', 'header': 'Carries'}},
+                        use_container_width=True)
 
 
 with tab3:

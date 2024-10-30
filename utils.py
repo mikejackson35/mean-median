@@ -3,7 +3,9 @@ import pandas as pd
 import plotly.express as px
 import seaborn as sns
 import plotly.graph_objects as go
+import streamlit as st
 # from plotly.subplots import make_subplots
+
 
 def merge_books(pp,ud):
     pp = pp[['Player','Position','Team','Opponent','Market Name','Line']].rename(columns={'Line':'pp_line'})
@@ -62,11 +64,20 @@ def get_rush_table_wide(player_season):
         color = 'background-color: #65b1d7' if row['rushing_yards'] > ud_line or row['rushing_yards'] > pp_line else ''
         return [color] * len(row)
     
-    
     # Apply the highlighting function and set font properties
     rush_table_wide = (rush_table_wide.style
                       .apply(highlight_high_yards, axis=1)
                       .format(precision=0))
+    
+    st.markdown("""
+    <style>
+        /* Center-align headers in the Streamlit table */
+        .dataframe-container th {
+            text-align: center !important;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+    
     return rush_table_wide
 
 def get_pass_table_wide(player_season):
