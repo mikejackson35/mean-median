@@ -153,6 +153,7 @@ with tab2:
         st.markdown(" ")
         st.markdown(" ")
         st.markdown(" ")
+        st.markdown(" ")
         st.markdown('<center>Weekly Stats', unsafe_allow_html=True)
         st.dataframe(get_rush_table_wide(player_season),hide_index=True, height=475,column_config={'week':'Week','rushing_yards': 'Rush Yards', 'carries':'Carries'},use_container_width=True)
 
