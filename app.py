@@ -1,17 +1,4 @@
 
-
-
-# ---- REMOVE UNWANTED STREAMLIT STYLING ----
-# hide_st_style = """
-#             <style>
-#             Main Menu {visibility: hidden;}
-#             footer {visibility: hidden;}
-#             header {visibility: hidden;}
-#             </style>
-#             """
-            
-# st.markdown(hide_st_style, unsafe_allow_html=True)
-
 #######################
 # Import libraries
 import streamlit as st
@@ -36,7 +23,7 @@ st.set_page_config(
 #######################
 # CSS styling with Toggle
 # Checkbox to toggle between centered view and wide mode
-centered_view = st.checkbox("view", value=False)
+centered_view = st.checkbox("PC View", value=False)
 
 # Apply CSS based on the checkbox state
 if centered_view:
