@@ -20,6 +20,8 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+st.markdown("<h1 style='text-align: center; font-family:Courier New;'>mean-median</h1>", unsafe_allow_html=True)
+
 #######################
 # CSS styling with Toggle
 # Checkbox to toggle between centered view and wide mode
@@ -62,8 +64,6 @@ else:
 # READ IN DATA
 all_data = pd.read_csv(r"data/week_9.csv")
 all_data = all_data.astype({'season': int})
-
-st.markdown("<h1 style='text-align: center; font-family:Courier New;'>mean-median</h1>", unsafe_allow_html=True)
 
 #####################
 ## START TABS
