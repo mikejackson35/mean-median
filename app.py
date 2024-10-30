@@ -8,7 +8,7 @@ import numpy as np
 import plotly.express as px
 import seaborn as sns
 import matplotlib.pyplot as plt
-from utils import get_rec_table_skinny, get_rush_table_wide, get_rec_table_wide, get_player_scatter_vertical, get_player_scatter_horizontal, get_player_scatter_vertical_rush, get_player_scatter_vertical_pass, get_pass_table_wide
+from utils import get_rush_table_wide, get_rec_table_wide, get_player_scatter_vertical,get_player_scatter_vertical_rush, get_player_scatter_vertical_pass, get_pass_table_wide
 
 #######################
 # Page configuration
@@ -17,23 +17,6 @@ st.set_page_config(
     page_icon="🏂",
     layout="wide",
     initial_sidebar_state="expanded")
-
-# alt.themes.enable("dark")
-
-st.markdown("""
-    <style>
-        /* Center-align headers in the dataframe */
-        .dataframe-container th {
-            text-align: center !important;
-        }
-        /* Ensure the page width is maintained in wide mode */
-        [data-testid="stAppViewContainer"] {
-            max-width: 100% !important;
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-    </style>
-    """, unsafe_allow_html=True)
 
 #######################
 # CSS styling
@@ -99,38 +82,27 @@ with tab1:
     player_list = list(all_data[all_data.market=='receiving_yards'].player.sort_values().unique())
     player = st.selectbox(" ", player_list)
     player_season = all_data[all_data.player==player].reset_index(drop=True)
-    
-    # Values to display
-    ud_line_median = player_season[player_season.market == 'receiving_yards'].fillna(0).ud_line.median()
-    pp_line_median = player_season[player_season.market == 'receiving_yards'].fillna(0).pp_line.median()
 
-    # Display values in one line with different colors
-    html_string = f"""
-    <div style="display: flex; justify-content: center; align-items: center;">
-        <div style="text-align: center; margin-right: 20px;">
-            <h1 style='color: yellow;'>ud {ud_line_median}</h1>
-        </div>
-        <div style="text-align: center;">
-            <h1 style='color: purple;'>pp {pp_line_median}</h1>
-        </div>
-    </div>
-    """
-
-    # Render in Streamlit
-    st.markdown(html_string, unsafe_allow_html=True)
-    
-    ######################
-    ## VERTICAL SCATTER & SKINNY TABLE WITH BORDER
-    config = {'displayModeBar': False}
-
-    # with st.container(border=True):
     col1,col2 = st.columns([1.35,1])
+
     with col1:
-        st.plotly_chart(get_player_scatter_vertical(player_season), config = config, theme=None,use_container_width=True)
+        st.plotly_chart(get_player_scatter_vertical(player_season), config = {'displayModeBar': False}, theme=None,use_container_width=True)
     with col2:
-        st.markdown("####")
-        st.markdown("###")
-        st.dataframe(get_rec_table_wide(player_season),hide_index=True, height=475,column_config={'week':'Week','receiving_yards': 'Yards', 'targets':'Target','receptions':'Receptions','receiving_tds':'TDs'},use_container_width=True)
+        st.markdown(" ")
+        st.markdown(" ")
+        st.markdown(" ")
+        st.markdown(" ")
+        st.markdown('<center>Game Log', unsafe_allow_html=True)
+
+        st.dataframe(get_rec_table_wide(player_season),
+                     hide_index=True, height=475,
+                     column_config={
+                          'Week': {'alignment': 'left', 'header': 'Week'},
+                          'Yards': {'alignment': 'left', 'header': 'Yards'},
+                          'Targets': {'alignment': 'left', 'header': 'Targets'},
+                          'Rec': {'alignment': 'left', 'header': 'Rec'},
+                          'TDs': {'alignment': 'left', 'header': 'TDs'}},
+                          use_container_width=True)
 
 
 with tab2:
@@ -152,9 +124,9 @@ with tab2:
         st.dataframe(get_rush_table_wide(player_season),
                      hide_index=True, height=475,
                      column_config={
-                        'week': {'alignment': 'left', 'header': 'Week'},
-                        'rushing_yards': {'alignment': 'left', 'header': 'Rush Yards'},
-                        'carries': {'alignment': 'left', 'header': 'Carries'}},
+                        'Week': {'alignment': 'left', 'header': 'Week'},
+                        'Yards': {'alignment': 'left', 'header': 'Yards'},
+                        'Carries': {'alignment': 'left', 'header': 'Carries'}},
                         use_container_width=True)
 
 
@@ -163,37 +135,25 @@ with tab3:
     player = st.selectbox(" ", player_list)
     player_season = all_data[all_data.player==player].reset_index(drop=True)
 
-   # Values to display
-    ud_line_median = player_season[player_season.market == 'passing_yards'].fillna(0).ud_line.median()
-    pp_line_median = player_season[player_season.market == 'passing_yards'].fillna(0).pp_line.median()
-
-    # Display values in one line with different colors
-    html_string = f"""
-    <div style="display: flex; justify-content: center; align-items: center;">
-        <div style="text-align: center; margin-right: 20px;">
-            <h1 style='color: yellow;'><small>Udog </small>{ud_line_median}</h1>
-        </div>
-        <div style="text-align: center;">
-            <h1 style='color: purple;'><small>Ppicks </small>{pp_line_median}</h1>
-        </div>
-    </div>
-    """
-    # Render in Streamlit
-    st.markdown(html_string, unsafe_allow_html=True)
-
-    ######################
-    ## VERTICAL SCATTER & SKINNY TABLE WITH BORDER
-    config = {'displayModeBar': False}
-
-    # with st.container(border=True):
     col1,col2 = st.columns([1.18,1])
+
     with col1:
-        st.plotly_chart(get_player_scatter_vertical_pass(player_season), config = config, theme=None,use_container_width=True)
+        st.plotly_chart(get_player_scatter_vertical_pass(player_season), config = {'displayModeBar': False}, theme=None,use_container_width=True)
     with col2:
         st.markdown(" ")
         st.markdown(" ")
         st.markdown(" ")
-        st.dataframe(get_pass_table_wide(player_season),hide_index=True, height=475,column_config={'week':'Week','passing_yards': 'Yards', 'attempts':'Att','passing_tds':'TD'},use_container_width=True)
+        st.markdown(" ")
+        st.markdown('<center>Game Log', unsafe_allow_html=True)
+
+        st.dataframe(get_pass_table_wide(player_season),
+                     hide_index=True, height=475,
+                     column_config={
+                        'Week': {'alignment': 'left', 'header': 'Week'},
+                        'Yards': {'alignment': 'left', 'header': 'Yards'},
+                        'Attempts': {'alignment': 'left', 'header': 'Attempts'},
+                        'TDs': {'alignment': 'left', 'header': 'TDs'}
+                     },use_container_width=True)
 
 
 # ---- REMOVE UNWANTED STREAMLIT STYLING ----
