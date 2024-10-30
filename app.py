@@ -20,19 +20,28 @@ st.set_page_config(
 
 # alt.themes.enable("dark")
 
+st.markdown("""
+    <style>
+        /* Center-align headers in the Streamlit table */
+        .dataframe-container th {
+            text-align: center !important;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
 #######################
 # CSS styling
 st.markdown("""
 <style>
 
-    [data-testid="block-container"] {
-        # padding-left: 1rem;
-        # padding-right: 1rem;
-        padding-top: 2rem;
-        padding-bottom: 0rem;
-        max-width: 60%;
-        margin: auto;
-    }
+[data-testid="block-container"] {
+    # padding-left: 1rem;
+    # padding-right: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 0rem;
+    max-width: 60%;
+    margin: auto;
+}
 
 [data-testid="stVerticalBlock"] {
     padding-left: 0rem;
@@ -155,7 +164,17 @@ with tab2:
         st.markdown(" ")
         st.markdown(" ")
         st.markdown('<center>Weekly Stats', unsafe_allow_html=True)
-        st.dataframe(get_rush_table_wide(player_season),hide_index=True, height=475,column_config={'week':'Week','rushing_yards': 'Rush Yards', 'carries':'Carries'},use_container_width=True)
+
+        st.dataframe(get_rush_table_wide(player_season),
+                     hide_index=True, height=475,
+                     column_config={
+                        'week': {'alignment': 'center', 'header': 'Week'},
+                        'rushing_yards': {'alignment': 'center', 'header': 'Rush Yards'},
+                        'carries': {'alignment': 'center', 'header': 'Carries'}
+                        },
+                         use_container_width=True
+                         )
+
 
 with tab3:
     player_list = list(all_data[all_data.market=='passing_yards'].player.sort_values().unique())

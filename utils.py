@@ -74,7 +74,8 @@ def get_pass_table_wide(player_season):
     
     ud_line = player_season[player_season.market=='passing_yards'].ud_line.median()
     pp_line = player_season[player_season.market=='passing_yards'].pp_line.median()
-    # Define a function to highlight rows where 'receiving_yards' is greater than either ud_line or pp_line
+
+    # function to hightlight weeks beating line
     def highlight_high_yards(row):
         color = 'background-color: #65b1d7' if row['passing_yards'] > ud_line or row['passing_yards'] > pp_line else ''
         return [color] * len(row)
@@ -122,7 +123,7 @@ def get_player_scatter_vertical_rush(player_season):
                         size='week',color='week',template='presentation',
                         size_max=17, height=550, #width=500
                         color_continuous_scale='blues',
-                        title = f"{player_season.player[0]}<br><b><span style='color:yellow'>{player_season[player_season.market == 'rushing_yards'].fillna(0).ud_line.median()}</span>  <b><span style='color:purple'>{player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.mean()}</span><br>",
+                        title = f"{player_season.player[0]}<br><b><span style='color:yellow'>{player_season[player_season.market == 'rushing_yards'].fillna(0).ud_line.median()}</span>  <span style='color:purple'><b>{player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.median()}</span><br>",
                         labels={'rushing_yards':'Rush Yards','carries':'Carries'}).update_coloraxes(showscale=False)
     player_scatter_vertical.add_hline(y=player_season[player_season['market']=='rushing_yards'].fillna(0).ud_line.median(), line_width=2, line_color="yellow")
     player_scatter_vertical.add_hline(y=player_season[player_season['market']=='rushing_yards'].fillna(0).pp_line.median(), line_width=2, line_color="purple")
