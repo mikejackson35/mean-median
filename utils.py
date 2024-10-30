@@ -54,7 +54,8 @@ def get_rec_table_wide(player_season):
 
 
 def get_rush_table_wide(player_season):
-    rush_table_wide = player_season[player_season.market=='rushing_yards'][['week','rushing_yards','carries']].sort_values(by='week',ascending=False).reset_index(drop=True) 
+    rush_table_wide = player_season[player_season.market=='rushing_yards'][['week','rushing_yards','carries']].sort_values(by='week',ascending=False).reset_index(drop=True)
+    # rush_table_wide = rush_table_wide.rename(columns={'week':'Week','rushing_yards':'Yards','carries':'Carries'}) 
 
     ud_line = player_season[player_season.market=='rushing_yards'].ud_line.median()
     pp_line = player_season[player_season.market=='rushing_yards'].pp_line.median()
@@ -68,15 +69,6 @@ def get_rush_table_wide(player_season):
     rush_table_wide = (rush_table_wide.style
                       .apply(highlight_high_yards, axis=1)
                       .format(precision=0))
-    
-    st.markdown("""
-    <style>
-        /* Center-align headers in the Streamlit table */
-        .dataframe-container th {
-            text-align: center !important;
-        }
-    </style>
-    """, unsafe_allow_html=True)
     
     return rush_table_wide
 
