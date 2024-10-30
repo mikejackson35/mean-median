@@ -20,20 +20,20 @@ st.set_page_config(
 
 # alt.themes.enable("dark")
 
-# st.markdown("""
-#     <style>
-#         /* Center-align headers in the dataframe */
-#         .dataframe-container th {
-#             text-align: center !important;
-#         }
-#         /* Ensure the page width is maintained in wide mode */
-#         [data-testid="stAppViewContainer"] {
-#             max-width: 100% !important;
-#             padding-left: 1rem;
-#             padding-right: 1rem;
-#         }
-#     </style>
-#     """, unsafe_allow_html=True)
+st.markdown("""
+    <style>
+        /* Center-align headers in the dataframe */
+        .dataframe-container th {
+            text-align: center !important;
+        }
+        /* Ensure the page width is maintained in wide mode */
+        [data-testid="stAppViewContainer"] {
+            max-width: 100% !important;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    </style>
+    """, unsafe_allow_html=True)
 
 #######################
 # CSS styling
