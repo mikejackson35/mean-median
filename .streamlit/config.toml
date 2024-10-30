@@ -1,9 +1,3 @@
 [server]
 enableStaticServing = true
 
-[theme]
-base="dark"
-primaryColor="#859ea8"
-backgroundColor="#111111"
-secondaryBackgroundColor="#393939"
-

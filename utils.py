@@ -95,7 +95,7 @@ def get_pass_table_wide(player_season):
 def get_player_scatter_vertical(player_season):
     # Create a new column for custom hover text
     player_season['hover_text'] = player_season.apply(
-        lambda row: f"Week {row['week']}<br>vs. {row['opponent_team']}<br><br>{row['receiving_yards']} yards<br>{row['targets']} targets", axis=1
+        lambda row: f"Week {int(row['week'])}<br>vs. {row['opponent_team']}<br><br>{int(row['receiving_yards'])} yards<br>{int(row['targets'])} targets", axis=1
         )
     
     player_scatter_vertical = px.scatter(player_season,x='targets',y='receiving_yards',
@@ -135,7 +135,7 @@ def get_player_scatter_vertical_rush(player_season):
 def get_player_scatter_vertical_pass(player_season):
     # Create a new column for custom hover text
     player_season['hover_text'] = player_season.apply(
-        lambda row: f"Week {row['week']}<br>vs. {row['opponent_team']}<br><br>{row['passing_yards']} yards<br>{row['attempts']} attempts", axis=1
+        lambda row: f"Week {int(row['week'])}<br>vs. {row['opponent_team']}<br><br>{int(row['passing_yards'])} yards<br>{int(row['attempts'])} attempts", axis=1
         )
     player_scatter_vertical = px.scatter(player_season,x='attempts',y='passing_yards',
                         size='week',color='week',template='presentation',
