@@ -183,7 +183,7 @@ def get_player_scatter_vertical(player_season):
 
     # Update chart title with game information
     player_scatter_vertical.update_layout(
-        title=f"{spread_display} v. {opponent} &nbsp;&nbsp;&nbsp; o/u {over_under}<br><br>---- Szn Median: {median_value} yards",
+        title=f"<b>{spread_display} v. {opponent} &nbsp;&nbsp;&nbsp; o/u {over_under}<br><br>Szn Median: {median_value} yards</b>",
         title_x=0.5, title_y=.92,  # Center the title
         title_font=dict(size=12, color='white')  # Adjust title font style
     )
@@ -285,7 +285,7 @@ def get_player_scatter_vertical_rush(player_season):
 
     # Update chart title with game information
     player_scatter_vertical.update_layout(
-        title=f"{spread_display} v. {opponent} &nbsp;&nbsp;&nbsp; o/u {over_under}<br><br>---- Szn Median: {median_value} yards",
+        title=f"<b>{spread_display} v. {opponent} &nbsp;&nbsp;&nbsp; o/u {over_under}<br><br>Szn Median: {median_value} yards</b>",
         title_x=0.5, title_y=.92,  # Center the title
         title_font=dict(size=12, color='white')  # Adjust title font style
     )
@@ -338,7 +338,7 @@ def get_player_scatter_vertical_pass(player_season):
 
     # Update chart title with game information
     player_scatter_vertical.update_layout(
-        title=f"{spread_display} v. {opponent} &nbsp;&nbsp;&nbsp; o/u {over_under}<br><br>---- Szn Median: {median_value} yards",
+        title=f"<b>{spread_display} v. {opponent} &nbsp;&nbsp;&nbsp; o/u {over_under}<br><br>Szn Median: {median_value} yards</b>",
         title_x=0.5, title_y=.92,  # Center the title
         title_font=dict(size=12, color='white')  # Adjust title font style
     )
