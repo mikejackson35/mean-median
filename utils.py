@@ -225,14 +225,14 @@ def get_player_scatter_vertical_rush(player_season):
     # Median line and annotation
     median_value = player_season[player_season['market'] == 'rushing_yards'].rushing_yards.median()
     player_scatter_vertical.add_hline(y=median_value, line_width=3, line_color="white", line_dash="dot")
-    player_scatter_vertical.add_annotation(
-        x=.5,  # Positioning on the x-axis (far left)
-        y=median_value + 2,  # Slightly above the line
-        text=f'<b>Med {int(median_value)}',  # Value to display
-        showarrow=False,  # No arrow
-        font=dict(size=15, color='white'),  # Font size and color
-        align='center'  # Center the text
-    )
+    # player_scatter_vertical.add_annotation(
+    #     x=.5,  # Positioning on the x-axis (far left)
+    #     y=median_value + 2,  # Slightly above the line
+    #     text=f'<b>Med {int(median_value)}',  # Value to display
+    #     showarrow=False,  # No arrow
+    #     font=dict(size=15, color='white'),  # Font size and color
+    #     align='center'  # Center the text
+    # )
 
     # Gather game information for the title
     spread_display = f"+{player_season.spread[0]}" if player_season.spread[0] >= 0 else str(player_season.spread[0])
@@ -241,8 +241,8 @@ def get_player_scatter_vertical_rush(player_season):
 
     # Update chart title with game information
     player_scatter_vertical.update_layout(
-        title=f"{spread_display} v. {opponent} &nbsp;&nbsp;&nbsp; o/u {over_under}",
-        title_x=0.5, title_y=.9,  # Center the title
+        title=f"{spread_display} v. {opponent} &nbsp;&nbsp;&nbsp; o/u {over_under}<br><br>---- Szn Median: {int(median_value)} yards",
+        title_x=0.5, title_y=.92,  # Center the title
         title_font=dict(size=12, color='white')  # Adjust title font style
     )
 
