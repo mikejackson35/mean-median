@@ -20,12 +20,13 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+centered_view = st.checkbox("PC View", value=False)
 st.markdown("<h1 style='text-align: center; font-family:Courier New;'>mean-median</h1>", unsafe_allow_html=True)
 
 #######################
 # CSS styling with Toggle
 # Checkbox to toggle between centered view and wide mode
-centered_view = st.checkbox("PC View", value=False)
+# centered_view = st.checkbox("PC View", value=False)
 
 # Apply CSS based on the checkbox state
 if centered_view:
@@ -77,6 +78,7 @@ with tab1:
     col1, col2 = st.columns([1.35, 1])
 
     with col1:
+        st.markdown(f"<div style='text-align: center; color: white; font-size: 16px;'>{player_season.spread[0]} v. {player_season.opponent_team[0]}<br>o/u {player_season.over_under[0]}</div>", unsafe_allow_html=True)
         st.plotly_chart(get_player_scatter_vertical(player_season), config={'displayModeBar': False}, theme=None, use_container_width=True)
     with col2:
         st.markdown(" ")
@@ -104,6 +106,7 @@ with tab2:
     col1, col2 = st.columns([1.5, 1])
 
     with col1:
+        st.markdown(f"<div style='text-align: center; color: white; font-size: 16px;'>{player_season.spread[0]} v. {player_season.opponent_team[0]}<br>o/u {player_season.over_under[0]}</div>", unsafe_allow_html=True)
         st.plotly_chart(get_player_scatter_vertical_rush(player_season), config={'displayModeBar': False}, theme=None, use_container_width=True)
     with col2:
         st.markdown(" ")
@@ -129,6 +132,7 @@ with tab3:
     col1, col2 = st.columns([1.18, 1])
 
     with col1:
+        st.markdown(f"<div style='text-align: center; color: white; font-size: 16px;'>{player_season.spread[0]} v. {player_season.opponent_team[0]}<br>o/u {player_season.over_under[0]}</div>", unsafe_allow_html=True)
         st.plotly_chart(get_player_scatter_vertical_pass(player_season), config={'displayModeBar': False}, theme=None, use_container_width=True)
     with col2:
         st.markdown(" ")
