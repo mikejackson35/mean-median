@@ -42,7 +42,7 @@ def get_rec_table_wide(player_season):
 
     # Define a function to highlight rows where 'receiving_yards' is greater than either ud_line or pp_line
     def highlight_high_yards(row):
-        color = 'background-color: #65b1d7' if row['Yards'] > ud_line or row['Yards'] > pp_line else ''
+        color = 'background-color: #3892F1' if row['Yards'] > ud_line or row['Yards'] > pp_line else ''
         return [color] * len(row)
     
     # Apply the highlighting function and set font properties
@@ -63,7 +63,7 @@ def get_rush_table_wide(player_season):
 
     # Define a function to highlight rows where 'Yards' is greater than either ud_line or pp_line
     def highlight_high_yards(row):
-        color = 'background-color: #65b1d7' if row['Yards'] > ud_line or row['Yards'] > pp_line else ''
+        color = 'background-color: #3892F1' if row['Yards'] > ud_line or row['Yards'] > pp_line else ''
         return [color] * len(row)
 
     # Apply the highlighting function and format the DataFrame
@@ -82,7 +82,7 @@ def get_pass_table_wide(player_season):
 
     # Define a function to highlight rows where 'passing_yards' is greater than either ud_line or pp_line
     def highlight_high_yards(row):
-        color = 'background-color: #65b1d7' if row['Yards'] > ud_line or row['Yards'] > pp_line else ''
+        color = 'background-color: #3892F1' if row['Yards'] > ud_line or row['Yards'] > pp_line else ''
         return [color] * len(row)
     
     # Apply the highlighting function and set font properties
@@ -174,7 +174,7 @@ def get_player_scatter_vertical(player_season):
     
     # Median line and annotation
     median_value = player_season[player_season['market'] == 'receiving_yards'].receiving_yards.median()
-    player_scatter_vertical.add_hline(y=median_value, line_width=3, line_color="white", line_dash="dot")
+    player_scatter_vertical.add_hline(y=median_value, line_width=3, line_color="#3892F1", line_dash="dot")
 
     # Gather game information for the title
     spread_display = f"+{player_season.spread[0]}" if player_season.spread[0] >= 0 else str(player_season.spread[0])
@@ -183,10 +183,20 @@ def get_player_scatter_vertical(player_season):
 
     # Update chart title with game information
     player_scatter_vertical.update_layout(
-        title=f"<b>{spread_display} v. {opponent} &nbsp;&nbsp;&nbsp; o/u {over_under}<br><br>Szn Median: {median_value} yards</b>",
+        title=f"<b>{spread_display} v. {opponent} &nbsp;&nbsp;&nbsp; o/u {over_under}<br><br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
         title_x=0.5, title_y=.92,  # Center the title
-        title_font=dict(size=12, color='white')  # Adjust title font style
+        title_font=dict(size=14, color='white')  # Adjust title font style
     )
+
+        # Add annotation for the median line
+    # player_scatter_vertical.add_annotation(
+    #     x=1,  # Positioning on the x-axis (far left)
+    #     y=median_value,  # Slightly above the line
+    #     text=f'<b>Med {median_value}',  # Value to display
+    #     showarrow=False,  # No arrow
+    #     font=dict(size=15, color='grey'),  # Font size and color
+    #     align='center'  # Center the text
+    # )
 
     # Update layout and axes
     player_scatter_vertical.update_traces(hovertemplate=player_season['hover_text'])
@@ -285,9 +295,9 @@ def get_player_scatter_vertical_rush(player_season):
 
     # Update chart title with game information
     player_scatter_vertical.update_layout(
-        title=f"<b>{spread_display} v. {opponent} &nbsp;&nbsp;&nbsp; o/u {over_under}<br><br>Szn Median: {median_value} yards</b>",
+        title=f"<b>{spread_display} v. {opponent} &nbsp;&nbsp;&nbsp; o/u {over_under}<br><br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
         title_x=0.5, title_y=.92,  # Center the title
-        title_font=dict(size=12, color='white')  # Adjust title font style
+        title_font=dict(size=14, color='white')  # Adjust title font style
     )
 
     # Update layout and axes
@@ -338,9 +348,9 @@ def get_player_scatter_vertical_pass(player_season):
 
     # Update chart title with game information
     player_scatter_vertical.update_layout(
-        title=f"<b>{spread_display} v. {opponent} &nbsp;&nbsp;&nbsp; o/u {over_under}<br><br>Szn Median: {median_value} yards</b>",
+        title=f"<b>{spread_display} v. {opponent} &nbsp;&nbsp;&nbsp; o/u {over_under}<br><br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
         title_x=0.5, title_y=.92,  # Center the title
-        title_font=dict(size=12, color='white')  # Adjust title font style
+        title_font=dict(size=14, color='white')  # Adjust title font style
     )
 
     # Update layout and axes

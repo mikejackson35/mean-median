@@ -297,7 +297,7 @@ with tab3:
         # '###'
         st.markdown('<center>Game Log</center>', unsafe_allow_html=True)
         st.dataframe(
-            get_rush_table_wide(player_season),
+            get_pass_table_wide(player_season),
             hide_index=True,
             height=475,
             column_config={
