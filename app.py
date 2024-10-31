@@ -155,7 +155,7 @@ with tab2:
     col1, col2 = st.columns([1.35, 1])
 
     with col1:
-        info_col1, info_col2, info_col3 = st.columns([1, 1.5, 1])
+        info_col1, info_col2 = st.columns(2)
 
         # Lines, player name, and game info
         with info_col1:
@@ -165,14 +165,11 @@ with tab2:
             name_placeholder = st.empty()
             game_placeholder = st.empty()
 
-        with info_col3:
-            lines_placeholder2 = st.empty()
-
         # Display the scatter plot without the title
         scatter_placeholder = st.empty()
 
         # Centered selectbox with reduced width
-        center_col1, selectbox_col, center_col2 = st.columns([1, 6, 1])  # Adjust widths as needed
+        center_col1, selectbox_col, center_col2 = st.columns([1,6,1])  # Adjust widths as needed
 
         with selectbox_col:
             # Make selectbox and update player
@@ -180,13 +177,15 @@ with tab2:
             player_season = all_data[all_data.player == player].reset_index(drop=True)
 
             # Display underdog and prizepicks lines
-            lines_placeholder.markdown(f"<div style='text-align: center; color: yellow; font-size: 20px;'>"
-                                       f"Udog<br>{player_season[player_season.market == 'rushing_yards'].fillna(0).ud_line.median()}<br>",
+            lines_placeholder.markdown(f"<div style='text-align: center; color: yellow; font-size: 18px;'>"
+                                       f"<span style='color: yellow;'>Udog {player_season[player_season.market == 'rushing_yards'].fillna(0).ud_line.median()}</span>"
+                                       f"<br><span style='color: yellow;'></span>"
+                                       f"<span style='color: violet;'>Ppick {player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.median()}</span></div>",
                                        unsafe_allow_html=True)
 
-            lines_placeholder2.markdown(f"<div style='text-align: center; color: yellow; font-size: 20px;'>"
-                                        f"<span style='color: violet;'>Ppick<br>{player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.median()}</span></div>",
-                                        unsafe_allow_html=True)
+            # lines_placeholder2.markdown(f"<div style='text-align: center; color: yellow; font-size: 20px;'>"
+            #                             f"<span style='color: violet;'>Ppick<br>{player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.median()}</span></div>",
+            #                             unsafe_allow_html=True)
 
             # Display player name
             name_placeholder.markdown(f"<div style='text-align: center; color: white; font-size: 24px;'>"
@@ -300,12 +299,12 @@ with tab3:
 
 
 # ---- REMOVE UNWANTED STREAMLIT STYLING ----
-hide_st_style = """
-            <style>
-            Main Menu {visibility: hidden;}
-            footer {visibility: hidden;}
-            header {visibility: hidden;}
-            </style>
-            """
+# hide_st_style = """
+#             <style>
+#             Main Menu {visibility: hidden;}
+#             footer {visibility: hidden;}
+#             header {visibility: hidden;}
+#             </style>
+#             """
             
-st.markdown(hide_st_style, unsafe_allow_html=True)
+# st.markdown(hide_st_style, unsafe_allow_html=True)
