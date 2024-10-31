@@ -175,7 +175,7 @@ with tab2:
             lines_placeholder.markdown(
                 f"<div style='display: flex; justify-content: space-between; color: yellow; font-size: 18px;'>"
                 f"<span style='color: yellow;text-align: right;'>uDog {player_season[player_season.market == 'rushing_yards'].fillna(0).ud_line.median()}</span>"
-                f"<span style='color: white;'>{player_season.player[0]}</span>"
+                f"<span style='color: white; font-size: 24px;font-weight: bold;'>{player_season.player[0]}</span>"
                 f"<span style='color: violet;text-align: left;'>pPicks {player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.median()}</span>"
                 f"</div>",
                 unsafe_allow_html=True
