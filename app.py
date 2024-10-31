@@ -155,15 +155,15 @@ with tab2:
     col1, col2 = st.columns([1.35, 1])
 
     with col1:
-        info_col1, info_col2 = st.columns(2)
+        # info_col1, info_col2 = st.columns(2)
 
-        # Lines, player name, and game info
-        with info_col1:
-            lines_placeholder = st.empty()
+        # # Lines, player name, and game info
+        # with info_col1:
+        lines_placeholder = st.empty()
 
-        with info_col2:
-            name_placeholder = st.empty()
-            game_placeholder = st.empty()
+        # with info_col2:
+        #     name_placeholder = st.empty()
+        #     game_placeholder = st.empty()
 
         # Display the scatter plot without the title
         scatter_placeholder = st.empty()
@@ -179,8 +179,14 @@ with tab2:
             # Display underdog and prizepicks lines
             lines_placeholder.markdown(f"<div style='text-align: center; color: yellow; font-size: 18px;'>"
                                        f"<span style='color: yellow;'>Udog {player_season[player_season.market == 'rushing_yards'].fillna(0).ud_line.median()}</span>"
-                                       f"<br><span style='color: yellow;'></span>"
-                                       f"<span style='color: violet;'>Ppick {player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.median()}</span></div>",
+                                       f"<span >  </span>"
+                                       f"<span style='color: violet;'>Ppick {player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.median()}</span>"
+                                       f"<span >  </span>"
+                                       f"<span style='color: white;'>{player_season.player[0]}</span>"
+                                       f"<span >  </span>"
+                                       f"<b><small><span style='color: white;'>{spread_display} v. {player_season.opponent_team[0]} <span style='margin-left: 20px;'>o/u</span> {(player_season.over_under[0])}</small></b></div>",
+                                    #    f"<span style='color: darkslategrey;'>:></span>",
+                                    #    f"<span style='color: white;'>{player_season.player[0]}</span></div>",
                                        unsafe_allow_html=True)
 
             # lines_placeholder2.markdown(f"<div style='text-align: center; color: yellow; font-size: 20px;'>"
