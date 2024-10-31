@@ -167,7 +167,7 @@ with tab2:
 
         with selectbox_col:
             # Make selectbox and update player
-            player = st.selectbox("Select Player", player_list, key='tab2_select')
+            player = st.selectbox("Select Player", player_list, key='tab2_select', label_visibility='collapsed')
             player_season = all_data[all_data.player == player].reset_index(drop=True)
 
             # Display underdog and prizepicks lines
