@@ -178,8 +178,8 @@ with tab2:
 
             # Display underdog and prizepicks lines
             lines_placeholder.markdown(f"<div style='text-align: center; color: yellow; font-size: 18px;'>"
-                                       f"<span style='color: white;'>{player_season.player[0]}</span>"
-                                       f"<br><b><small><span style='color: white;'>{spread_display} v. {player_season.opponent_team[0]} <span style='margin-left: 20px;'>o/u</span> {(player_season.over_under[0])}</small></b>"                                       f"<br><span style='color: yellow;'>{player_season[player_season.market == 'rushing_yards'].fillna(0).ud_line.median()}</span>"
+                                    #    f"<span style='color: white;'>{player_season.player[0]}</span>"
+                                       f"<span style='color: white;'>{player_season.player[0]}</span><span style='margin-left: 20px; color: white;'>{spread_display} v. {player_season.opponent_team[0]} <span style='margin-left: 20px;'>o/u</span> {(player_season.over_under[0])}"                                       f"<br><span style='color: yellow;'>{player_season[player_season.market == 'rushing_yards'].fillna(0).ud_line.median()}</span>"
                                        f"<span >  </span>"
                                        f"<span style='color: violet;'>{player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.median()}</span></div>",
                                     #    f"<span >  </span>"
