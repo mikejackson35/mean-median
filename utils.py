@@ -137,9 +137,7 @@ def get_player_scatter_vertical(player_season):
         borderpad=3,  # Padding of the border
         align='center'  # Center the text
     )
-    
-    player_scatter_vertical.update_yaxes(showgrid=True, gridcolor='grey')
-    player_scatter_vertical.update_traces(textfont_family='Arial Black', hovertemplate=player_season['hover_text'])
+    player_scatter_vertical.update_traces(hovertemplate=player_season['hover_text'])
 
     return player_scatter_vertical
 
@@ -158,7 +156,7 @@ def get_player_scatter_vertical_rush(player_season):
         color='week',
         template='presentation',
         size_max=17,
-        height=550,
+        height=500,
         color_continuous_scale='blues',
         labels={'rushing_yards': 'Rush Yards', 'carries': 'Carries'}
     ).update_coloraxes(showscale=False)
