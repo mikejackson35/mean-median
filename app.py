@@ -21,7 +21,6 @@ st.set_page_config(
 )
 
 centered_view = st.checkbox("PC View", value=False)
-'#'
 st.markdown("<h1 style='text-align: center; font-family:Courier New;'>mean-median</h1>", unsafe_allow_html=True)
 
 #######################
