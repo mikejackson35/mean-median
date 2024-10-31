@@ -79,7 +79,7 @@ with tab1:
 
     with col1:
 
-        info_col1, info_col2 = st.columns(2)
+        info_col1, info_col2, info_col3 = st.columns([1,1.5,1])
 
         # lines, player name, and game info
         with info_col1:
@@ -88,6 +88,9 @@ with tab1:
         with info_col2:
             name_placeholder = st.empty()
             game_placeholder = st.empty()
+
+        with info_col3:
+            lines_placeholder2 = st.empty()
 
         # Display the scatter plot without the title
         scatter_placeholder = st.empty()
@@ -101,24 +104,34 @@ with tab1:
             player_season = all_data[all_data.player == player].reset_index(drop=True)
 
             # display underdog and prizepicks lines
-            lines_placeholder.markdown(f"<div style='text-align: center; color: yellow; font-size: 16px;'>"
-                        f"<br>Udog {player_season[player_season.market == 'receiving_yards'].fillna(0).ud_line.median()}<br>"
-                        f"<span style='color: violet;'>Ppick {player_season[player_season.market == 'receiving_yards'].fillna(0).pp_line.median()}</span></div>", 
+            lines_placeholder.markdown(f"<div style='text-align: center; color: yellow; font-size: 20px;'>"
+                        f"Udog<br>{player_season[player_season.market == 'receiving_yards'].fillna(0).ud_line.median()}<br>",
+                        unsafe_allow_html=True)
+            
+            lines_placeholder2.markdown(f"<div style='text-align: center; color: yellow; font-size: 20px;'>"
+                        f"<span style='color: violet;'>Ppick<br>{player_season[player_season.market == 'receiving_yards'].fillna(0).pp_line.median()}</span></div>", 
                         unsafe_allow_html=True)
 
             #display player name
-            name_placeholder.markdown(f"<div style='text-align: left; color: white; font-size: 30px;'>"
+            name_placeholder.markdown(f"<div style='text-align: center; color: white; font-size: 24px;'>"
                                 f"<b>{player_season.player[0]}</b></div>", 
                                 unsafe_allow_html=True)  
             
-            # display game line and o/u
-            game_placeholder.markdown(f"<div style='text-align: left; color: white; font-size: 16px;'>"
-                                f"<small>{int(player_season.spread[0])} v. {player_season.opponent_team[0]} | o/u {player_season.over_under[0]}</div>", 
-                                unsafe_allow_html=True)
+            # Conditional logic to add a '+' symbol if the spread is non-negative
+            spread_display = f"+{player_season.spread[0]}" if player_season.spread[0] >= 0 else str(player_season.spread[0])
+
+            # Using <span> to add more space instead of a pipe
+            game_placeholder.markdown(f"<div style='text-align: center; color: white; font-size: 16px;'>"
+                                    f"<b><small>{spread_display} v. {player_season.opponent_team[0]} <span style='margin-left: 20px;'>o/u</span> {(player_season.over_under[0])}</small></b></div>", 
+                                    unsafe_allow_html=True)
                      
             scatter_placeholder.plotly_chart(get_player_scatter_vertical(player_season), config={'displayModeBar': False}, theme=None, use_container_width=True)
 
     with col2:
+        '###'
+        '###'
+        '###'
+        '###'
         st.markdown('<center>Game Log</center>', unsafe_allow_html=True)
         st.dataframe(
             get_rec_table_wide(player_season),
