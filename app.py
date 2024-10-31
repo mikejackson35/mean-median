@@ -183,7 +183,7 @@ with tab1:
 
     with col2:
         '###'
-        '###'
+        # '###'
         st.markdown('<center>Game Log</center>', unsafe_allow_html=True)
         st.dataframe(
             get_rec_table_wide(player_season),
@@ -238,8 +238,6 @@ with tab2:
 
     with col2:
         '###'
-        '###'
-        # '###'
         # '###'
         st.markdown('<center>Game Log</center>', unsafe_allow_html=True)
         st.dataframe(
@@ -292,8 +290,6 @@ with tab3:
 
     with col2:
         '###'
-        '###'
-        # '###'
         # '###'
         st.markdown('<center>Game Log</center>', unsafe_allow_html=True)
         st.dataframe(
