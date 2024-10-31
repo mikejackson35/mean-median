@@ -210,6 +210,7 @@ def get_player_scatter_vertical_pass(player_season):
         size_max=17,
         height=550,
         color_continuous_scale='blues',
+        labels={'passing_yards': 'Pass Yards', 'attempts': 'Attempts'}
     ).update_coloraxes(showscale=False)
 
     # Calculate the maximum values for UD Line and PP Line
