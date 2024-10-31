@@ -20,15 +20,15 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-centered_view = st.checkbox("PC View", value=False)
+# Create a toggle for PC view
+centered_view = st.toggle("mobile/PC", value=False)
 st.markdown("<h1 style='text-align: center; font-family:Courier New;'>mean-median</h1>", unsafe_allow_html=True)
 
 #######################
 # CSS styling with Toggle
-# Checkbox to toggle between centered view and wide mode
-# centered_view = st.checkbox("PC View", value=False)
 
-# Apply CSS based on the checkbox state
+
+# Apply CSS based on the toggle state
 if centered_view:
     st.markdown("""
         <style>
@@ -39,8 +39,8 @@ if centered_view:
             /* Center the main container with max-width for centered view */
             [data-testid="stAppViewContainer"] {
                 max-width: 60% !important;
-                padding-left: 2rem;
-                padding-right: 2rem;
+                padding-left: 2rem !important;
+                padding-right: 2rem !important;
                 margin: auto;
             }
         </style>
@@ -55,8 +55,8 @@ else:
             /* Wide mode with full width */
             [data-testid="stAppViewContainer"] {
                 max-width: 100% !important;
-                padding-left: 1rem;
-                padding-right: 1rem;
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
             }
         </style>
     """, unsafe_allow_html=True)
