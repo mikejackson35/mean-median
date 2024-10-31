@@ -107,12 +107,12 @@ with tab1:
                         unsafe_allow_html=True)
 
             #display player name
-            name_placeholder.markdown(f"<div style='text-align: center; color: white; font-size: 30px;'>"
+            name_placeholder.markdown(f"<div style='text-align: left; color: white; font-size: 30px;'>"
                                 f"<b>{player_season.player[0]}</b></div>", 
                                 unsafe_allow_html=True)  
             
             # display game line and o/u
-            game_placeholder.markdown(f"<div style='text-align: center; color: white; font-size: 16px;'>"
+            game_placeholder.markdown(f"<div style='text-align: left; color: white; font-size: 16px;'>"
                                 f"<small>{int(player_season.spread[0])} v. {player_season.opponent_team[0]} | o/u {player_season.over_under[0]}</div>", 
                                 unsafe_allow_html=True)
                      
