@@ -242,7 +242,7 @@ def get_player_scatter_vertical_rush(player_season):
     # Update chart title with game information
     player_scatter_vertical.update_layout(
         title=f"{spread_display} v. {opponent} &nbsp;&nbsp;&nbsp; o/u {over_under}",
-        title_x=0.4, title_y=.86,  # Center the title
+        title_x=0.5, title_y=.9,  # Center the title
         title_font=dict(size=12, color='white')  # Adjust title font style
     )
 
