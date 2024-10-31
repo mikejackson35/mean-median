@@ -95,9 +95,9 @@ with tab1:
 
             lines_placeholder.markdown(
                 f"<div style='display: flex; justify-content: space-between; color: yellow; font-size: 18px;font-weight: bold;'>"
-                f"<span style='color: yellow;text-align: right;'>uDog {player_season[player_season.market == 'receiving_yards'].fillna(0).ud_line.median()}</span>"
+                f"<span style='color: yellow;text-align: right;'>uDog {player_season[player_season.market == 'receiving_yards'].fillna(0).ud_line.max()}</span>"
                 f"<span style='color: white; font-size: 24px;'>{player_season.player[0]}</span>"
-                f"<span style='color: violet;text-align: left;'>pPicks {player_season[player_season.market == 'receiving_yards'].fillna(0).pp_line.median()}</span>"
+                f"<span style='color: violet;text-align: left;'>pPicks {player_season[player_season.market == 'receiving_yards'].fillna(0).pp_line.max()}</span>"
                 f"</div>",
                 unsafe_allow_html=True
             )
@@ -150,9 +150,9 @@ with tab2:
             # Display underdog and prizepicks lines
             lines_placeholder.markdown(
                 f"<div style='display: flex; justify-content: space-between; color: yellow; font-size: 18px;font-weight: bold;'>"
-                f"<span style='color: yellow;text-align: right;'>uDog {player_season[player_season.market == 'rushing_yards'].fillna(0).ud_line.median()}</span>"
+                f"<span style='color: yellow;text-align: right;'>uDog {player_season[player_season.market == 'rushing_yards'].fillna(0).ud_line.max()}</span>"
                 f"<span style='color: white; font-size: 24px;'>{player_season.player[0]}</span>"
-                f"<span style='color: violet;text-align: left;'>pPicks {player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.median()}</span>"
+                f"<span style='color: violet;text-align: left;'>pPicks {player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.max()}</span>"
                 f"</div>",
                 unsafe_allow_html=True
             )
@@ -202,9 +202,9 @@ with tab3:
             # Display underdog and prizepicks lines
             lines_placeholder.markdown(
                 f"<div style='display: flex; justify-content: space-between; color: yellow; font-size: 18px;font-weight: bold;'>"
-                f"<span style='color: yellow;text-align: right;'>uDog {player_season[player_season.market == 'passing_yards'].fillna(0).ud_line.median()}</span>"
+                f"<span style='color: yellow;text-align: right;'>uDog {player_season[player_season.market == 'passing_yards'].fillna(0).ud_line.max()}</span>"
                 f"<span style='color: white; font-size: 24px;'>{player_season.player[0]}</span>"
-                f"<span style='color: violet;text-align: left;'>pPicks {player_season[player_season.market == 'passing_yards'].fillna(0).pp_line.median()}</span>"
+                f"<span style='color: violet;text-align: left;'>pPicks {player_season[player_season.market == 'passing_yards'].fillna(0).pp_line.max()}</span>"
                 f"</div>",
                 unsafe_allow_html=True
             )
