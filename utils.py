@@ -141,12 +141,66 @@ def get_player_scatter_vertical(player_season):
 
     return player_scatter_vertical
 
+# def get_player_scatter_vertical_rush(player_season):
+#     # Create a new column for custom hover text
+#     player_season['hover_text'] = player_season.apply(
+#         lambda row: f"Week {int(row['week'])}<br>vs. {row['opponent_team']}<br><br>{int(row['rushing_yards'])} yards<br>{int(row['carries'])} carries", axis=1
+#     )
+    
+#     # Create the scatter plot for rushing yards
+#     player_scatter_vertical = px.scatter(
+#         player_season,
+#         x='carries',
+#         y='rushing_yards',
+#         size='week',
+#         color='week',
+#         template='presentation',
+#         size_max=17,
+#         height=500,
+#         color_continuous_scale='blues',
+#         labels={'rushing_yards': 'Rush Yards', 'carries': 'Carries'}
+#     ).update_coloraxes(showscale=False)
+
+#     # Calculate the maximum values for UD Line and PP Line
+#     ud_line_max = player_season[player_season['market'] == 'rushing_yards'].ud_line.max()
+#     pp_line_max = player_season[player_season['market'] == 'rushing_yards'].pp_line.max()
+
+#     # Add horizontal lines only if the values are greater than zero
+#     if ud_line_max > 0:
+#         player_scatter_vertical.add_hline(y=ud_line_max, line_width=1, line_color="yellow")
+    
+#     if pp_line_max > 0:
+#         player_scatter_vertical.add_hline(y=pp_line_max, line_width=1, line_color="purple")
+    
+#     # Median line and annotation
+#     median_value = player_season[player_season['market'] == 'rushing_yards'].rushing_yards.median()
+#     player_scatter_vertical.add_hline(y=median_value, line_width=3, line_color="white", line_dash="dot")
+    
+#     # Add annotation for the median line
+#     player_scatter_vertical.add_annotation(
+#         x=.5,  # Positioning on the x-axis (far left)
+#         y=median_value + 2,  # Slightly above the line
+#         text=f'<b>Med {int(median_value)}',  # Value to display
+#         showarrow=False,  # No arrow
+#         font=dict(size=15, color='white'),  # Font size and color
+#         align='center'  # Center the text
+#     )
+    
+#     # Update layout and axes
+#     player_scatter_vertical.update_traces(hovertemplate=player_season['hover_text'])
+
+#     return player_scatter_vertical
+
 def get_player_scatter_vertical_rush(player_season):
     # Create a new column for custom hover text
     player_season['hover_text'] = player_season.apply(
         lambda row: f"Week {int(row['week'])}<br>vs. {row['opponent_team']}<br><br>{int(row['rushing_yards'])} yards<br>{int(row['carries'])} carries", axis=1
     )
     
+    # Calculate the maximum values for UD Line and PP Line
+    ud_line_max = player_season[player_season['market'] == 'rushing_yards'].ud_line.max()
+    pp_line_max = player_season[player_season['market'] == 'rushing_yards'].pp_line.max()
+
     # Create the scatter plot for rushing yards
     player_scatter_vertical = px.scatter(
         player_season,
@@ -161,10 +215,6 @@ def get_player_scatter_vertical_rush(player_season):
         labels={'rushing_yards': 'Rush Yards', 'carries': 'Carries'}
     ).update_coloraxes(showscale=False)
 
-    # Calculate the maximum values for UD Line and PP Line
-    ud_line_max = player_season[player_season['market'] == 'rushing_yards'].ud_line.max()
-    pp_line_max = player_season[player_season['market'] == 'rushing_yards'].pp_line.max()
-
     # Add horizontal lines only if the values are greater than zero
     if ud_line_max > 0:
         player_scatter_vertical.add_hline(y=ud_line_max, line_width=1, line_color="yellow")
@@ -175,8 +225,6 @@ def get_player_scatter_vertical_rush(player_season):
     # Median line and annotation
     median_value = player_season[player_season['market'] == 'rushing_yards'].rushing_yards.median()
     player_scatter_vertical.add_hline(y=median_value, line_width=3, line_color="white", line_dash="dot")
-    
-    # Add annotation for the median line
     player_scatter_vertical.add_annotation(
         x=.5,  # Positioning on the x-axis (far left)
         y=median_value + 2,  # Slightly above the line
@@ -185,11 +233,24 @@ def get_player_scatter_vertical_rush(player_season):
         font=dict(size=15, color='white'),  # Font size and color
         align='center'  # Center the text
     )
-    
+
+    # Gather game information for the title
+    spread_display = f"+{player_season.spread[0]}" if player_season.spread[0] >= 0 else str(player_season.spread[0])
+    opponent = player_season.opponent_team[0]
+    over_under = player_season.over_under[0]
+
+    # Update chart title with game information
+    player_scatter_vertical.update_layout(
+        title=f"{spread_display} v. {opponent} &nbsp;&nbsp;&nbsp; o/u {over_under}",
+        title_x=0.5, title_y=.86,  # Center the title
+        title_font=dict(size=13, color='white')  # Adjust title font style
+    )
+
     # Update layout and axes
     player_scatter_vertical.update_traces(hovertemplate=player_season['hover_text'])
 
     return player_scatter_vertical
+
 
 def get_player_scatter_vertical_pass(player_season):
     # Create a new column for custom hover text

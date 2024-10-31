@@ -171,31 +171,29 @@ with tab2:
             player_season = all_data[all_data.player == player].reset_index(drop=True)
 
             # Display underdog and prizepicks lines
-            lines_placeholder.markdown(f"<div style='text-align: center; color: yellow; font-size: 18px;'>"
-                                       f"<span style='color: white;'>{player_season.player[0]}</span> \
-                                        <span style='margin-left: 20px; color: white;'>{spread_display} v. {player_season.opponent_team[0]} \
-                                            <span style='margin-left: 20px;'>o/u</span> {(player_season.over_under[0])}"
+            # Display underdog and prizepicks lines
+            lines_placeholder.markdown(
+                f"<div style='display: flex; justify-content: space-between; color: yellow; font-size: 18px;'>"
+                f"<span style='color: yellow;text-align: right;'>uDog {player_season[player_season.market == 'rushing_yards'].fillna(0).ud_line.median()}</span>"
+                f"<span style='color: white;'>{player_season.player[0]}</span>"
+                f"<span style='color: violet;text-align: left;'>pPicks {player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.median()}</span>"
+                f"</div>",
+                unsafe_allow_html=True
+            )
 
-                                       f"<br><span style='color: yellow;'>uDog {player_season[player_season.market == 'rushing_yards'].fillna(0).ud_line.median()}</span> \
-                                       <span style='margin-left: 20px; color: violet;'>pPicks {player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.median()}</span></div>",
-                                       unsafe_allow_html=True)
-
-            # lines_placeholder2.markdown(f"<div style='text-align: center; color: yellow; font-size: 20px;'>"
-            #                             f"<span style='color: violet;'>Ppick<br>{player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.median()}</span></div>",
-            #                             unsafe_allow_html=True)
 
             # Display player name
             name_placeholder.markdown(f"<div style='text-align: center; color: white; font-size: 24px;'>"
                                       f"<b>{player_season.player[0]}</b></div>",
                                       unsafe_allow_html=True)
 
-            # Conditional logic to add a '+' symbol if the spread is non-negative
-            spread_display = f"+{player_season.spread[0]}" if player_season.spread[0] >= 0 else str(player_season.spread[0])
+            # # Conditional logic to add a '+' symbol if the spread is non-negative
+            # spread_display = f"+{player_season.spread[0]}" if player_season.spread[0] >= 0 else str(player_season.spread[0])
 
-            # Using <span> to add more space instead of a pipe
-            game_placeholder.markdown(f"<div style='text-align: center; color: white; font-size: 16px;'>"
-                                      f"<b><small>{spread_display} v. {player_season.opponent_team[0]} <span style='margin-left: 20px;'>o/u</span> {(player_season.over_under[0])}</small></b></div>",
-                                      unsafe_allow_html=True)
+            # # Using <span> to add more space instead of a pipe
+            # game_placeholder.markdown(f"<div style='text-align: center; color: white; font-size: 16px;'>"
+            #                           f"<b><small>{spread_display} v. {player_season.opponent_team[0]} <span style='margin-left: 20px;'>o/u</span> {(player_season.over_under[0])}</small></b></div>",
+            #                           unsafe_allow_html=True)
 
             scatter_placeholder.plotly_chart(get_player_scatter_vertical_rush(player_season), config={'displayModeBar': False}, theme=None, use_container_width=True)
 
@@ -295,24 +293,24 @@ with tab3:
 
 
 
-# ---- REMOVE UNWANTED STREAMLIT STYLING ----
-hide_st_style = """
-            <style>
-            Main Menu {visibility: hidden;}
-            footer {visibility: hidden;}
-            header {visibility: hidden;}
-            </style>
-            """
+# # ---- REMOVE UNWANTED STREAMLIT STYLING ----
+# hide_st_style = """
+#             <style>
+#             Main Menu {visibility: hidden;}
+#             footer {visibility: hidden;}
+#             header {visibility: hidden;}
+#             </style>
+#             """
             
-st.markdown(hide_st_style, unsafe_allow_html=True)
+# st.markdown(hide_st_style, unsafe_allow_html=True)
 
-st.markdown(
-    """
-    <style>
-    .stApp {
-        footer {display: none;}
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+# st.markdown(
+#     """
+#     <style>
+#     .stApp {
+#         footer {display: none;}
+#     }
+#     </style>
+#     """,
+#     unsafe_allow_html=True
+# )
