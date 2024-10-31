@@ -71,32 +71,74 @@ all_data = all_data.astype({'season': int})
 tab1, tab2, tab3 = st.tabs(["Receiving", "Rushing", "Passing"])
 
 with tab1:
-    player_list = list(all_data[all_data.market=='receiving_yards'].player.sort_values().unique())
-    player = st.selectbox(" ", player_list)
-    player_season = all_data[all_data.player==player].reset_index(drop=True)
+    # Create the list of players and initialize the player season data
+    player_list = list(all_data[all_data.market == 'receiving_yards'].player.sort_values().unique())
+    player_season = all_data[all_data.player == player_list[0]].reset_index(drop=True)  # Initial player selection
 
     col1, col2 = st.columns([1.35, 1])
 
     with col1:
-        st.markdown(f"<div style='text-align: center; color: white; font-size: 16px;'>{player_season.spread[0]} v. {player_season.opponent_team[0]}<br>o/u {player_season.over_under[0]}</div>", unsafe_allow_html=True)
-        st.plotly_chart(get_player_scatter_vertical(player_season), config={'displayModeBar': False}, theme=None, use_container_width=True)
-    with col2:
-        st.markdown(" ")
-        st.markdown(" ")
-        st.markdown(" ")
-        st.markdown(" ")
-        st.markdown('<center>Game Log', unsafe_allow_html=True)
 
-        st.dataframe(get_rec_table_wide(player_season),
-                     hide_index=True, height=475,
-                     column_config={
-                         'Week': {'alignment': 'left', 'header': 'Week'},
-                         'Yards': {'alignment': 'left', 'header': 'Yards'},
-                         'Targets': {'alignment': 'left', 'header': 'Targets'},
-                         'Rec': {'alignment': 'left', 'header': 'Rec'},
-                         'TDs': {'alignment': 'left', 'header': 'TDs'}
-                     },
-                     use_container_width=True)
+        info_col1, info_col2 = st.columns(2)
+
+        # lines, player name, and game info
+        with info_col1:
+            lines_placeholder = st.empty()
+        
+        with info_col2:
+            name_placeholder = st.empty()
+            game_placeholder = st.empty()
+
+        # Display the scatter plot without the title
+        scatter_placeholder = st.empty()
+
+        # Centered selectbox with reduced width
+        center_col1, selectbox_col, center_col2 = st.columns([1,6,1])  # Adjust widths as needed
+
+        with selectbox_col:
+            # make selectbox and update player
+            player = st.selectbox("Select Player", player_list, key='tab1_select')
+            player_season = all_data[all_data.player == player].reset_index(drop=True)
+
+            # display underdog and prizepicks lines
+            lines_placeholder.markdown(f"<div style='text-align: center; color: yellow; font-size: 16px;'>"
+                        f"<br>Udog {player_season[player_season.market == 'receiving_yards'].fillna(0).ud_line.median()}<br>"
+                        f"<span style='color: violet;'>Ppick {player_season[player_season.market == 'receiving_yards'].fillna(0).pp_line.median()}</span></div>", 
+                        unsafe_allow_html=True)
+
+            #display player name
+            name_placeholder.markdown(f"<div style='text-align: center; color: white; font-size: 30px;'>"
+                                f"<b>{player_season.player[0]}</b></div>", 
+                                unsafe_allow_html=True)  
+            
+            # display game line and o/u
+            game_placeholder.markdown(f"<div style='text-align: center; color: white; font-size: 16px;'>"
+                                f"<small>{int(player_season.spread[0])} v. {player_season.opponent_team[0]} | o/u {player_season.over_under[0]}</div>", 
+                                unsafe_allow_html=True)
+                     
+            scatter_placeholder.plotly_chart(get_player_scatter_vertical(player_season), config={'displayModeBar': False}, theme=None, use_container_width=True)
+
+    with col2:
+        st.markdown('<center>Game Log</center>', unsafe_allow_html=True)
+        st.dataframe(
+            get_rec_table_wide(player_season),
+            hide_index=True,
+            height=475,
+            column_config={
+                'Week': {'alignment': 'left', 'header': 'Week'},
+                'Yards': {'alignment': 'left', 'header': 'Yards'},
+                'Targets': {'alignment': 'left', 'header': 'Targets'},
+                'Rec': {'alignment': 'left', 'header': 'Rec'},
+                'TDs': {'alignment': 'left', 'header': 'TDs'}
+            },
+            use_container_width=True
+        )
+
+
+
+
+
+
 
 with tab2:
     player_list = list(all_data[all_data.market=='rushing_yards'].player.sort_values().unique())
@@ -152,12 +194,12 @@ with tab3:
                      use_container_width=True)
 
 # ---- REMOVE UNWANTED STREAMLIT STYLING ----
-hide_st_style = """
-            <style>
-            Main Menu {visibility: hidden;}
-            footer {visibility: hidden;}
-            header {visibility: hidden;}
-            </style>
-            """
+# hide_st_style = """
+#             <style>
+#             Main Menu {visibility: hidden;}
+#             footer {visibility: hidden;}
+#             header {visibility: hidden;}
+#             </style>
+#             """
             
-st.markdown(hide_st_style, unsafe_allow_html=True)
+# st.markdown(hide_st_style, unsafe_allow_html=True)
