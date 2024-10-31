@@ -148,14 +148,14 @@ def get_player_scatter_vertical(player_season):
     )
 
         # Add annotation for the median line
-    player_scatter_vertical.add_annotation(
-        x=targets_min + .1,  # Positioning on the x-axis (far left)
-        y=max_value - 1,  # Slightly above the line
-        text=f'<b>bRiv<br>{br_line}',  # Value to display
-        showarrow=False,  # No arrow
-        font=dict(size=15, color='white'),  # Font size and color
-        align='center'  # Center the text
-    )
+    # player_scatter_vertical.add_annotation(
+    #     x=targets_min + .1,  # Positioning on the x-axis (far left)
+    #     y=max_value - 1,  # Slightly above the line
+    #     text=f'<b>bRiv<br>{br_line}',  # Value to display
+    #     showarrow=False,  # No arrow
+    #     font=dict(size=15, color='white'),  # Font size and color
+    #     align='center'  # Center the text
+    # )
 
     # Update layout and axes
     player_scatter_vertical.update_traces(hovertemplate=player_season['hover_text'])
@@ -216,14 +216,14 @@ def get_player_scatter_vertical_rush(player_season):
         )
 
             # Add annotation for the median line
-    player_scatter_vertical.add_annotation(
-        x=carries_min + .1,  # Positioning on the x-axis (far left)
-        y=max_value - 1,  # Slightly above the line
-        text=f'<b>bRiv<br>{br_line}',  # Value to display
-        showarrow=False,  # No arrow
-        font=dict(size=15, color='white'),  # Font size and color
-        align='center'  # Center the text
-    )
+    # player_scatter_vertical.add_annotation(
+    #     x=carries_min + .1,  # Positioning on the x-axis (far left)
+    #     y=max_value - 1,  # Slightly above the line
+    #     text=f'<b>bRiv<br>{br_line}',  # Value to display
+    #     showarrow=False,  # No arrow
+    #     font=dict(size=15, color='white'),  # Font size and color
+    #     align='center'  # Center the text
+    # )
 
     # Update layout and axes
     player_scatter_vertical.update_traces(hovertemplate=player_season['hover_text'])
@@ -281,14 +281,14 @@ def get_player_scatter_vertical_pass(player_season):
     )
 
                 # Add annotation for the median line
-    player_scatter_vertical.add_annotation(
-        x=attempts_min + .1,  # Positioning on the x-axis (far left)
-        y=max_value - 1,  # Slightly above the line
-        text=f'<b>bRiv<br>{br_line}',  # Value to display
-        showarrow=False,  # No arrow
-        font=dict(size=15, color='white'),  # Font size and color
-        align='center'  # Center the text
-    )
+    # player_scatter_vertical.add_annotation(
+    #     x=attempts_min + .1,  # Positioning on the x-axis (far left)
+    #     y=max_value - 1,  # Slightly above the line
+    #     text=f'<b>bRiv<br>{br_line}',  # Value to display
+    #     showarrow=False,  # No arrow
+    #     font=dict(size=15, color='white'),  # Font size and color
+    #     align='center'  # Center the text
+    # )
 
     # Update layout and axes
     player_scatter_vertical.update_traces(hovertemplate=player_season['hover_text'])
