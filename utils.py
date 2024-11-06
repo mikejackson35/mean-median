@@ -131,7 +131,7 @@ def get_player_scatter_vertical(player_season):
     max_value = player_season[player_season['market'] == 'receiving_yards'].receiving_yards.max()
     median_value = player_season[player_season['market'] == 'receiving_yards'].receiving_yards.median()
     targets_min = player_season[player_season['market'] == 'receiving_yards'].targets.min()
-    br_line = player_season[player_season.market == 'receiving_yards'].fillna(0).br_line.median()
+    # br_line = player_season[player_season.market == 'receiving_yards'].fillna(0).br_line.median()
     player_scatter_vertical.add_hline(y=median_value, line_width=3, line_color="#3892F1", line_dash="dot")
 
     # Gather game information for the title
@@ -141,7 +141,8 @@ def get_player_scatter_vertical(player_season):
 
     # Update chart title with game information
     player_scatter_vertical.update_layout(
-        title=f"<b>bRiv {br_line}<br><br>{spread_display}&nbsp;&nbsp;&nbsp; o/u {over_under}<br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
+        # title=f"<b>bRiv {br_line}<br><br>{spread_display}&nbsp;&nbsp;&nbsp; o/u {over_under}<br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
+        title=f"<br>{spread_display}&nbsp;&nbsp;&nbsp; o/u {over_under}<br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
         title_x=0.5, title_y=.96,  # Center the title
         title_font=dict(size=14, color='white')  # Adjust title font style
     )
@@ -200,7 +201,7 @@ def get_player_scatter_vertical_rush(player_season):
     max_value = player_season[player_season['market'] == 'rushing_yards'].rushing_yards.max()
     median_value = player_season[player_season['market'] == 'rushing_yards'].rushing_yards.median()
     carries_min = player_season[player_season['market'] == 'rushing_yards'].carries.min()
-    br_line = player_season[player_season.market == 'rushing_yards'].fillna(0).br_line.median()
+    # br_line = player_season[player_season.market == 'rushing_yards'].fillna(0).br_line.median()
     player_scatter_vertical.add_hline(y=median_value, line_width=3, line_color="#3892F1", line_dash="dot")
 
     # Gather game information for the title
@@ -209,7 +210,8 @@ def get_player_scatter_vertical_rush(player_season):
     over_under = player_season.over_under[0]
 
     player_scatter_vertical.update_layout(
-        title=f"<b>bRiv {br_line}<br><br>{spread_display}&nbsp;&nbsp;&nbsp; o/u {over_under}<br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
+        # title=f"<b>bRiv {br_line}<br><br>{spread_display}&nbsp;&nbsp;&nbsp; o/u {over_under}<br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
+        title=f"<br>{spread_display}&nbsp;&nbsp;&nbsp; o/u {over_under}<br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
         title_x=0.5, title_y=.96,  # Center the title
         title_font=dict(size=14, color='white')  # Adjust title font style
         )
@@ -264,7 +266,7 @@ def get_player_scatter_vertical_pass(player_season):
     # Median line and annotation
     max_value = player_season[player_season['market'] == 'passing_yards'].passing_yards.max()
     attempts_min = player_season[player_season['market'] == 'passing_yards'].attempts.min()
-    br_line = player_season[player_season.market == 'passing_yards'].fillna(0).br_line.median()
+    # br_line = player_season[player_season.market == 'passing_yards'].fillna(0).br_line.median()
     median_value = player_season[player_season['market'] == 'passing_yards'].passing_yards.median()
     player_scatter_vertical.add_hline(y=median_value, line_width=3, line_color="#3892F1", line_dash="dot")
 
@@ -274,7 +276,8 @@ def get_player_scatter_vertical_pass(player_season):
     over_under = player_season.over_under[0]
 
     player_scatter_vertical.update_layout(
-        title=f"<b>bRiv {br_line}<br><br>{spread_display}&nbsp;&nbsp;&nbsp; o/u {over_under}<br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
+        # title=f"<b>bRiv {br_line}<br><br>{spread_display}&nbsp;&nbsp;&nbsp; o/u {over_under}<br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
+        title=f"<br>{spread_display}&nbsp;&nbsp;&nbsp; o/u {over_under}<br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
         title_x=0.5, title_y=.96,  # Center the title
         title_font=dict(size=14, color='white')  # Adjust title font style
     )
