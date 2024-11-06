@@ -101,7 +101,7 @@ def get_player_scatter_vertical(player_season):
     # Calculate the maximum values for UD Line and PP Line
     ud_line_max = player_season[player_season['market'] == 'receiving_yards'].ud_line.max()
     pp_line_max = player_season[player_season['market'] == 'receiving_yards'].pp_line.max()
-    br_line_max = player_season[player_season['market'] == 'receiving_yards'].br_line.max()
+    # br_line_max = player_season[player_season['market'] == 'receiving_yards'].br_line.max()
 
     # Create the scatter plot for rushing yards
     player_scatter_vertical = px.scatter(
@@ -171,7 +171,7 @@ def get_player_scatter_vertical_rush(player_season):
     # Calculate the maximum values for UD Line and PP Line
     ud_line_max = player_season[player_season['market'] == 'rushing_yards'].ud_line.max()
     pp_line_max = player_season[player_season['market'] == 'rushing_yards'].pp_line.max()
-    br_line_max = player_season[player_season['market'] == 'rushing_yards'].br_line.max()
+    # br_line_max = player_season[player_season['market'] == 'rushing_yards'].br_line.max()
 
     # Create the scatter plot for rushing yards
     player_scatter_vertical = px.scatter(
