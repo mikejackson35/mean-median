@@ -63,7 +63,7 @@ else:
 
 #######################
 # READ IN DATA
-all_data = pd.read_csv(r"data/week_9.csv")
+all_data = pd.read_csv(r"data/week_10.csv")
 all_data = all_data.astype({'season': int})
 
 #####################
