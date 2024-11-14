@@ -63,8 +63,8 @@ else:
 
 #######################
 # READ IN DATA
-all_data = pd.read_csv(r"data/week_10.csv")
-all_data = all_data.astype({'season': int})
+all_data = pd.read_csv(r"data/mean_median.csv")
+# all_data = all_data.astype({'season': int})
 
 #####################
 ## START TABS
@@ -198,7 +198,6 @@ with tab3:
             player = st.selectbox("Select Player", player_list, key='tab3_select', label_visibility='collapsed')
             player_season = all_data[all_data.player == player].reset_index(drop=True)
 
-            # Display underdog and prizepicks lines
             # Display underdog and prizepicks lines
             lines_placeholder.markdown(
                 f"<div style='display: flex; justify-content: space-between; color: yellow; font-size: 18px;font-weight: bold;'>"

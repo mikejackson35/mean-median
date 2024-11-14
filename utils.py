@@ -131,31 +131,31 @@ def get_player_scatter_vertical(player_season):
     max_value = player_season[player_season['market'] == 'receiving_yards'].receiving_yards.max()
     median_value = player_season[player_season['market'] == 'receiving_yards'].receiving_yards.median()
     targets_min = player_season[player_season['market'] == 'receiving_yards'].targets.min()
-    # br_line = player_season[player_season.market == 'receiving_yards'].fillna(0).br_line.median()
+    br_line = player_season[player_season.market == 'receiving_yards'].fillna(0).br_line.median()
     player_scatter_vertical.add_hline(y=median_value, line_width=3, line_color="#3892F1", line_dash="dot")
 
     # Gather game information for the title
     spread_display = f"+{player_season.spread[0]}" if player_season.spread[0] >= 0 else str(player_season.spread[0])
-    opponent = player_season.opponent_team[0]
+    opponent = player_season.week_opponent[0]
     over_under = player_season.over_under[0]
 
     # Update chart title with game information
     player_scatter_vertical.update_layout(
         # title=f"<b>bRiv {br_line}<br><br>{spread_display}&nbsp;&nbsp;&nbsp; o/u {over_under}<br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
-        title=f"<br>{spread_display}&nbsp;&nbsp;&nbsp; o/u {over_under}<br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
+        title=f"<br>{spread_display} {opponent}&nbsp;&nbsp;&nbsp; o/u {over_under}",#<br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
         title_x=0.5, title_y=.96,  # Center the title
         title_font=dict(size=14, color='white')  # Adjust title font style
     )
 
         # Add annotation for the median line
-    # player_scatter_vertical.add_annotation(
-    #     x=targets_min + .1,  # Positioning on the x-axis (far left)
-    #     y=max_value - 1,  # Slightly above the line
-    #     text=f'<b>bRiv<br>{br_line}',  # Value to display
-    #     showarrow=False,  # No arrow
-    #     font=dict(size=15, color='white'),  # Font size and color
-    #     align='center'  # Center the text
-    # )
+    player_scatter_vertical.add_annotation(
+        x=targets_min + .1,  # Positioning on the x-axis (far left)
+        y=max_value - 1,  # Slightly above the line
+        text=f'<b>bRiv<br>{br_line}',  # Value to display
+        showarrow=False,  # No arrow
+        font=dict(size=15, color='white'),  # Font size and color
+        align='center'  # Center the text
+    )
 
     # Update layout and axes
     player_scatter_vertical.update_traces(hovertemplate=player_season['hover_text'])
@@ -201,30 +201,30 @@ def get_player_scatter_vertical_rush(player_season):
     max_value = player_season[player_season['market'] == 'rushing_yards'].rushing_yards.max()
     median_value = player_season[player_season['market'] == 'rushing_yards'].rushing_yards.median()
     carries_min = player_season[player_season['market'] == 'rushing_yards'].carries.min()
-    # br_line = player_season[player_season.market == 'rushing_yards'].fillna(0).br_line.median()
+    br_line = player_season[player_season.market == 'rushing_yards'].fillna(0).br_line.median()
     player_scatter_vertical.add_hline(y=median_value, line_width=3, line_color="#3892F1", line_dash="dot")
 
     # Gather game information for the title
     spread_display = f"+{player_season.spread[0]}" if player_season.spread[0] >= 0 else str(player_season.spread[0])
-    opponent = player_season.opponent_team[0]
+    opponent = player_season.week_opponent[0]
     over_under = player_season.over_under[0]
 
     player_scatter_vertical.update_layout(
         # title=f"<b>bRiv {br_line}<br><br>{spread_display}&nbsp;&nbsp;&nbsp; o/u {over_under}<br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
-        title=f"<br>{spread_display}&nbsp;&nbsp;&nbsp; o/u {over_under}<br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
+        title=f"<br>{spread_display} {opponent}&nbsp;&nbsp;&nbsp; o/u {over_under}",#<br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
         title_x=0.5, title_y=.96,  # Center the title
         title_font=dict(size=14, color='white')  # Adjust title font style
         )
 
             # Add annotation for the median line
-    # player_scatter_vertical.add_annotation(
-    #     x=carries_min + .1,  # Positioning on the x-axis (far left)
-    #     y=max_value - 1,  # Slightly above the line
-    #     text=f'<b>bRiv<br>{br_line}',  # Value to display
-    #     showarrow=False,  # No arrow
-    #     font=dict(size=15, color='white'),  # Font size and color
-    #     align='center'  # Center the text
-    # )
+    player_scatter_vertical.add_annotation(
+        x=carries_min + .1,  # Positioning on the x-axis (far left)
+        y=max_value - 1,  # Slightly above the line
+        text=f'<b>bRiv<br>{br_line}',  # Value to display
+        showarrow=False,  # No arrow
+        font=dict(size=15, color='white'),  # Font size and color
+        align='center'  # Center the text
+    )
 
     # Update layout and axes
     player_scatter_vertical.update_traces(hovertemplate=player_season['hover_text'])
@@ -238,7 +238,7 @@ def get_player_scatter_vertical_pass(player_season):
         lambda row: f"Week {int(row['week'])}<br>vs. {row['opponent_team']}<br><br>{int(row['passing_yards'])} yards<br>{int(row['attempts'])} attempts", axis=1
     )
     
-    # Calculate the maximum values for UD Line and PP Line
+    # passing lines UD Line and PP Line
     ud_line_max = player_season[player_season['market'] == 'passing_yards'].ud_line.max()
     pp_line_max = player_season[player_season['market'] == 'passing_yards'].pp_line.max()
 
@@ -266,33 +266,97 @@ def get_player_scatter_vertical_pass(player_season):
     # Median line and annotation
     max_value = player_season[player_season['market'] == 'passing_yards'].passing_yards.max()
     attempts_min = player_season[player_season['market'] == 'passing_yards'].attempts.min()
-    # br_line = player_season[player_season.market == 'passing_yards'].fillna(0).br_line.median()
+    br_line = player_season[player_season.market == 'passing_yards'].fillna(0).br_line.median()
     median_value = player_season[player_season['market'] == 'passing_yards'].passing_yards.median()
     player_scatter_vertical.add_hline(y=median_value, line_width=3, line_color="#3892F1", line_dash="dot")
 
     # Gather game information for the title
     spread_display = f"+{player_season.spread[0]}" if player_season.spread[0] >= 0 else str(player_season.spread[0])
-    opponent = player_season.opponent_team[0]
+    opponent = player_season.week_opponent[0]
     over_under = player_season.over_under[0]
 
     player_scatter_vertical.update_layout(
         # title=f"<b>bRiv {br_line}<br><br>{spread_display}&nbsp;&nbsp;&nbsp; o/u {over_under}<br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
-        title=f"<br>{spread_display}&nbsp;&nbsp;&nbsp; o/u {over_under}<br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
+        title=f"<br>{spread_display} {opponent}&nbsp;&nbsp;&nbsp; o/u {over_under}",#<br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
         title_x=0.5, title_y=.96,  # Center the title
         title_font=dict(size=14, color='white')  # Adjust title font style
     )
 
                 # Add annotation for the median line
-    # player_scatter_vertical.add_annotation(
-    #     x=attempts_min + .1,  # Positioning on the x-axis (far left)
-    #     y=max_value - 1,  # Slightly above the line
-    #     text=f'<b>bRiv<br>{br_line}',  # Value to display
-    #     showarrow=False,  # No arrow
-    #     font=dict(size=15, color='white'),  # Font size and color
-    #     align='center'  # Center the text
-    # )
+    player_scatter_vertical.add_annotation(
+        x=attempts_min + .1,  # Positioning on the x-axis (far left)
+        y=max_value - 1,  # Slightly above the line
+        text=f'<b>bRiv<br>{br_line}',  # Value to display
+        # text=f'<b>{br_line}',  # Value to display
+        showarrow=False,  # No arrow
+        font=dict(size=15, color='white'),  # Font size and color
+        align='center'  # Center the text
+    )
 
     # Update layout and axes
     player_scatter_vertical.update_traces(hovertemplate=player_season['hover_text'])
 
     return player_scatter_vertical
+
+
+# stats dictionary for clean mapping
+stats_dict = {'1Q Passing Yards': '1q_passing_yards',
+    '1Q Receiving Yards': '1q_receiving_yards',
+    '1Q Rushing Yards': '1q_rushing_yards',
+    '48+ Yard FG Made (Combo)': '48+yard_fg_made_combo',
+    'Assists': 'assists',
+    'Avg Yards Per Punt': 'avg_yards_per_punt',
+    'Completion Percentage': 'completion_perc',
+    'Completions': 'completions',
+    'FG Made': 'fg_made',
+    'FG Made (Combo)': 'fg_made_combo',
+    'Fantasy Points': 'fantasy_points',
+    'Fantasy Score': 'fantasy_points',
+    'Field Goal Yards (Combo)': 'fg_yards_combo',
+    '1H Passing Yards': '1h_passing_yards',
+    '1H Receiving Yards': '1h_receiving_yards',
+    '1H Rushing Yards': '1h_rushing_yards',
+    'INT': 'interceptions',
+    'Interceptions':'interceptions',
+    'Kicking Points': 'kicking_points',
+    'Longest Completion': 'longest_completion',
+    'Longest Reception': 'longest_reception',
+    'Longest Rush': 'longest_rush',
+    'Pass + Rush Yards': 'pass+rush_yards',
+    'Pass Attempts': 'attempts',
+    'Pass Completions': 'completions',
+    'Pass TDs': 'passing_tds',
+    'Pass Yards': 'passing_yards',
+    'Pass Yards (Combo)': 'pass_yards_combo',
+    'Pass+Rush Yds': 'pass+rush_yards',
+    'Pass+Rush+Rec TDs': 'pass+rush+rec_tds',
+    'Passing Attempts': 'attempts',
+    'Passing First Downs': 'passing_first_downs',
+    'Passing TDs': 'passing_tds',
+    'Passing Yards': 'passing_yards',
+    'Rec Targets': 'targets',
+    'Receiving TDs': 'receiving_tds',
+    'Receiving Yards': 'receiving_yards',
+    'Receiving Yards (Combo)': 'rec_yards_combo',
+    'Receiving Yards in First 2 Receptions': 'rec_yards_first_2_receptions',
+    'Receptions': 'receptions',
+    'Rush + Rec First Downs': 'rush+rec_first_downs',
+    'Rush + Rec TDs': 'rush+rec_tds',
+    'Rush + Rec Yards': 'rush+rec_yards',
+    'Rush Attempts': 'carries',
+    'Rush Yards': 'rushing_yards',
+    'Rush Yards (Combo)': 'rush_yards_combo',
+    'Rush Yards in First 5 Attempts': 'rush_yards_first_5_attempts',
+    'Rush+Rec TDs': 'rush+rec_tds',
+    'Rush+Rec TDs (Combo)': 'rush+rec_tds_combo',
+    'Rush+Rec Yds': 'rush+rec_yards',
+    'Rush+Rec Yds (Combo)': 'rush+rec_yards_combo',
+    'Rushing Attempts': 'carries',
+    'Rushing TDs':'rushing_tds',
+    'Rushing Yards': 'rushing_yards',
+    'Sacks': 'sacks',
+    'Sacks Taken': 'sacks_taken',
+    'Solo Tackles': 'solo_tackles',
+    'Tackles + Assists': 'tackles+assists',
+    'Targets': 'targets',
+    'XP Made': 'xp_made'}
