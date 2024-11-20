@@ -63,8 +63,11 @@ else:
 
 #######################
 # READ IN DATA
-all_data = pd.read_csv(r'C:\Users\mikej\Desktop\mean-median\data\mean_median.csv')
-# all_data = all_data.astype({'season': int})
+def get_data():
+    all_data = pd.read_csv(r'C:\Users\mikej\Desktop\mean-median\data\mean_median.csv')
+    all_data = all_data.astype({'season': int})
+    return all_data
+all_data = get_data()
 
 #####################
 ## START TABS
