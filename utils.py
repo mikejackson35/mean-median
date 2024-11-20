@@ -147,7 +147,7 @@ def get_player_scatter_vertical(player_season):
         player_scatter_vertical.add_hline(y=pp_line_max, line_width=1, line_color="purple")
 
     if br_line_max > 0:
-        player_scatter_vertical.add_hline(y=br_line_max, line_width=1, line_color="#17B169")
+        player_scatter_vertical.add_hline(y=br_line_max, line_width=1, line_color="white")
     
     # Median line and annotation
     max_value = player_season[player_season['market'] == 'receiving_yards'].receiving_yards.max()
@@ -288,7 +288,7 @@ def get_player_scatter_vertical_pass(player_season):
         player_scatter_vertical.add_hline(y=pp_line_max, line_width=1, line_color="purple")
 
     if br_line_max > 0:
-        player_scatter_vertical.add_hline(y=br_line_max, line_width=1, line_color="#17B169")    
+        player_scatter_vertical.add_hline(y=br_line_max, line_width=1, line_color="white")    
     
     # Median line and annotation
     max_value = player_season[player_season['market'] == 'passing_yards'].passing_yards.max()
