@@ -63,7 +63,7 @@ else:
 
 #######################
 # READ IN DATA
-all_data = pd.read_csv(r'C:\Users\mikej\Desktop\mean-median\data\mean-median.csv')
+all_data = pd.read_csv(r'C:\Users\mikej\Desktop\mean-median\data\mean_median.csv')
 # all_data = all_data.astype({'season': int})
 
 #####################
@@ -106,18 +106,26 @@ with tab1:
 
     with col2:
         '###'
-        # '###'
         st.markdown('<center>Game Log</center>', unsafe_allow_html=True)
+        
+        # Get the styled DataFrame
+        styled_table = get_rec_table_wide(player_season)
+
+        # Get the actual number of rows in the DataFrame
+        num_rows = len(player_season[player_season.market == 'receiving_yards'])
+        
+        # Dynamically adjust height: 35px per row, capped at 475px
+        dynamic_height = min(43 * num_rows, 475)
+
+        # Display the DataFrame in Streamlit
         st.dataframe(
-            get_rec_table_wide(player_season),
+            styled_table,
             hide_index=True,
-            height=475,
+            height=dynamic_height,
             column_config={
                 'Week': {'alignment': 'left', 'header': 'Week'},
                 'Yards': {'alignment': 'left', 'header': 'Yards'},
-                'Targets': {'alignment': 'left', 'header': 'Targets'},
-                'Rec': {'alignment': 'left', 'header': 'Rec'},
-                'TDs': {'alignment': 'left', 'header': 'TDs'}
+                'Attempts': {'alignment': 'left', 'header': 'Attempts'}
             },
             use_container_width=True
         )
@@ -161,16 +169,26 @@ with tab2:
 
     with col2:
         '###'
-        # '###'
         st.markdown('<center>Game Log</center>', unsafe_allow_html=True)
+        
+        # Get the styled DataFrame
+        styled_table = get_rush_table_wide(player_season)
+
+        # Get the actual number of rows in the DataFrame
+        num_rows = len(player_season[player_season.market == 'rushing_yards'])
+        
+        # Dynamically adjust height: 35px per row, capped at 475px
+        dynamic_height = min(43 * num_rows, 475)
+
+        # Display the DataFrame in Streamlit
         st.dataframe(
-            get_rush_table_wide(player_season),
+            styled_table,
             hide_index=True,
-            height=475,
+            height=dynamic_height,
             column_config={
                 'Week': {'alignment': 'left', 'header': 'Week'},
                 'Yards': {'alignment': 'left', 'header': 'Yards'},
-                'Carries': {'alignment': 'left', 'header': 'Carries'}
+                'Attempts': {'alignment': 'left', 'header': 'Attempts'}
             },
             use_container_width=True
         )
@@ -212,12 +230,22 @@ with tab3:
 
     with col2:
         '###'
-        # '###'
         st.markdown('<center>Game Log</center>', unsafe_allow_html=True)
+        
+        # Get the styled DataFrame
+        styled_table = get_pass_table_wide(player_season)
+
+        # Get the actual number of rows in the DataFrame
+        num_rows = len(player_season[player_season.market == 'passing_yards'])
+        
+        # Dynamically adjust height: 35px per row, capped at 475px
+        dynamic_height = min(43 * num_rows, 475)
+
+        # Display the DataFrame in Streamlit
         st.dataframe(
-            get_pass_table_wide(player_season),
+            styled_table,
             hide_index=True,
-            height=475,
+            height=dynamic_height,
             column_config={
                 'Week': {'alignment': 'left', 'header': 'Week'},
                 'Yards': {'alignment': 'left', 'header': 'Yards'},
@@ -229,23 +257,23 @@ with tab3:
 
 
 # ---- REMOVE UNWANTED STREAMLIT STYLING ----
-# hide_st_style = """
-#             <style>
-#             Main Menu {visibility: hidden;}
-#             footer {visibility: hidden;}
-#             header {visibility: hidden;}
-#             </style>
-#             """
+hide_st_style = """
+            <style>
+            Main Menu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
             
-# st.markdown(hide_st_style, unsafe_allow_html=True)
+st.markdown(hide_st_style, unsafe_allow_html=True)
 
-# st.markdown(
-#     """
-#     <style>
-#     .stApp {
-#         footer {display: none;}
-#     }
-#     </style>
-#     """,
-#     unsafe_allow_html=True
-# )
+st.markdown(
+    """
+    <style>
+    .stApp {
+        footer {display: none;}
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)

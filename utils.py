@@ -33,64 +33,86 @@ def ud_delta(row):
         return row['passing_yards'] - row['ud_line']
 
 def get_rec_table_wide(player_season):
+    # Filter rows for receiving yards and select relevant columns
+    rec_table_wide = player_season[
+        player_season.market == 'receiving_yards'
+    ][['week', 'opponent_team', 'receiving_yards', 'targets', 'receptions', 'receiving_tds']].sort_values(
+        by='week', ascending=False
+    ).reset_index(drop=True)
+    
+    # Rename columns
+    rec_table_wide.columns = ['Week', 'Opp', 'Yards', 'Targets', 'Rec', 'TDs']
 
-    rec_table_wide = player_season[player_season.market=='receiving_yards'][['week','receiving_yards','targets','receptions','receiving_tds']].sort_values(by='week',ascending=False).reset_index(drop=True) 
-    rec_table_wide.columns = ['Week','Yards','Targets','Rec','TDs']
+    # Calculate median values for highlighting
+    ud_line = player_season[player_season.market == 'receiving_yards'].ud_line.median()
+    pp_line = player_season[player_season.market == 'receiving_yards'].pp_line.median()
 
-    ud_line = player_season[player_season.market=='receiving_yards'].ud_line.median()
-    pp_line = player_season[player_season.market=='receiving_yards'].pp_line.median()
-
-    # Define a function to highlight rows where 'receiving_yards' is greater than either ud_line or pp_line
+    # Function to highlight rows
     def highlight_high_yards(row):
         color = 'background-color: #3892F1' if row['Yards'] > ud_line or row['Yards'] > pp_line else ''
         return [color] * len(row)
+
+    # Apply style and formatting
+    styled_table = rec_table_wide.style.apply(highlight_high_yards, axis=1).format(precision=0)
     
-    # Apply the highlighting function and set font properties
-    rec_table_wide = (rec_table_wide.style
-                      .apply(highlight_high_yards, axis=1)
-                      .format(precision=0))
-    
-    return rec_table_wide
+    # Return styled DataFrame
+    return styled_table
+
 
 def get_rush_table_wide(player_season):
-    # Create a DataFrame for rushing yards data, sorting by week
-    rush_table_wide = player_season[player_season.market == 'rushing_yards'][['week', 'opponent_team', 'rushing_yards', 'carries']].sort_values(by='week', ascending=False).reset_index(drop=True)
+    # Filter rows for rushing yards and select relevant columns
+    rush_table_wide = player_season[
+        player_season.market == 'rushing_yards'
+    ][['week', 'opponent_team', 'rushing_yards', 'carries']].sort_values(
+        by='week', ascending=False
+    ).reset_index(drop=True)
+    
+    # Rename columns
     rush_table_wide.columns = ['Week', 'Opp', 'Yards', 'Carries']
 
-    # Calculate the median lines for UD and PP
+    # Calculate median values for highlighting
     ud_line = player_season[player_season.market == 'rushing_yards'].ud_line.median()
     pp_line = player_season[player_season.market == 'rushing_yards'].pp_line.median()
 
-    # Define a function to highlight rows where 'Yards' is greater than either ud_line or pp_line
+    # Function to highlight rows
     def highlight_high_yards(row):
         color = 'background-color: #3892F1' if row['Yards'] > ud_line or row['Yards'] > pp_line else ''
         return [color] * len(row)
 
-    # Apply the highlighting function and format the DataFrame
-    rush_table_wide = (rush_table_wide.style
-                       .apply(highlight_high_yards, axis=1)
-                       .format(precision=0))
+    # Apply style and formatting
+    styled_table = rush_table_wide.style.apply(highlight_high_yards, axis=1).format(precision=0)
+    
+    # Return styled DataFrame
+    return styled_table
 
-    return rush_table_wide
+
 
 def get_pass_table_wide(player_season):
-    pass_table_wide = player_season[player_season.market == 'passing_yards'][['week', 'passing_yards', 'attempts', 'passing_tds']].sort_values(by='week', ascending=False).reset_index(drop=True)
-    pass_table_wide.columns = ['Week', 'Yards', 'Attempts', 'TDs']
+    # Filter rows for passing yards and select relevant columns
+    pass_table_wide = player_season[
+        player_season.market == 'passing_yards'
+    ][['week', 'opponent_team', 'passing_yards', 'attempts', 'passing_tds']].sort_values(
+        by='week', ascending=False
+    ).reset_index(drop=True)
+    
+    # Rename columns
+    pass_table_wide.columns = ['Week', 'Opp', 'Yards', 'Attempts', 'TDs']
 
+    # Calculate median values for highlighting
     ud_line = player_season[player_season.market == 'passing_yards'].ud_line.median()
     pp_line = player_season[player_season.market == 'passing_yards'].pp_line.median()
 
-    # Define a function to highlight rows where 'passing_yards' is greater than either ud_line or pp_line
+    # Function to highlight rows
     def highlight_high_yards(row):
         color = 'background-color: #3892F1' if row['Yards'] > ud_line or row['Yards'] > pp_line else ''
         return [color] * len(row)
+
+    # Apply style and formatting
+    styled_table = pass_table_wide.style.apply(highlight_high_yards, axis=1).format(precision=0)
     
-    # Apply the highlighting function and set font properties
-    pass_table_wide = (pass_table_wide.style
-                       .apply(highlight_high_yards, axis=1)
-                       .format(precision=0))
-    
-    return pass_table_wide
+    # Return styled DataFrame
+    return styled_table
+
 
 def get_player_scatter_vertical(player_season):
     # Create a new column for custom hover text
@@ -207,8 +229,8 @@ def get_player_scatter_vertical_rush(player_season):
 
     # Gather game information for the title
     spread_display = f"+{player_season.spread[0]}" if player_season.spread[0] >= 0 else str(player_season.spread[0])
-    # opponent = player_season.week_opponent[0]
-    opponent = 'tbd'
+    opponent = player_season.week_opponent[0]
+    # opponent = 'tbd'
     over_under = player_season.over_under[0]
 
     player_scatter_vertical.update_layout(
@@ -274,8 +296,8 @@ def get_player_scatter_vertical_pass(player_season):
 
     # Gather game information for the title
     spread_display = f"+{player_season.spread[0]}" if player_season.spread[0] >= 0 else str(player_season.spread[0])
-    # opponent = player_season.week_opponent[0]
-    opponent = 'tbd'
+    opponent = player_season.week_opponent[0]
+    # opponent = 'tbd'
     over_under = player_season.over_under[0]
 
     player_scatter_vertical.update_layout(
