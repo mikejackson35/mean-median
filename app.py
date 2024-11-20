@@ -63,7 +63,7 @@ else:
 
 #######################
 # READ IN DATA
-all_data = pd.read_csv(r"data/mean_median.csv")
+all_data = pd.read_csv(r"data\mean_median.csv")
 # all_data = all_data.astype({'season': int})
 
 #####################
