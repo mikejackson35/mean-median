@@ -96,9 +96,10 @@ with tab1:
             lines_placeholder.markdown(
                 f"<div style='display: flex; justify-content: space-between; color: yellow; font-size: 18px;font-weight: bold;'>"
                 f"<span style='color: yellow;text-align: right;'>uDog {player_season[player_season.market == 'receiving_yards'].fillna(0).ud_line.max()}</span>"
-                f"<span style='color: white; font-size: 24px;'>{player_season.player[0]}</span>"
+                f"<span style='color: white;text-align: right;'>bRiv {player_season[player_season.market == 'receiving_yards'].fillna(0).br_line.max()}</span>"
                 f"<span style='color: violet;text-align: left;'>pPicks {player_season[player_season.market == 'receiving_yards'].fillna(0).pp_line.max()}</span>"
-                f"</div>",
+                f"</div>"#,
+                f"<div <span style='color: white; font-size: 24px; text-align: center;'>{player_season.player[0]}</span></div>",
                 unsafe_allow_html=True
             )
 
