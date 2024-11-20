@@ -123,7 +123,7 @@ def get_player_scatter_vertical(player_season):
     # Calculate the maximum values for UD Line and PP Line
     ud_line_max = player_season[player_season['market'] == 'receiving_yards'].ud_line.max()
     pp_line_max = player_season[player_season['market'] == 'receiving_yards'].pp_line.max()
-    # br_line_max = player_season[player_season['market'] == 'receiving_yards'].br_line.max()
+    br_line_max = player_season[player_season['market'] == 'receiving_yards'].br_line.max()
 
     # Create the scatter plot for rushing yards
     player_scatter_vertical = px.scatter(
@@ -146,8 +146,8 @@ def get_player_scatter_vertical(player_season):
     if pp_line_max > 0:
         player_scatter_vertical.add_hline(y=pp_line_max, line_width=1, line_color="purple")
 
-    # if br_line_max > 0:
-    #     player_scatter_vertical.add_hline(y=br_line_max, line_width=1, line_color="#17B169")
+    if br_line_max > 0:
+        player_scatter_vertical.add_hline(y=br_line_max, line_width=1, line_color="#17B169")
     
     # Median line and annotation
     max_value = player_season[player_season['market'] == 'receiving_yards'].receiving_yards.max()
@@ -164,21 +164,20 @@ def get_player_scatter_vertical(player_season):
 
     # Update chart title with game information
     player_scatter_vertical.update_layout(
-        # title=f"<b>bRiv {br_line}<br><br>{spread_display}&nbsp;&nbsp;&nbsp; o/u {over_under}<br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
         title=f"<br>{spread_display} {opponent}&nbsp;&nbsp;&nbsp; o/u {over_under}",#<br><span style='color: #3892F1;text-align: right;'>Szn Median: {median_value} yards</span>",
         title_x=0.5, title_y=.96,  # Center the title
         title_font=dict(size=14, color='white')  # Adjust title font style
     )
 
         # Add annotation for the median line
-    player_scatter_vertical.add_annotation(
-        x=targets_min + .1,  # Positioning on the x-axis (far left)
-        y=max_value - 1,  # Slightly above the line
-        text=f'<b>bRiv<br>{br_line}',  # Value to display
-        showarrow=False,  # No arrow
-        font=dict(size=15, color='white'),  # Font size and color
-        align='center'  # Center the text
-    )
+    # player_scatter_vertical.add_annotation(
+    #     x=targets_min + .1,  # Positioning on the x-axis (far left)
+    #     y=max_value - 1,  # Slightly above the line
+    #     text=f'<b>bRiv<br>{br_line}',  # Value to display
+    #     showarrow=False,  # No arrow
+    #     font=dict(size=15, color='white'),  # Font size and color
+    #     align='center'  # Center the text
+    # )
 
     # Update layout and axes
     player_scatter_vertical.update_traces(hovertemplate=player_season['hover_text'])
@@ -194,7 +193,7 @@ def get_player_scatter_vertical_rush(player_season):
     # Calculate the maximum values for UD Line and PP Line
     ud_line_max = player_season[player_season['market'] == 'rushing_yards'].ud_line.max()
     pp_line_max = player_season[player_season['market'] == 'rushing_yards'].pp_line.max()
-    # br_line_max = player_season[player_season['market'] == 'rushing_yards'].br_line.max()
+    br_line_max = player_season[player_season['market'] == 'rushing_yards'].br_line.max()
 
     # Create the scatter plot for rushing yards
     player_scatter_vertical = px.scatter(
@@ -217,8 +216,8 @@ def get_player_scatter_vertical_rush(player_season):
     if pp_line_max > 0:
         player_scatter_vertical.add_hline(y=pp_line_max, line_width=1, line_color="purple")
     
-    # if br_line_max > 0:
-    #     player_scatter_vertical.add_hline(y=br_line_max, line_width=1, line_color="#17B169")    
+    if br_line_max > 0:
+        player_scatter_vertical.add_hline(y=br_line_max, line_width=1, line_color='white')#"#17B169")    
 
     # Median line and annotation
     max_value = player_season[player_season['market'] == 'rushing_yards'].rushing_yards.max()
@@ -241,14 +240,14 @@ def get_player_scatter_vertical_rush(player_season):
         )
 
             # Add annotation for the median line
-    player_scatter_vertical.add_annotation(
-        x=carries_min + .1,  # Positioning on the x-axis (far left)
-        y=max_value - 1,  # Slightly above the line
-        text=f'<b>bRiv<br>{br_line}',  # Value to display
-        showarrow=False,  # No arrow
-        font=dict(size=15, color='white'),  # Font size and color
-        align='center'  # Center the text
-    )
+    # player_scatter_vertical.add_annotation(
+    #     x=carries_min + .1,  # Positioning on the x-axis (far left)
+    #     y=max_value - 1,  # Slightly above the line
+    #     text=f'<b>bRiv<br>{br_line}',  # Value to display
+    #     showarrow=False,  # No arrow
+    #     font=dict(size=15, color='white'),  # Font size and color
+    #     align='center'  # Center the text
+    # )
 
     # Update layout and axes
     player_scatter_vertical.update_traces(hovertemplate=player_season['hover_text'])
@@ -265,6 +264,7 @@ def get_player_scatter_vertical_pass(player_season):
     # passing lines UD Line and PP Line
     ud_line_max = player_season[player_season['market'] == 'passing_yards'].ud_line.max()
     pp_line_max = player_season[player_season['market'] == 'passing_yards'].pp_line.max()
+    br_line_max = player_season[player_season['market'] == 'passing_yards'].br_line.max()
 
     # Create the scatter plot for rushing yards
     player_scatter_vertical = px.scatter(
@@ -286,11 +286,14 @@ def get_player_scatter_vertical_pass(player_season):
     
     if pp_line_max > 0:
         player_scatter_vertical.add_hline(y=pp_line_max, line_width=1, line_color="purple")
+
+    if br_line_max > 0:
+        player_scatter_vertical.add_hline(y=br_line_max, line_width=1, line_color="#17B169")    
     
     # Median line and annotation
     max_value = player_season[player_season['market'] == 'passing_yards'].passing_yards.max()
     attempts_min = player_season[player_season['market'] == 'passing_yards'].attempts.min()
-    br_line = player_season[player_season.market == 'passing_yards'].fillna(0).br_line.median()
+    # br_line = player_season[player_season.market == 'passing_yards'].fillna(0).br_line.median()
     median_value = player_season[player_season['market'] == 'passing_yards'].passing_yards.median()
     player_scatter_vertical.add_hline(y=median_value, line_width=3, line_color="#3892F1", line_dash="dot")
 
@@ -308,15 +311,15 @@ def get_player_scatter_vertical_pass(player_season):
     )
 
                 # Add annotation for the median line
-    player_scatter_vertical.add_annotation(
-        x=attempts_min + .1,  # Positioning on the x-axis (far left)
-        y=max_value - 1,  # Slightly above the line
-        text=f'<b>bRiv<br>{br_line}',  # Value to display
-        # text=f'<b>{br_line}',  # Value to display
-        showarrow=False,  # No arrow
-        font=dict(size=15, color='white'),  # Font size and color
-        align='center'  # Center the text
-    )
+    # player_scatter_vertical.add_annotation(
+    #     x=attempts_min + .1,  # Positioning on the x-axis (far left)
+    #     y=max_value - 1,  # Slightly above the line
+    #     text=f'<b>bRiv<br>{br_line}',  # Value to display
+    #     # text=f'<b>{br_line}',  # Value to display
+    #     showarrow=False,  # No arrow
+    #     font=dict(size=15, color='white'),  # Font size and color
+    #     align='center'  # Center the text
+    # )
 
     # Update layout and axes
     player_scatter_vertical.update_traces(hovertemplate=player_season['hover_text'])
