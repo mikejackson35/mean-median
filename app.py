@@ -156,11 +156,11 @@ with tab2:
             player_season = all_data[all_data.player == player].reset_index(drop=True)
 
             # Display underdog and prizepicks lines
-            # Display underdog and prizepicks lines
             lines_placeholder.markdown(
+                f"<div <span style='color: white; font-size: 24px; text-align: center;'>{player_season.player[0]}</span></div>"
                 f"<div style='display: flex; justify-content: space-between; color: yellow; font-size: 18px;font-weight: bold;'>"
                 f"<span style='color: yellow;text-align: right;'>uDog {player_season[player_season.market == 'rushing_yards'].fillna(0).ud_line.max()}</span>"
-                f"<span style='color: white; font-size: 24px;'>{player_season.player[0]}</span>"
+                f"<span style='color: white;text-align: right;'>bRiv {player_season[player_season.market == 'rushing_yards'].fillna(0).br_line.max()}</span>"
                 f"<span style='color: violet;text-align: left;'>pPicks {player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.max()}</span>"
                 f"</div>",
                 unsafe_allow_html=True
@@ -219,9 +219,10 @@ with tab3:
 
             # Display underdog and prizepicks lines
             lines_placeholder.markdown(
+                f"<div <span style='color: white; font-size: 24px; text-align: center;'>{player_season.player[0]}</span></div>"
                 f"<div style='display: flex; justify-content: space-between; color: yellow; font-size: 18px;font-weight: bold;'>"
                 f"<span style='color: yellow;text-align: right;'>uDog {player_season[player_season.market == 'passing_yards'].fillna(0).ud_line.max()}</span>"
-                f"<span style='color: white; font-size: 24px;'>{player_season.player[0]}</span>"
+                f"<span style='color: white;text-align: right;'>bRiv {player_season[player_season.market == 'passing_yards'].fillna(0).br_line.max()}</span>"
                 f"<span style='color: violet;text-align: left;'>pPicks {player_season[player_season.market == 'passing_yards'].fillna(0).pp_line.max()}</span>"
                 f"</div>",
                 unsafe_allow_html=True
