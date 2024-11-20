@@ -137,6 +137,7 @@ def get_player_scatter_vertical(player_season):
     # Gather game information for the title
     spread_display = f"+{player_season.spread[0]}" if player_season.spread[0] >= 0 else str(player_season.spread[0])
     opponent = player_season.week_opponent[0]
+    # opponent = 'tbd'
     over_under = player_season.over_under[0]
 
     # Update chart title with game information
@@ -206,7 +207,8 @@ def get_player_scatter_vertical_rush(player_season):
 
     # Gather game information for the title
     spread_display = f"+{player_season.spread[0]}" if player_season.spread[0] >= 0 else str(player_season.spread[0])
-    opponent = player_season.week_opponent[0]
+    # opponent = player_season.week_opponent[0]
+    opponent = 'tbd'
     over_under = player_season.over_under[0]
 
     player_scatter_vertical.update_layout(
@@ -272,7 +274,8 @@ def get_player_scatter_vertical_pass(player_season):
 
     # Gather game information for the title
     spread_display = f"+{player_season.spread[0]}" if player_season.spread[0] >= 0 else str(player_season.spread[0])
-    opponent = player_season.week_opponent[0]
+    # opponent = player_season.week_opponent[0]
+    opponent = 'tbd'
     over_under = player_season.over_under[0]
 
     player_scatter_vertical.update_layout(
