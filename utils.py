@@ -170,14 +170,14 @@ def get_player_scatter_vertical(player_season):
     )
 
         # Add annotation for the median line
-    # player_scatter_vertical.add_annotation(
-    #     x=targets_min + .1,  # Positioning on the x-axis (far left)
-    #     y=max_value - 1,  # Slightly above the line
-    #     text=f'<b>bRiv<br>{br_line}',  # Value to display
-    #     showarrow=False,  # No arrow
-    #     font=dict(size=15, color='white'),  # Font size and color
-    #     align='center'  # Center the text
-    # )
+    player_scatter_vertical.add_annotation(
+        x=targets_min,  # Positioning on the x-axis (far left)
+        y=median_value + 1,  # Slightly above the line
+        text=f'Med {br_line}',  # Value to display
+        showarrow=False,  # No arrow
+        font=dict(size=15, color='white'),  # Font size and color
+        align='center'  # Center the text
+    )
 
     # Update layout and axes
     player_scatter_vertical.update_traces(hovertemplate=player_season['hover_text'])
@@ -222,8 +222,8 @@ def get_player_scatter_vertical_rush(player_season):
     # Median line and annotation
     max_value = player_season[player_season['market'] == 'rushing_yards'].rushing_yards.max()
     median_value = player_season[player_season['market'] == 'rushing_yards'].rushing_yards.median()
-    carries_min = player_season[player_season['market'] == 'rushing_yards'].carries.min()
-    br_line = player_season[player_season.market == 'rushing_yards'].fillna(0).br_line.median()
+    # carries_min = player_season[player_season['market'] == 'rushing_yards'].carries.min()
+    # br_line = player_season[player_season.market == 'rushing_yards'].fillna(0).br_line.median()
     player_scatter_vertical.add_hline(y=median_value, line_width=3, line_color="#3892F1", line_dash="dot")
 
     # Gather game information for the title
