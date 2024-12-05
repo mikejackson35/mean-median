@@ -99,24 +99,24 @@ def get_rush_table_wide(player_season):
 
     return rush_table_wide
 
-def get_pass_table_wide(player_season):
-    pass_table_wide = player_season[player_season.market == 'passing_yards'][['week', 'passing_yards', 'attempts', 'passing_tds']].sort_values(by='week', ascending=False).reset_index(drop=True)
-    pass_table_wide.columns = ['Week', 'Yards', 'Attempts', 'TDs']
+# def get_pass_table_wide(player_season):
+#     pass_table_wide = player_season[player_season.market == 'passing_yards'][['week', 'passing_yards', 'attempts', 'passing_tds']].sort_values(by='week', ascending=False).reset_index(drop=True)
+#     pass_table_wide.columns = ['Week', 'Yards', 'Attempts', 'TDs']
 
-    ud_line = player_season[player_season.market == 'passing_yards'].ud_line.median()
-    pp_line = player_season[player_season.market == 'passing_yards'].pp_line.median()
+#     ud_line = player_season[player_season.market == 'passing_yards'].ud_line.median()
+#     pp_line = player_season[player_season.market == 'passing_yards'].pp_line.median()
 
-    # Define a function to highlight rows where 'passing_yards' is greater than either ud_line or pp_line
-    def highlight_high_yards(row):
-        color = 'background-color: #3892F1' if row['Yards'] > ud_line or row['Yards'] > pp_line else ''
-        return [color] * len(row)
+#     # Define a function to highlight rows where 'passing_yards' is greater than either ud_line or pp_line
+#     def highlight_high_yards(row):
+#         color = 'background-color: #3892F1' if row['Yards'] > ud_line or row['Yards'] > pp_line else ''
+#         return [color] * len(row)
     
-    # Apply the highlighting function and set font properties
-    pass_table_wide = (pass_table_wide.style
-                       .apply(highlight_high_yards, axis=1)
-                       .format(precision=0))
+#     # Apply the highlighting function and set font properties
+#     pass_table_wide = (pass_table_wide.style
+#                        .apply(highlight_high_yards, axis=1)
+#                        .format(precision=0))
     
-    return pass_table_wide
+#     return pass_table_wide
 
 def get_player_scatter_vertical(player_season):
     # Create a new column for custom hover text
