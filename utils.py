@@ -45,11 +45,11 @@ def get_rec_table_wide(player_season):
 
     # Calculate median values for highlighting
     ud_line = player_season[player_season.market == 'receiving_yards'].ud_line.median()
-    pp_line = player_season[player_season.market == 'receiving_yards'].pp_line.median()
+    # pp_line = player_season[player_season.market == 'receiving_yards'].pp_line.median()
 
     # Function to highlight rows
     def highlight_high_yards(row):
-        color = 'background-color: #3892F1' if row['Yards'] > ud_line or row['Yards'] > pp_line else ''
+        color = 'background-color: #3892F1' if row['Yards'] > ud_line else ''
         return [color] * len(row)
 
     # Apply style and formatting
@@ -72,11 +72,11 @@ def get_rush_table_wide(player_season):
 
     # Calculate median values for highlighting
     ud_line = player_season[player_season.market == 'rushing_yards'].ud_line.median()
-    pp_line = player_season[player_season.market == 'rushing_yards'].pp_line.median()
+    # pp_line = player_season[player_season.market == 'rushing_yards'].pp_line.median()
 
     # Function to highlight rows
     def highlight_high_yards(row):
-        color = 'background-color: #3892F1' if row['Yards'] > ud_line or row['Yards'] > pp_line else ''
+        color = 'background-color: #3892F1' if row['Yards'] > ud_line else ''
         return [color] * len(row)
 
     # Apply style and formatting
@@ -100,11 +100,11 @@ def get_pass_table_wide(player_season):
 
     # Calculate median values for highlighting
     ud_line = player_season[player_season.market == 'passing_yards'].ud_line.median()
-    pp_line = player_season[player_season.market == 'passing_yards'].pp_line.median()
+    # pp_line = player_season[player_season.market == 'passing_yards'].pp_line.median()
 
     # Function to highlight rows
     def highlight_high_yards(row):
-        color = 'background-color: #3892F1' if row['Yards'] > ud_line or row['Yards'] > pp_line else ''
+        color = 'background-color: #3892F1' if row['Yards'] > ud_line else ''
         return [color] * len(row)
 
     # Apply style and formatting
@@ -122,7 +122,7 @@ def get_player_scatter_vertical(player_season):
     
     # Calculate the maximum values for UD Line and PP Line
     ud_line_max = player_season[player_season['market'] == 'receiving_yards'].ud_line.max()
-    pp_line_max = player_season[player_season['market'] == 'receiving_yards'].pp_line.max()
+    # pp_line_max = player_season[player_season['market'] == 'receiving_yards'].pp_line.max()
     br_line_max = player_season[player_season['market'] == 'receiving_yards'].br_line.max()
 
     # Create the scatter plot for rushing yards
@@ -143,8 +143,8 @@ def get_player_scatter_vertical(player_season):
     if ud_line_max > 0:
         player_scatter_vertical.add_hline(y=ud_line_max, line_width=1, line_color="yellow")
     
-    if pp_line_max > 0:
-        player_scatter_vertical.add_hline(y=pp_line_max, line_width=1, line_color="purple")
+    # if pp_line_max > 0:
+    #     player_scatter_vertical.add_hline(y=pp_line_max, line_width=1, line_color="purple")
 
     if br_line_max > 0:
         player_scatter_vertical.add_hline(y=br_line_max, line_width=1, line_color="white")
@@ -158,7 +158,7 @@ def get_player_scatter_vertical(player_season):
 
     # Gather game information for the title
     spread_display = f"+{player_season.spread[0]}" if player_season.spread[0] >= 0 else str(player_season.spread[0])
-    opponent = player_season.week_opponent[0]
+    opponent = player_season.opponent_team[0]
     # opponent = 'tbd'
     over_under = player_season.over_under[0]
 
@@ -192,7 +192,7 @@ def get_player_scatter_vertical_rush(player_season):
     
     # Calculate the maximum values for UD Line and PP Line
     ud_line_max = player_season[player_season['market'] == 'rushing_yards'].ud_line.max()
-    pp_line_max = player_season[player_season['market'] == 'rushing_yards'].pp_line.max()
+    # pp_line_max = player_season[player_season['market'] == 'rushing_yards'].pp_line.max()
     br_line_max = player_season[player_season['market'] == 'rushing_yards'].br_line.max()
 
     # Create the scatter plot for rushing yards
@@ -213,8 +213,8 @@ def get_player_scatter_vertical_rush(player_season):
     if ud_line_max > 0:
         player_scatter_vertical.add_hline(y=ud_line_max, line_width=1, line_color="yellow")
     
-    if pp_line_max > 0:
-        player_scatter_vertical.add_hline(y=pp_line_max, line_width=1, line_color="purple")
+    # if pp_line_max > 0:
+    #     player_scatter_vertical.add_hline(y=pp_line_max, line_width=1, line_color="purple")
     
     if br_line_max > 0:
         player_scatter_vertical.add_hline(y=br_line_max, line_width=1, line_color='white')#"#17B169")    
@@ -228,7 +228,7 @@ def get_player_scatter_vertical_rush(player_season):
 
     # Gather game information for the title
     spread_display = f"+{player_season.spread[0]}" if player_season.spread[0] >= 0 else str(player_season.spread[0])
-    opponent = player_season.week_opponent[0]
+    opponent = player_season.opponent_team[0]
     # opponent = 'tbd'
     over_under = player_season.over_under[0]
 
@@ -263,7 +263,7 @@ def get_player_scatter_vertical_pass(player_season):
     
     # passing lines UD Line and PP Line
     ud_line_max = player_season[player_season['market'] == 'passing_yards'].ud_line.max()
-    pp_line_max = player_season[player_season['market'] == 'passing_yards'].pp_line.max()
+    # pp_line_max = player_season[player_season['market'] == 'passing_yards'].pp_line.max()
     br_line_max = player_season[player_season['market'] == 'passing_yards'].br_line.max()
 
     # Create the scatter plot for rushing yards
@@ -284,8 +284,8 @@ def get_player_scatter_vertical_pass(player_season):
     if ud_line_max > 0:
         player_scatter_vertical.add_hline(y=ud_line_max, line_width=1, line_color="yellow")
     
-    if pp_line_max > 0:
-        player_scatter_vertical.add_hline(y=pp_line_max, line_width=1, line_color="purple")
+    # if pp_line_max > 0:
+    #     player_scatter_vertical.add_hline(y=pp_line_max, line_width=1, line_color="purple")
 
     if br_line_max > 0:
         player_scatter_vertical.add_hline(y=br_line_max, line_width=1, line_color="white")    
@@ -299,7 +299,7 @@ def get_player_scatter_vertical_pass(player_season):
 
     # Gather game information for the title
     spread_display = f"+{player_season.spread[0]}" if player_season.spread[0] >= 0 else str(player_season.spread[0])
-    opponent = player_season.week_opponent[0]
+    opponent = player_season.opponent_team[0]
     # opponent = 'tbd'
     over_under = player_season.over_under[0]
 

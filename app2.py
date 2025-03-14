@@ -23,7 +23,7 @@ st.set_page_config(
 #######################
 # READ IN DATA
 def get_data():
-    all_data = pd.read_csv(r'mean_median.csv')
+    all_data = pd.read_csv(r'C:\Users\mikej\Desktop\mean-median\data\mean_median.csv')
     # all_data = all_data.astype({'season': int})
     return all_data
 all_data = get_data()

@@ -64,7 +64,7 @@ else:
 #######################
 # READ IN DATA
 def get_data():
-    all_data = pd.read_csv(r'data/mean_median.csv')
+    all_data = pd.read_csv(r'C:\Users\mikej\Desktop\mean-median\data\mean_median.csv')
     # all_data = all_data.astype({'season': int})
     return all_data
 all_data = get_data()
@@ -75,7 +75,7 @@ tab1, tab2, tab3 = st.tabs(["Receiving", "Rushing", "Passing"])
 
 with tab1:
     # Create the list of players and initialize the player season data
-    player_list = list(all_data[all_data.market == 'receiving_yards'].player.sort_values().unique())
+    player_list = sorted(list(all_data[all_data.market == 'receiving_yards'].player.unique()))
     player_season = all_data[all_data.player == player_list[0]].reset_index(drop=True)  # Initial player selection
 
     col1, col2 = st.columns([1.35, 1])
@@ -101,7 +101,7 @@ with tab1:
                 f"<div style='display: flex; justify-content: space-between; color: yellow; font-size: 18px;font-weight: bold;'>"
                 f"<span style='color: yellow;text-align: right;'>uDog {player_season[player_season.market == 'receiving_yards'].fillna(0).ud_line.max()}</span>"
                 f"<span style='color: white;text-align: right;'>bRiv {player_season[player_season.market == 'receiving_yards'].fillna(0).br_line.max()}</span>"
-                f"<span style='color: violet;text-align: left;'>pPicks {player_season[player_season.market == 'receiving_yards'].fillna(0).pp_line.max()}</span>"
+                # f"<span style='color: violet;text-align: left;'>pPicks {player_season[player_season.market == 'receiving_yards'].fillna(0).pp_line.max()}</span>"
                 f"</div>",
                 unsafe_allow_html=True
             )
@@ -164,7 +164,7 @@ with tab2:
                 f"<div style='display: flex; justify-content: space-between; color: yellow; font-size: 18px;font-weight: bold;'>"
                 f"<span style='color: yellow;text-align: right;'>uDog {player_season[player_season.market == 'rushing_yards'].fillna(0).ud_line.max()}</span>"
                 f"<span style='color: white;text-align: right;'>bRiv {player_season[player_season.market == 'rushing_yards'].fillna(0).br_line.max()}</span>"
-                f"<span style='color: violet;text-align: left;'>pPicks {player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.max()}</span>"
+                # f"<span style='color: violet;text-align: left;'>pPicks {player_season[player_season.market == 'rushing_yards'].fillna(0).pp_line.max()}</span>"
                 f"</div>",
                 unsafe_allow_html=True
             )
@@ -226,7 +226,7 @@ with tab3:
                 f"<div style='display: flex; justify-content: space-between; color: yellow; font-size: 18px;font-weight: bold;'>"
                 f"<span style='color: yellow;text-align: right;'>uDog {player_season[player_season.market == 'passing_yards'].fillna(0).ud_line.max()}</span>"
                 f"<span style='color: white;text-align: right;'>bRiv {player_season[player_season.market == 'passing_yards'].fillna(0).br_line.mean().round(0)}</span>"
-                f"<span style='color: violet;text-align: left;'>pPicks {player_season[player_season.market == 'passing_yards'].fillna(0).pp_line.max()}</span>"
+                # f"<span style='color: violet;text-align: left;'>pPicks {player_season[player_season.market == 'passing_yards'].fillna(0).pp_line.max()}</span>"
                 f"</div>",
                 unsafe_allow_html=True
             )
